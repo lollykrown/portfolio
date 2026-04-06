@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  --bg: #020617;
+  --card: #0f172a;
+  --accent: #38bdf8;
+  --text: #e2e8f0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+} */
+body {
+  background: #020617;
+  color: #e2e8f0;
+}
+/* globals.css */
+.card {
+  @apply rounded-xl p-5 shadow-lg hover:shadow-xl transition;
+}
+
+
+
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Brand palette ── */
+    --color-accent:         #f59e0b; /* amber-500  — primary accent            */
+    --color-accent-light:   #fcd34d; /* amber-300  — light gradient stop       */
+    --color-accent-hover:   #d97706; /* amber-600  — hover / darker accent     */
+    --color-accent-muted:   #92400e; /* amber-800  — dark glow / card bg tint  */
+    --color-accent-subtle:  #fbbf24; /* amber-400  — gradient start / icon     */
+    
+    --color-purple:        #8b5cf6; /* violet-500  — secondary accent          */
+    --color-purple-light:  #8b5cf6; /* violet-500  — purple accent variant     */
+    --color-purple-hover: #7c3aed; /* violet-600  — purple hover              */
+    --color-purple-muted: #6d28d9; /* violet-700  — purple glow / card bg tint */
+    --color-purple-subtle: #a78bfa; /* violet-400  — purple gradient start / icon */
+
+    /* ── Gradient stops (used in bg-gradient-to-r) ── */
+    --color-grad-from:      #f59e0b; /* amber-500  */
+    --color-grad-via:       #fbbf24; /* amber-400  */
+    --color-grad-to:        #fcd34d; /* yellow-300 */
+    --color-grad-alt-to:    #fb923c; /* orange-400 — second gradient variant   */
+
+    --color-purple-grad-from: #8b5cf6; /* violet-500 */
+    --color-purple-grad-via:  #a78bfa; /* violet-400 */
+    --color-purple-grad-to:   #a78bfa; /* violet-400 */
+    --color-purple-grad-alt-to: #c4b5fd; /* violet-300 — second purple gradient variant */
+
+    /* ── Page / surface backgrounds ── */
+    --color-bg-page:        #0c0c14; /* hero section bg                        */
+    --color-bg-mobile-menu: #111118; /* mobile nav dropdown                    */
+    --color-bg-card-dark:   #111111; /* center card                            */
+    --color-bg-card-darker: #0e0e1a; /* right card                             */
+
+    /* ── Arrow icon stroke (on amber bg) ── */
+    --color-arrow-stroke:   #1c1917; /* stone-900 — dark arrow on amber button */
+
+    /* ── Scroll indicator ── */
+    --color-scroll-stroke:  #fbbf24; /* amber-400 SVG stroke                   */
+  }
+}
+
+@layer components {
+  /* Reusable accent gradient — apply to text with bg-clip-text */
+  .text-accent-gradient {
+    background-image: linear-gradient(to right, var(--color-grad-from), var(--color-grad-to));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-accent-gradient-alt {
+    background-image: linear-gradient(to right, var(--color-grad-via), var(--color-grad-alt-to));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Accent button */
+  .btn-accent {
+    @apply text-sm font-semibold px-5 py-2 rounded-full transition-colors duration-200;
+    background-color: var(--color-accent);
+    color: var(--color-arrow-stroke);
+  }
+  .btn-accent:hover {
+    background-color: var(--color-accent-hover);
+  }
+}
