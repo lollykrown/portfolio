@@ -1,9 +1,9 @@
-"use client";
+'use client';
 import { useState } from 'react';
 import Link from 'next/link';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
-import ThemeToggle from "./ThemeToggle";
-
+import ThemeToggle from './ThemeToggle';
+import { usePathname } from 'next/navigation';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -14,13 +14,15 @@ const navLinks = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  console.log(pathname);
 
   return (
     <nav className="fixed bg-bg/80 backdrop-blur w-full px-6 md:px-10 py-3 flex items-center gap-4 justify-between z-50">
       {/* Logo */}
       <Link href="/" className="flex flex-col leading-none select-none">
         {/* <span className="text-2xl font-black text-white tracking-tight">
-          Code<span className="text-amber-400">&gt;</span>
+          Code<span className="var(--color-subtle)">&gt;</span>
         </span> */}
         <span className="text-[11px] text-gray-400 tracking-[0.2em] uppercase font-medium -mt-0.5 ml-0.5">
           Crafted
@@ -33,7 +35,9 @@ export default function Navbar() {
           <Link
             key={link.label}
             href={link.href}
-            className="text-gray-300 text-sm font-medium hover:text-white hover:border-b hover:border-amber-400 transition-border duration-200 "
+            className={`text-sm font-medium hover:text-white hover:border-b
+               hover:border-amber-400 transition-border duration-200 
+               ${pathname === link.href ? 'text-(--color-accent)' : 'text-gray-300'}`}
           >
             {link.label}
           </Link>
@@ -63,7 +67,8 @@ export default function Navbar() {
               key={link.label}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-gray-300 text-base font-medium hover:text-white hover:border-b hover:border-amber-400 transition-border duration-200 "
+              className={`text-base font-medium hover:text-white hover:border-b
+                 hover:border-amber-400 transition-border duration-200 ${pathname === link.href ? 'text-(--color-accent)' : 'text-gray-300'}`}
             >
               {link.label}
             </Link>
@@ -77,7 +82,7 @@ export default function Navbar() {
           </Link>
         </div>
       )}
-      <ThemeToggle className="cursor-pointer"/>
+      <ThemeToggle className="cursor-pointer" />
     </nav>
   );
 }

@@ -10,6 +10,7 @@
   --text: #e2e8f0;
 }
 
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -38,11 +39,24 @@ body {
   @apply rounded-xl p-5 shadow-lg hover:shadow-xl transition;
 }
 
-
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
 
 @tailwind utilities;
 
 @layer base {
+  .dark {
+  /* DARK THEME */
+  --color-bg-page: #0a0a0f;
+  --color-bg-card-darker: #111118;
+
+  --color-accent: #6366f1;
+  --color-accent-muted: #6366f1;
+  --color-accent-subtle: #a5b4fc;
+
+  --color-arrow-stroke: #ffffff;
+}
   :root {
     /* ── Brand palette ── */
     --color-accent:         #f59e0b; /* amber-500  — primary accent            */
@@ -51,22 +65,33 @@ body {
     --color-accent-muted:   #92400e; /* amber-800  — dark glow / card bg tint  */
     --color-accent-subtle:  #fbbf24; /* amber-400  — gradient start / icon     */
     
-    --color-purple:        #8b5cf6; /* violet-500  — secondary accent          */
-    --color-purple-light:  #8b5cf6; /* violet-500  — purple accent variant     */
-    --color-purple-hover: #7c3aed; /* violet-600  — purple hover              */
-    --color-purple-muted: #6d28d9; /* violet-700  — purple glow / card bg tint */
-    --color-purple-subtle: #a78bfa; /* violet-400  — purple gradient start / icon */
-
     /* ── Gradient stops (used in bg-gradient-to-r) ── */
     --color-grad-from:      #f59e0b; /* amber-500  */
     --color-grad-via:       #fbbf24; /* amber-400  */
     --color-grad-to:        #fcd34d; /* yellow-300 */
     --color-grad-alt-to:    #fb923c; /* orange-400 — second gradient variant   */
 
-    --color-purple-grad-from: #8b5cf6; /* violet-500 */
-    --color-purple-grad-via:  #a78bfa; /* violet-400 */
-    --color-purple-grad-to:   #a78bfa; /* violet-400 */
-    --color-purple-grad-alt-to: #c4b5fd; /* violet-300 — second purple gradient variant */
+    /* ── Page / surface backgrounds ── */
+    --color-bg-page:        #0c0c14; /* hero section bg                        */
+    --color-bg-mobile-menu: #111118; /* mobile nav dropdown                    */
+    --color-bg-card-dark:   #111111; /* center card                            */
+    --color-bg-card-darker: #0e0e1a; /* right card  
+                               */
+    /* ── Arrow icon stroke (on amber bg) ── */
+    --color-arrow-stroke:   #1c1917; /* stone-900 — dark arrow on amber button */
+
+    /* ── Scroll indicator ── */
+    --color-scroll-stroke:  #fbbf24; /* amber-400 SVG stroke  */
+
+
+    /* Purple palette (for secondary accents, hover states, and subtle glows) */
+    --color-purple:        #8b5cf6; /* violet-500  — secondary accent          */
+    --color-purple-light:  #8b5cf6; /* violet-500  — purple accent variant     */
+    --color-purple-hover: #7c3aed; /* violet-600  — purple hover              */
+    --color-purple-muted: #6d28d9; /* violet-700  — purple glow / card bg tint */
+    --color-purple-subtle: #a78bfa; /* violet-400  — purple gradient start / icon */
+
+   
 
     /* ── Page / surface backgrounds ── */
     --color-bg-page:        #0c0c14; /* hero section bg                        */
@@ -74,11 +99,7 @@ body {
     --color-bg-card-dark:   #111111; /* center card                            */
     --color-bg-card-darker: #0e0e1a; /* right card                             */
 
-    /* ── Arrow icon stroke (on amber bg) ── */
-    --color-arrow-stroke:   #1c1917; /* stone-900 — dark arrow on amber button */
-
-    /* ── Scroll indicator ── */
-    --color-scroll-stroke:  #fbbf24; /* amber-400 SVG stroke                   */
+               
   }
 }
 

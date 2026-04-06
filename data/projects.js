@@ -25,11 +25,11 @@ export const projects = [
     live: "https://tivitea.africa",
   },
   {
-    title: "Project THree",
-    description: "A Next.js app with API integration",
+    title: "Dashboard",
+    description: "A powerful, highly customizable dashboard application built with Next.js and a modern ecosystem of supporting libraries, designed for scalability, performance, and a seamless user experience.",
     tech: ["Next.js", "Tailwind"],
     github: "#",
     thumbnail: "/project3.png",
-    live: "#",
+    live: "https://robust-dashboard.netlify.app",
   },
 ];
