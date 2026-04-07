@@ -1,18 +1,322 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Link from "next/link";
+import { useState } from "react";
 
-export default function Contact() {
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+};
+const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
+
+function Glow({ style }) {
+  return <div className="absolute rounded-full blur-[120px] pointer-events-none" style={style} />;
+}
+function DotGrid() {
   return (
-    <section id="contact" className="max-w-4xl mx-auto py-20 px-4 text-center">
-      <h2 className="text-3xl font-bold mb-4">Contact</h2>
+    <div
+      className="absolute inset-0 opacity-[0.035] pointer-events-none"
+      style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "28px 28px" }}
+    />
+  );
+}
 
-      <p className="mb-6">Let&aposs build something great together.</p>
+const socials = [
+  {
+    label: "GitHub",
+    href: "https://github.com",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+      </svg>
+    ),
+  },
+  {
+    label: "LinkedIn",
+    href: "https://linkedin.com",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+        <circle cx="4" cy="4" r="2"/>
+      </svg>
+    ),
+  },
+  {
+    label: "Twitter",
+    href: "https://twitter.com",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+    ),
+  },
+];
 
-      <Link
-        href="mailto:your@email.com"
-        className="bg-accent px-6 py-2 rounded text-black"
-      >
-        Email Me
-      </Link>
-    </section>
+export default function HomeContact() {
+  const [formState, setFormState] = useState({ name: "", email: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSending(true);
+    await new Promise((r) => setTimeout(r, 1200));
+    setSending(false);
+    setSubmitted(true);
+  };
+
+  const inputStyle = {
+    backgroundColor: "color-mix(in srgb, var(--color-accent) 4%, var(--color-bg-card-darker))",
+    border: "1px solid rgba(255,255,255,0.08)",
+    color: "white",
+    borderRadius: "12px",
+    padding: "13px 16px",
+    fontSize: "14px",
+    width: "100%",
+    outline: "none",
+    transition: "border-color 0.2s",
+  };
+
+  return (
+    <motion.section
+      id="contact"
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-100px" }}
+      className="relative py-28 px-6 overflow-hidden border-t"
+      style={{ backgroundColor: "var(--color-bg-page)", borderColor: "rgba(255,255,255,0.06)" }}
+    >
+      <div className="absolute inset-0 pointer-events-none">
+        <Glow style={{ width: 700, height: 400, top: 0, left: "50%", transform: "translateX(-50%)", backgroundColor: "color-mix(in srgb, var(--color-accent-muted) 14%, transparent)" }} />
+        <Glow style={{ width: 350, height: 250, bottom: 0, left: 0, backgroundColor: "color-mix(in srgb, var(--color-accent-muted) 8%, transparent)" }} />
+        <DotGrid />
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto">
+
+        {/* Section header */}
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <motion.span
+            variants={fadeUp}
+            className="inline-block text-xs font-semibold tracking-[0.25em] uppercase mb-4"
+            style={{ color: "var(--color-accent-subtle)" }}
+          >
+            Get in touch
+          </motion.span>
+          <motion.h2
+            variants={fadeUp}
+            className="text-4xl md:text-5xl font-black text-white leading-[0.95] tracking-tight mb-4"
+          >
+            Let&apos;s build something{" "}
+            <span className="text-accent-gradient">great</span>
+          </motion.h2>
+          <motion.p variants={fadeUp} className="text-gray-500 text-base max-w-md mx-auto leading-relaxed">
+            Have a project in mind or just want to say hello? Drop me a message and I&apos;ll get back to you within 24 hours.
+          </motion.p>
+        </motion.div>
+
+        {/* Two-col layout */}
+        <div className="grid lg:grid-cols-[1fr_380px] gap-8 items-start">
+
+          {/* Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
+          >
+            <div
+              className="rounded-2xl p-8 border border-white/8 relative overflow-hidden"
+              style={{ backgroundColor: "var(--color-bg-card-darker)" }}
+            >
+              <div
+                className="absolute -top-16 -left-16 w-48 h-48 rounded-full blur-[80px] pointer-events-none"
+                style={{ backgroundColor: "color-mix(in srgb, var(--color-accent-muted) 20%, transparent)" }}
+              />
+
+              {submitted ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative z-10 flex flex-col items-center justify-center text-center py-14 gap-5"
+                >
+                  <div
+                    className="w-14 h-14 rounded-full flex items-center justify-center"
+                    style={{ backgroundColor: "color-mix(in srgb, var(--color-accent) 15%, transparent)", border: "1px solid color-mix(in srgb, var(--color-accent) 40%, transparent)" }}
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M5 13l4 4L19 7" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-black text-white">Message sent!</h3>
+                  <p className="text-gray-400 text-sm max-w-xs leading-relaxed">
+                    Thanks for reaching out — I&apos;ll be in touch within 24 hours.
+                  </p>
+                  <button
+                    onClick={() => { setSubmitted(false); setFormState({ name: "", email: "", message: "" }); }}
+                    className="text-sm font-semibold mt-1 transition-colors"
+                    style={{ color: "var(--color-accent-subtle)" }}
+                  >
+                    Send another →
+                  </button>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="relative z-10 flex flex-col gap-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-semibold tracking-wide uppercase" style={{ color: "var(--color-accent-subtle)" }}>Name</label>
+                      <input
+                        required type="text" placeholder="Your name"
+                        value={formState.name}
+                        onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                        style={inputStyle}
+                        onFocus={(e) => (e.target.style.borderColor = "color-mix(in srgb, var(--color-accent) 50%, transparent)")}
+                        onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-semibold tracking-wide uppercase" style={{ color: "var(--color-accent-subtle)" }}>Email</label>
+                      <input
+                        required type="email" placeholder="you@example.com"
+                        value={formState.email}
+                        onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                        style={inputStyle}
+                        onFocus={(e) => (e.target.style.borderColor = "color-mix(in srgb, var(--color-accent) 50%, transparent)")}
+                        onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-semibold tracking-wide uppercase" style={{ color: "var(--color-accent-subtle)" }}>Message</label>
+                    <textarea
+                      required rows={5} placeholder="Tell me about your project..."
+                      value={formState.message}
+                      onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                      style={{ ...inputStyle, resize: "none" }}
+                      onFocus={(e) => (e.target.style.borderColor = "color-mix(in srgb, var(--color-accent) 50%, transparent)")}
+                      onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={sending}
+                    className="w-full py-4 rounded-xl font-black text-base flex items-center justify-center gap-3 transition-all duration-200 disabled:opacity-70 mt-1"
+                    style={{ backgroundColor: "var(--color-accent)", color: "var(--color-arrow-stroke)" }}
+                  >
+                    {sending ? (
+                      <>
+                        <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeOpacity="0.25"/>
+                          <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+                        </svg>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send message
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M2 8h12M9 4l4 4-4 4" stroke="var(--color-arrow-stroke)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
+          </motion.div>
+
+          {/* Sidebar info */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-4"
+          >
+            {/* Availability */}
+            <div
+              className="flex items-center gap-3 px-5 py-4 rounded-2xl border border-white/8"
+              style={{ backgroundColor: "var(--color-bg-card-dark)" }}
+            >
+              <span className="w-2.5 h-2.5 rounded-full animate-pulse shrink-0" style={{ backgroundColor: "var(--color-accent)" }} />
+              <div>
+                <p className="text-white font-semibold text-sm">Available for projects</p>
+                <p className="text-gray-500 text-xs">Currently taking on new work</p>
+              </div>
+            </div>
+
+            {/* Direct email */}
+            <div
+              className="rounded-2xl border border-white/8 p-6"
+              style={{ backgroundColor: "var(--color-bg-card-darker)" }}
+            >
+              <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "var(--color-accent-subtle)" }}>
+                Prefer email?
+              </p>
+              <a
+                href="mailto:hello@yourdomain.com"
+                className="text-white font-semibold text-sm hover:underline block mb-1"
+                style={{ textDecorationColor: "var(--color-accent)" }}
+              >
+                hello@yourdomain.com
+              </a>
+              <p className="text-gray-600 text-xs">Response within 24 hours</p>
+            </div>
+
+            {/* Socials */}
+            <div
+              className="rounded-2xl border border-white/8 p-6"
+              style={{ backgroundColor: "var(--color-bg-card-darker)" }}
+            >
+              <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: "var(--color-accent-subtle)" }}>
+                Find me online
+              </p>
+              <div className="flex flex-col gap-3">
+                {socials.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-gray-400 hover:text-white group transition-colors duration-200"
+                  >
+                    <span
+                      className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 group-hover:border-white/25 transition-colors"
+                      style={{ backgroundColor: "color-mix(in srgb, var(--color-accent) 5%, transparent)" }}
+                    >
+                      {s.icon}
+                    </span>
+                    <span className="text-sm font-medium">{s.label}</span>
+                    <svg className="w-3.5 h-3.5 ml-auto opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200" viewBox="0 0 14 14" fill="none">
+                      <path d="M2 7h10M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Full contact page link */}
+            <Link
+              href="/contact"
+              className="flex items-center justify-center gap-2 text-sm font-semibold text-gray-500 hover:text-white border border-white/10 hover:border-white/25 py-3.5 rounded-xl transition-all duration-200"
+            >
+              Full contact page
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7h10M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
+          </motion.div>
+        </div>
+      </div>
+    </motion.section>
   );
 }
