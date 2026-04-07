@@ -151,13 +151,13 @@ export default function HomeAbout() {
                 <path d="M2 7h10M7 3l4 4-4 4" stroke="var(--color-arrow-stroke)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </Link>
-            <a
+            <Link
               href="/cv.pdf"
               download
               className="text-sm font-semibold text-gray-400 hover:text-white border border-white/10 hover:border-white/30 px-7 py-3 rounded-full transition-all duration-200"
             >
               Download CV
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

@@ -11,6 +11,24 @@ import { motion } from 'framer-motion';
 //cyan and sky
 //lime and green
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
+const cardVar = {
+  hidden: { opacity: 0, y: 30, scale: 0.97 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 export default function Hero() {
   return (
     <section className="relative min-h-[90vh] mt-14 flex flex-col items-center justify-center px-6 overflow-hidden bg-[#0c0c14] shadow-[inset_0_0_1000px_1000px_rgba(0,0,0,0.747)]">
@@ -21,7 +39,7 @@ export default function Hero() {
       </div>
 
       {/* Floating icons */}
-      <div className="absolute left-[8%] top-[38%] text-blue-400 opacity-60 text-4xl select-none pointer-events-none hidden md:block">
+      {/* <div className="absolute left-[8%] top-[38%] text-blue-400 opacity-60 text-4xl select-none pointer-events-none hidden md:block">
         <FaCss3Alt />
       </div>
       <div className="absolute right-[8%] top-[36%] text-cyan-400 opacity-60 text-4xl select-none pointer-events-none hidden md:block">
@@ -29,15 +47,26 @@ export default function Hero() {
           className="animate-spin"
           style={{ animationDuration: '10s' }}
         />
-      </div>
+      </div> */}
 
       {/* Hero Content */}
-      <div className="relative z-10 text-center max-w-4xl mx-auto">
+      <motion.div           
+          className="relative z-10 text-center max-w-5xl mx-auto"
+          variants={stagger}
+          initial="hidden"
+          animate="show" >
+           <motion.span
+             variants={fadeUp}
+             className="inline-block text-xs font-semibold tracking-[0.25em] uppercase mb-5"
+             style={{ color: 'var(--color-accent-subtle)' }}
+           >
+             Welcome
+           </motion.span>           
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight text-white tracking-tight mb-6"
+          className="text-5xl md:text-6xl lg:text-7xl   font-black leading-tight text-white tracking-tight mb-6"
         >
           {/* building building fast, scalable web apps with Next.js.
           I specialize in authentication systems, responsive UI, and performance optimization. */}
@@ -66,7 +95,10 @@ export default function Hero() {
           <br />
           Let&apos;s get started by clicking on the button below.
         </motion.p>
-
+          <motion.div
+            variants={fadeUp}
+            className="flex items-center justify-center gap-4 flex-wrap"
+          >
         <Link
           href="/projects"
           className="inline-flex items-center mr-4 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-7 py-3 rounded-full transition-all duration-200 backdrop-blur-sm group"
@@ -90,41 +122,8 @@ export default function Hero() {
             </svg>
           </span>
         </Link>
-      </div>
-
-      {/* <section className="relative min-h-[65vh] flex items-center justify-center px-6 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <Glow style={{ width: 700, height: 400, top: "5%", left: "10%", backgroundColor: "color-mix(in srgb, var(--color-accent-muted) 14%, transparent)" }} />
-          <Glow style={{ width: 400, height: 300, bottom: 0, right: "5%", backgroundColor: "color-mix(in srgb, var(--color-accent-muted) 8%, transparent)" }} />
-          <DotGrid />
-          <span className="absolute left-[3%] bottom-[5%] text-[140px] font-black text-white/2 select-none leading-none hidden xl:block tracking-tighter">SVC.</span>
-        </div>
-
-        <motion.div className="relative z-10 text-center max-w-5xl mx-auto" variants={stagger} initial="hidden" animate="show">
-          <motion.span variants={fadeUp} className="inline-block text-xs font-semibold tracking-[0.25em] uppercase mb-5" style={{ color: "var(--color-accent-subtle)" }}>
-            What I do
-          </motion.span>
-          <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.92] tracking-tight mb-7">
-            Services built
-            <br />
-            for <span className="var(--color-accent)">real results</span>
-          </motion.h1>
-          <motion.p variants={fadeUp} className="text-gray-400 text-lg max-w-lg mx-auto leading-relaxed mb-10">
-            From a single landing page to a full SaaS product — I help businesses and founders ship better software, faster.
-          </motion.p>
-          <motion.div variants={fadeUp} className="flex items-center justify-center gap-4 flex-wrap">
-            <Link href="/contact" className="btn-accent px-7 py-3 rounded-full inline-flex items-center gap-2">
-              Start a project
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M2 7h10M7 3l4 4-4 4" stroke="var(--color-arrow-stroke)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </Link>
-            <Link href="#pricing" className="text-sm font-semibold text-gray-400 hover:text-white border border-white/10 hover:border-white/30 px-7 py-3 rounded-full transition-all duration-200">
-              View pricing
-            </Link>
-          </motion.div>
         </motion.div>
-      </section> */}
+      </motion.div>
 
       {/* Project Cards */}
       {/* <div className="relative z-10 mt-16 w-full max-w-5xl mx-auto grid grid-cols-3 gap-4 px-4">
@@ -139,14 +138,12 @@ export default function Hero() {
             </div>
           </div>
         </div>
-
         <div className="-mt-4 rounded-xl overflow-hidden border border-white/10 bg-[#111] aspect-video flex items-center justify-center shadow-2xl hover:scale-[1.02] transition-transform duration-300 z-10">
           <div className="text-center px-4">
             <p className="text-gray-500 text-[9px] tracking-[0.3em] uppercase mb-2">THE WEB IS THE</p>
             <p className="text-white text-2xl font-black tracking-widest uppercase">FUTURE</p>
           </div>
         </div>
-
         <div className="rounded-xl overflow-hidden border border-white/10 bg-[#0e0e1a] aspect-video flex items-center justify-center shadow-2xl hover:scale-[1.02] transition-transform duration-300">
           <div className="px-4 text-center">
             <p className="text-white text-sm font-bold leading-snug mb-1">Smarter Workflows with</p>

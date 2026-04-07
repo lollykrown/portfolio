@@ -198,7 +198,7 @@ export default function HomeContact() {
                   <div className="flex flex-col gap-2">
                     <label className="text-xs font-semibold tracking-wide uppercase" style={{ color: "var(--color-accent-subtle)" }}>Message</label>
                     <textarea
-                      required rows={5} placeholder="Tell me about your project..."
+                      required rows={10} placeholder="Tell me about your project..."
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                       style={{ ...inputStyle, resize: "none" }}
@@ -262,13 +262,13 @@ export default function HomeContact() {
               <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "var(--color-accent-subtle)" }}>
                 Prefer email?
               </p>
-              <a
+              <Link
                 href="mailto:hello@yourdomain.com"
                 className="text-white font-semibold text-sm hover:underline block mb-1"
                 style={{ textDecorationColor: "var(--color-accent)" }}
               >
                 hello@yourdomain.com
-              </a>
+              </Link>
               <p className="text-gray-600 text-xs">Response within 24 hours</p>
             </div>
 
@@ -282,7 +282,7 @@ export default function HomeContact() {
               </p>
               <div className="flex flex-col gap-3">
                 {socials.map((s) => (
-                  <a
+                  <Link
                     key={s.label}
                     href={s.href}
                     target="_blank"
@@ -299,7 +299,7 @@ export default function HomeContact() {
                     <svg className="w-3.5 h-3.5 ml-auto opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200" viewBox="0 0 14 14" fill="none">
                       <path d="M2 7h10M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>

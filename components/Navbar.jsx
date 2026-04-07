@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
 import ThemeToggle from './ThemeToggle';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+import Icon from './Icon';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -20,12 +22,10 @@ export default function Navbar() {
   return (
     <nav className="fixed bg-bg/80 backdrop-blur w-full px-6 md:px-10 py-3 flex items-center gap-4 justify-between z-50">
       {/* Logo */}
-      <Link href="/" className="flex flex-col leading-none select-none">
-        {/* <span className="text-2xl font-black text-white tracking-tight">
-          Code<span className="var(--color-subtle)">&gt;</span>
-        </span> */}
-        <span className="text-[11px] text-gray-400 tracking-[0.2em] uppercase font-medium -mt-0.5 ml-0.5">
-          Crafted
+      <Link href="/" className="flex select-none justify-items-center items-center gap-2 group">
+      <Icon className="h-10 w-10 group-hover:scale-105 group-hover:text-(--color-accent) group-hover:drop-shadow-[0_0_12px_var(--color-accent)]" />
+        <span className="text-lg  text-gray-400 group-hover:text-(--color-accent) uppercase font-medium group-hover:drop-shadow-[0_0_12px_var(--color-accent)]">
+          Lollykrown
         </span>
       </Link>
 
