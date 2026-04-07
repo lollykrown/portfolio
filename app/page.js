@@ -25,7 +25,7 @@ const cardVariants = {
 
 export default function Home() {
   return (
-    <main>
+    <main className="min-h-screen flex flex-col bg-(--color-bg-page) shadow-(--shad)" >
       <Hero />
       <motion.section
         id="projects"
@@ -33,8 +33,7 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         viewport={{ once: true, margin: "-100px" }}
-        className="relative py-24 px-6 overflow-hidden"
-        style={{ backgroundColor: "var(--color-bg-page)" }}
+        className="relative py-24 px-6 overflow-hidden bg-(--color-bg-page)"
       >
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
@@ -66,13 +65,11 @@ export default function Home() {
           className="mb-14"
         >
           <span
-            className="inline-block text-xs font-semibold tracking-[0.2em] uppercase mb-3"
-            style={{ color: "var(--color-accent-subtle)" }}
-          >
+            className="inline-block text-xs font-bold tracking-[0.2em] uppercase mb-3 text-(--color-accent-subtle)">
             Selected Work
           </span>
           <div className="flex items-end justify-between gap-6 flex-wrap">
-            <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">
+            <h2 className="text-4xl md:text-5xl font-black text-(--color-text-primary) leading-tight">
               Projects that{" "}
               <span className="text-accent-gradient">speak</span>
               <br />
@@ -80,7 +77,7 @@ export default function Home() {
             </h2>
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-gray-400 hover:text-white transition-colors group mb-1"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-(--color-text-primary) hover:text-(--color-accent) transition-colors group mb-1"
             >
               View all
               <span
@@ -111,8 +108,8 @@ export default function Home() {
               key={i}
               variants={cardVariants}
               whileHover={{ y: -5, transition: { duration: 0.2, ease: "easeOut" } }}
-              className="group relative rounded-2xl overflow-hidden border border-white/10 cursor-pointer flex flex-col"
-              style={{ backgroundColor: i % 2 === 0 ? "var(--color-bg-card-darker)" : "var(--color-bg-card-dark)" }}
+              className={`group relative rounded-2xl overflow-hidden border border-(--color-border-hover) cursor-pointer flex flex-col
+                ${i % 2 === 0 } ? "bg-(--color-bg-card-darker)" : "bg-(--color-bg-card-dark)"` }
             >
               {/* Top accent line */}
               <div
@@ -140,9 +137,7 @@ export default function Home() {
                     }}
                   >
                     <span
-                      className="text-5xl font-black opacity-20 select-none tracking-tighter"
-                      style={{ color: "var(--color-accent-light)" }}
-                    >
+                      className="text-5xl font-black opacity-20 select-none tracking-tighter text-(--color-accent)">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -163,11 +158,10 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold backdrop-blur-sm border border-white/20 bg-black/40 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0 hover:bg-black/60"
+                    className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold backdrop-blur-sm border border-white/20 bg-black/40 text-(--color-text-primary)opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0 hover:bg-black/60"
                   >
                     <span
-                      className="w-1.5 h-1.5 rounded-full animate-pulse"
-                      style={{ backgroundColor: "var(--color-accent)" }}
+                      className="w-1.5 h-1.5 rounded-full animate-pulse text-(--color-accent)"
                     />
                     Live site
                   </Link>
@@ -185,18 +179,18 @@ export default function Home() {
                 />
 
                 <div className="relative flex items-start justify-between gap-4 mb-3">
-                  <h3 className="text-base font-black text-white leading-snug">
+                  <h3 className="text-base font-black text-(--color-text-primary) leading-snug">
                     {project.title}
                   </h3>
                   <span
                     className="shrink-0 text-[11px] font-bold tracking-[0.15em] mt-1"
-                    style={{ color: "color-mix(in srgb, var(--color-accent) 50%, transparent)" }}
+                    style={{ color: "color-mix(in srgb, var(--color-accent-hover) 50%, transparent)" }}
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
 
-                <p className="text-gray-400 text-xs leading-relaxed mb-4 flex-1">
+                <p className="text-(--color-text-secondary) text-sm leading-relaxed mb-4 flex-1 line-clamp-4 ellispsis">
                   {project.description}
                 </p>
 
@@ -221,7 +215,7 @@ export default function Home() {
 
                 {/* CTA */}
                 <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-gray-500 group-hover:text-white transition-colors duration-200">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-(--color-text-primary) group-hover:hover:underline transition-colors duration-200">
                     View project
                     <svg
                       className="w-4 h-4 -translate-x-1 group-hover:translate-x-0 transition-transform duration-200"
@@ -236,7 +230,7 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="text-gray-600 hover:text-white transition-colors duration-200"
+                      className="text-(--color-text-primary) hover:text-(--color-accent-hover) transition-colors duration-200"
                       aria-label="GitHub"
                     >
                       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">

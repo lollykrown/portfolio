@@ -81,10 +81,7 @@ export default function ProjectsPage() {
       : projects.filter((p) => p.tech?.includes(activeTag));
 
   return (
-    <main
-      className="min-h-screen flex flex-col"
-      style={{ backgroundColor: 'var(--color-bg-page)' }}
-    >
+    <main className="min-h-screen flex flex-col bg-(--color-bg-page)">
       {/* ── HERO ──────────────────────────────────────────────────── */}
       <section className="relative min-h-[70vh] flex flex-col items-center justify-center px-6 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -119,7 +116,7 @@ export default function ProjectsPage() {
 
           <motion.h1
             variants={fadeUp}
-            className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.95] tracking-tight mb-7"
+            className="text-5xl md:text-7xl lg:text-8xl font-black text-(--color-text-primary) leading-[0.95] tracking-tight mb-7"
           >
             Work that
             <br />
@@ -128,7 +125,7 @@ export default function ProjectsPage() {
 
           <motion.p
             variants={fadeUp}
-            className="text-gray-400 text-lg max-w-lg mx-auto leading-relaxed mb-10"
+            className="text-(--color-text-secondary) text-lg max-w-lg mx-auto leading-relaxed mb-10"
           >
             A curated selection of projects — from idea to production, built
             with precision and purpose.
@@ -155,7 +152,7 @@ export default function ProjectsPage() {
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-gray-300 hover:text-white border border-white/10 hover:border-white/30 px-7 py-3 rounded-full transition-all duration-200"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-gray-300 hover:text-(--color-text-primary) border border-white/10 hover:border-white/30 px-7 py-3 rounded-full transition-all duration-200"
             >
               Start a project
             </Link>
@@ -364,7 +361,7 @@ export default function ProjectsPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold backdrop-blur-sm border border-white/20 bg-black/40 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0 hover:bg-black/60"
+                      className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold backdrop-blur-sm border border-white/20 bg-black/40 text-(--color-text-primary) opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0 hover:bg-black/60"
                     >
                       <span
                         className="w-1.5 h-1.5 rounded-full animate-pulse"
@@ -385,7 +382,7 @@ export default function ProjectsPage() {
                     }}
                   />
                   <div className="relative flex items-start justify-between gap-4 mb-2">
-                    <h3 className="text-base font-black text-white leading-snug">
+                    <h3 className="text-base font-black text-(--color-text-primary) leading-snug">
                       {project.title}
                     </h3>
                     <span
@@ -398,7 +395,7 @@ export default function ProjectsPage() {
                       {String(i + 1).padStart(2, '0')}
                     </span>
                   </div>
-                  <p className="text-gray-400 text-xs leading-relaxed mb-4 flex-1">
+                  <p className="text-(--color-text-secondary) text-xs leading-relaxed mb-4 flex-1">
                     {project.description}
                   </p>
                   {project.tech && (
@@ -422,7 +419,7 @@ export default function ProjectsPage() {
                     </div>
                   )}
                   <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-2 text-xs font-semibold text-gray-500 group-hover:text-white transition-colors duration-200">
+                    <div className="flex items-center gap-2 text-xs font-semibold text-gray-500 group-hover:text-(--color-text-primary) transition-colors duration-200">
                       View project
                       <svg
                         className="w-3.5 h-3.5 -translate-x-1 group-hover:translate-x-0 transition-transform duration-200"
@@ -444,7 +441,7 @@ export default function ProjectsPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="text-gray-600 hover:text-white transition-colors"
+                        className="text-gray-600 hover:text-(--color-text-primary) transition-colors"
                       >
                         <svg
                           className="w-4 h-4"
@@ -493,7 +490,7 @@ export default function ProjectsPage() {
             </motion.span>
             <motion.h2
               variants={fadeUp}
-              className="text-3xl md:text-4xl font-black text-white mb-14"
+              className="text-3xl md:text-4xl font-black text-(--color-text-primary) mb-14"
             >
               From idea to{' '}
               <span className="text-accent-gradient">live product</span>
@@ -550,7 +547,7 @@ export default function ProjectsPage() {
                     >
                       {item.step}
                     </span>
-                    <h3 className="text-white font-black text-lg mb-2">
+                    <h3 className="text-(--color-text-primary) font-black text-lg mb-2">
                       {item.title}
                     </h3>
                     <p className="text-gray-500 text-sm leading-relaxed">
@@ -585,7 +582,7 @@ export default function ProjectsPage() {
           >
             Tech stack
           </span>
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-12">
+          <h2 className="text-3xl md:text-4xl font-black text-(--color-text-primary) mb-12">
             Tools of the <span className="var(--color-accent)">trade</span>
           </h2>
 
@@ -653,7 +650,7 @@ export default function ProjectsPage() {
             </motion.span>
             <motion.h2
               variants={fadeUp}
-              className="text-4xl md:text-6xl font-black text-white leading-tight mb-6"
+              className="text-4xl md:text-6xl font-black text-(--color-text-primary) leading-tight mb-6"
             >
               Got a project
               <br />
@@ -661,7 +658,7 @@ export default function ProjectsPage() {
             </motion.h2>
             <motion.p
               variants={fadeUp}
-              className="text-gray-400 text-lg leading-relaxed mb-10 max-w-md mx-auto"
+              className="text-(--color-text-secondary) text-lg leading-relaxed mb-10 max-w-md mx-auto"
             >
               I&apos;m open to freelance work and collaborations. Let&apos;s
               turn your idea into something real.
@@ -687,7 +684,7 @@ export default function ProjectsPage() {
               </Link>
               <Link
                 href="mailto:hello@yourdomain.com"
-                className="text-sm font-semibold text-gray-400 hover:text-white transition-colors"
+                className="text-sm font-semibold text-(--color-text-secondary) hover:text-(--color-text-primary) transition-colors"
               >
                 hello@yourdomain.com →
               </Link>

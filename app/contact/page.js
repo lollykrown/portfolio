@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
-import {sendContactForm} from '@/actions/mail';
+import { sendContactForm } from '@/actions/mail';
 
 // ─── Shared animation variants ────────────────────────────────────
 const fadeUp = {
@@ -161,7 +161,9 @@ function FAQItem({ q, a }) {
       onClick={() => setOpen(!open)}
     >
       <div className="flex items-center justify-between py-5 gap-4">
-        <p className="text-white font-semibold text-sm md:text-base">{q}</p>
+        <p className="text-(--color-text-primary) font-semibold text-sm md:text-base">
+          {q}
+        </p>
         <span
           className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center border transition-all duration-300"
           style={{
@@ -190,7 +192,9 @@ function FAQItem({ q, a }) {
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         style={{ overflow: 'hidden' }}
       >
-        <p className="text-gray-400 text-sm leading-relaxed pb-5">{a}</p>
+        <p className="text-(--color-text-secondary) text-sm leading-relaxed pb-5">
+          {a}
+        </p>
       </motion.div>
     </div>
   );
@@ -203,16 +207,16 @@ export default function ContactPage() {
     email: '',
     budget: '',
     message: '',
-    website:'', // honeypot field
-    token:'', // CAPTCHA token
+    website: '', // honeypot field
+    token: '', // CAPTCHA token
   });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(null);
 
-    useEffect(() => {
+  useEffect(() => {
     // expose function globally for Turnstile
-    (window).onTurnstileSuccess = (t) => {
+    window.onTurnstileSuccess = (t) => {
       setFormState({ ...formState, token: t });
     };
   }, []);
@@ -226,9 +230,9 @@ export default function ContactPage() {
     console.log('Form submission response:', res);
 
     if (!res.success) {
-        setSending(false);
-        setError(res.error || {message:'An unknown error occurred'});
-        return;
+      setSending(false);
+      setError(res.error || { message: 'An unknown error occurred' });
+      return;
     }
     setSubmitted(true);
   };
@@ -236,7 +240,6 @@ export default function ContactPage() {
   const inputStyle = {
     backgroundColor:
       'color-mix(in srgb, var(--color-accent) 4%, var(--color-bg-card-darker))',
-    // border: '1px solid rgba(255,255,255,0.08)',
     color: 'white',
     borderRadius: '12px',
     padding: '14px 16px',
@@ -247,10 +250,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main
-      className="min-h-screen flex flex-col"
-      style={{ backgroundColor: 'var(--color-bg-page)' }}
-    >
+    <main className="min-h-screen flex flex-col bg-(--color-bg-page)">
       {/* ── HERO ──────────────────────────────────────────────────── */}
       <section className="relative min-h-[60vh] flex items-center justify-center px-6 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -296,7 +296,7 @@ export default function ContactPage() {
           </motion.span>
           <motion.h1
             variants={fadeUp}
-            className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.92] tracking-tight mb-7"
+            className="text-5xl md:text-7xl lg:text-8xl font-black text-(--color-text-primary) leading-[0.92] tracking-tight mb-7"
           >
             Let&apos;s build
             <br />
@@ -304,7 +304,7 @@ export default function ContactPage() {
           </motion.h1>
           <motion.p
             variants={fadeUp}
-            className="text-gray-400 text-lg max-w-md mx-auto leading-relaxed"
+            className="text-(--color-text-secondary) text-lg max-w-md mx-auto leading-relaxed"
           >
             Have a project in mind, a question, or just want to say hello?
             I&apos;d love to hear from you.
@@ -368,7 +368,7 @@ export default function ContactPage() {
                   <h3 className="text-2xl font-black text-white">
                     Message sent!
                   </h3>
-                  <p className="text-gray-400 text-sm max-w-xs leading-relaxed">
+                  <p className="text-(--color-text-secondary) text-sm max-w-xs leading-relaxed">
                     Thanks for reaching out. I&apos;ll get back to you within 24
                     hours.
                   </p>
@@ -390,232 +390,244 @@ export default function ContactPage() {
                 </motion.div>
               ) : (
                 <>
-                <Script
-                  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-                  async
-                  defer
-                />
-                <form
-                  onSubmit={handleSubmit}
-                  className="relative z-10 flex flex-col gap-5"
-                >
-                  <div>
-                    <p className="text-white font-black text-2xl mb-1">
-                      Send a message
-                    </p>
-                    <p className="text-gray-500 text-sm">
-                      Fill in the form and I&apos;ll be in touch shortly.
-                    </p>
-                  </div>
+                  <Script
+                    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+                    async
+                    defer
+                  />
+                  <form
+                    onSubmit={handleSubmit}
+                    className="relative z-10 flex flex-col gap-5"
+                  >
+                    <div>
+                      <p className="text-(--color-text-primary) font-black text-2xl mb-1">
+                        Send a message
+                      </p>
+                      <p className="text-gray-500 text-sm">
+                        Fill in the form and I&apos;ll be in touch shortly.
+                      </p>
+                    </div>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div className="flex flex-col gap-2">
+                        <label
+                          className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('name') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
+                        >
+                          Name
+                        </label>
+                        <input
+                          required
+                          type="text"
+                          className={`border ${error?.message?.includes('name') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
+                          placeholder="Your name"
+                          value={formState.name}
+                          onChange={(e) =>
+                            setFormState({ ...formState, name: e.target.value })
+                          }
+                          style={inputStyle}
+                          onFocus={(e) =>
+                            (e.target.style.borderColor =
+                              'color-mix(in srgb, var(--color-accent) 50%, transparent)')
+                          }
+                          onBlur={(e) =>
+                            (e.target.style.borderColor =
+                              'rgba(255,255,255,0.08)')
+                          }
+                        />
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <label
+                          className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('email') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
+                        >
+                          Email{error?.message?.includes('email') && '*'}
+                        </label>
+                        <input
+                          required
+                          type="email"
+                          className={`border ${error?.message?.includes('email') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
+                          placeholder="you@example.com"
+                          value={formState.email}
+                          onChange={(e) =>
+                            setFormState({
+                              ...formState,
+                              email: e.target.value,
+                            })
+                          }
+                          style={inputStyle}
+                          onFocus={(e) =>
+                            (e.target.style.borderColor =
+                              'color-mix(in srgb, var(--color-accent) 50%, transparent)')
+                          }
+                          onBlur={(e) =>
+                            (e.target.style.borderColor =
+                              'rgba(255,255,255,0.08)')
+                          }
+                        />
+                      </div>
+                    </div>
+
                     <div className="flex flex-col gap-2">
                       <label
-                        className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('name') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
-                      >
-                        Name
-                      </label>
-                      <input
-                        required
-                        type="text"
-                        className={`border ${error?.message?.includes('name') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
-                        placeholder="Your name"
-                        value={formState.name}
-                        onChange={(e) =>
-                          setFormState({ ...formState, name: e.target.value })
-                        }
-                        style={inputStyle}
-                        onFocus={(e) =>
-                          (e.target.style.borderColor =
-                            'color-mix(in srgb, var(--color-accent) 50%, transparent)')
-                        }
-                        onBlur={(e) =>
-                          (e.target.style.borderColor =
-                            'rgba(255,255,255,0.08)')
-                        }
-                      />
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <label
-                        className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('email') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
-                      >
-                        Email{error?.message?.includes('email') && '*'}
-                      </label>
-                      <input
-                        required
-                        type="email"
-                        className={`border ${error?.message?.includes('email') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
-                        placeholder="you@example.com"
-                        value={formState.email}
-                        onChange={(e) =>
-                          setFormState({ ...formState, email: e.target.value })
-                        }
-                        style={inputStyle}
-                        onFocus={(e) =>
-                          (e.target.style.borderColor =
-                            'color-mix(in srgb, var(--color-accent) 50%, transparent)')
-                        }
-                        onBlur={(e) =>
-                          (e.target.style.borderColor =
-                            'rgba(255,255,255,0.08)')
-                        }
-                      />
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <label
                         className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('budget') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
-                    >
-                      Budget range {error?.message?.includes('budget') && '*'}
-                    </label>
-                    <select
-                      value={formState.budget}
+                      >
+                        Budget range {error?.message?.includes('budget') && '*'}
+                      </label>
+                      <select
+                        value={formState.budget}
+                        onChange={(e) =>
+                          setFormState({ ...formState, budget: e.target.value })
+                        }
+                        className={`border cursor-pointer ${error?.message?.includes('budget') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
+                        style={inputStyle}
+                        onFocus={(e) =>
+                          (e.target.style.borderColor =
+                            'color-mix(in srgb, var(--color-accent) 50%, transparent)')
+                        }
+                        onBlur={(e) =>
+                          (e.target.style.borderColor =
+                            'rgba(255,255,255,0.08)')
+                        }
+                      >
+                        <option value="" style={{ backgroundColor: '#0e0e1a' }}>
+                          Select a range...
+                        </option>
+                        <option
+                          value="under-1k"
+                          style={{ backgroundColor: '#0e0e1a' }}
+                        >
+                          Under £1,000
+                        </option>
+                        <option
+                          value="1k-3k"
+                          style={{ backgroundColor: '#0e0e1a' }}
+                        >
+                          £1,000 – £3,000
+                        </option>
+                        <option
+                          value="3k-7k"
+                          style={{ backgroundColor: '#0e0e1a' }}
+                        >
+                          £3,000 – £7,000
+                        </option>
+                        <option
+                          value="7k-plus"
+                          style={{ backgroundColor: '#0e0e1a' }}
+                        >
+                          £7,000+
+                        </option>
+                        <option
+                          value="not-sure"
+                          style={{ backgroundColor: '#0e0e1a' }}
+                        >
+                          Not sure yet
+                        </option>
+                      </select>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label
+                        className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('message') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
+                      >
+                        Message {error?.message?.includes('message') && '*'}
+                      </label>
+                      <textarea
+                        required
+                        rows={3}
+                        placeholder="Tell me about your project..."
+                        value={formState.message}
+                        onChange={(e) =>
+                          setFormState({
+                            ...formState,
+                            message: e.target.value,
+                          })
+                        }
+                        className={`border ${error?.message?.includes('message') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
+                        style={{ ...inputStyle, resize: 'none' }}
+                        onFocus={(e) =>
+                          (e.target.style.borderColor =
+                            'color-mix(in srgb, var(--color-accent) 50%, transparent)')
+                        }
+                        onBlur={(e) =>
+                          (e.target.style.borderColor =
+                            'rgba(255,255,255,0.08)')
+                        }
+                      />
+                    </div>
+
+                    {/* Honeypot (hidden) */}
+                    <input
+                      name="website"
+                      style={{ display: 'none' }}
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formState.website}
                       onChange={(e) =>
-                        setFormState({ ...formState, budget: e.target.value })
-                      }
-                      className={`border cursor-pointer ${error?.message?.includes('budget') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
-                      style={inputStyle}
-                      onFocus={(e) =>
-                        (e.target.style.borderColor =
-                          'color-mix(in srgb, var(--color-accent) 50%, transparent)')
-                      }
-                      onBlur={(e) =>
-                        (e.target.style.borderColor = 'rgba(255,255,255,0.08)')
-                      }
-                    >
-                      <option value="" style={{ backgroundColor: '#0e0e1a' }}>
-                        Select a range...
-                      </option>
-                      <option
-                        value="under-1k"
-                        style={{ backgroundColor: '#0e0e1a' }}
-                      >
-                        Under £1,000
-                      </option>
-                      <option
-                        value="1k-3k"
-                        style={{ backgroundColor: '#0e0e1a' }}
-                      >
-                        £1,000 – £3,000
-                      </option>
-                      <option
-                        value="3k-7k"
-                        style={{ backgroundColor: '#0e0e1a' }}
-                      >
-                        £3,000 – £7,000
-                      </option>
-                      <option
-                        value="7k-plus"
-                        style={{ backgroundColor: '#0e0e1a' }}
-                      >
-                        £7,000+
-                      </option>
-                      <option
-                        value="not-sure"
-                        style={{ backgroundColor: '#0e0e1a' }}
-                      >
-                        Not sure yet
-                      </option>
-                    </select>
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <label
-                      className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('message') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
-                    >
-                      Message {error?.message?.includes('message') && '*'}
-                    </label>
-                    <textarea
-                      required
-                      rows={3}
-                      placeholder="Tell me about your project..."
-                      value={formState.message}
-                      onChange={(e) =>
-                        setFormState({ ...formState, message: e.target.value })
-                      }
-                      className={`border ${error?.message?.includes('message') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
-                      style={{ ...inputStyle, resize: 'none' }}
-                      onFocus={(e) =>
-                        (e.target.style.borderColor =
-                          'color-mix(in srgb, var(--color-accent) 50%, transparent)')
-                      }
-                      onBlur={(e) =>
-                        (e.target.style.borderColor = 'rgba(255,255,255,0.08)')
+                        setFormState({ ...formState, website: e.target.value })
                       }
                     />
-                  </div>
+                    <p className="text-red-600 -mt-5 bg-blur text-xs">
+                      {error && error.message}
+                    </p>
 
-                  {/* Honeypot (hidden) */}
-                  <input
-                    name="website" 
-                    style={{ display: 'none' }}
-                    tabIndex={-1}
-                    autoComplete="off"
-                    value={formState.website}
-                    onChange={(e) => setFormState({ ...formState, website: e.target.value })}
-                  />
-                  <p className='text-red-600 -mt-5 bg-blur text-xs'>{error && error.message}</p>
-
-                  {/* 🤖 CAPTCHA */}
-                  <div
-                    className="cf-turnstile"
-                    data-sitekey='0x4AAAAAAC1tQHw5OOyNOzLd'
-                    data-callback="onTurnstileSuccess"
-                  ></div>
-                  <button
-                    type="submit"
-                    disabled={sending}
-                    className="w-full py-4 rounded-xl font-black text-base flex items-center justify-center gap-3 transition-all duration-200 disabled:opacity-70"
-                    style={{
-                      backgroundColor: 'var(--color-accent)',
-                      color: 'var(--color-arrow-stroke)',
-                    }}
-                  >
-                    {sending ? (
-                      <>
-                        <svg
-                          className="animate-spin w-4 h-4"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                        >
-                          <circle
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="3"
-                            strokeOpacity="0.25"
-                          />
-                          <path
-                            d="M12 2a10 10 0 0 1 10 10"
-                            stroke="currentColor"
-                            strokeWidth="3"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        Send message
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                        >
-                          <path
-                            d="M2 8h12M9 4l4 4-4 4"
-                            stroke="var(--color-arrow-stroke)"
-                            strokeWidth="1.8"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </>
-                    )}
-                  </button>
-                </form>
+                    {/* 🤖 CAPTCHA */}
+                    <div
+                      className="cf-turnstile"
+                      data-sitekey="0x4AAAAAAC1tQHw5OOyNOzLd"
+                      data-callback="onTurnstileSuccess"
+                    ></div>
+                    <button
+                      type="submit"
+                      disabled={sending}
+                      className="w-full py-4 rounded-xl font-black text-base flex items-center justify-center gap-3 transition-all duration-200 disabled:opacity-70"
+                      style={{
+                        backgroundColor: 'var(--color-accent)',
+                        color: 'var(--color-arrow-stroke)',
+                      }}
+                    >
+                      {sending ? (
+                        <>
+                          <svg
+                            className="animate-spin w-4 h-4"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <circle
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              strokeOpacity="0.25"
+                            />
+                            <path
+                              d="M12 2a10 10 0 0 1 10 10"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                            />
+                          </svg>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          Send message
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                          >
+                            <path
+                              d="M2 8h12M9 4l4 4-4 4"
+                              stroke="var(--color-arrow-stroke)"
+                              strokeWidth="1.8"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </>
+                      )}
+                    </button>
+                  </form>
                 </>
               )}
             </div>
@@ -643,7 +655,7 @@ export default function ContactPage() {
                 style={{ backgroundColor: 'var(--color-accent)' }}
               />
               <div>
-                <p className="text-white font-semibold text-sm">
+                <p className="text-(--color-text-primary) font-semibold text-sm">
                   Available for projects
                 </p>
                 <p className="text-gray-500 text-xs">
@@ -685,13 +697,13 @@ export default function ContactPage() {
                     {item.href ? (
                       <Link
                         href={item.href}
-                        className="text-white text-sm font-medium hover:underline"
+                        className="text-(--color-text-primary) text-sm font-medium hover:underline"
                         style={{ textDecorationColor: 'var(--color-accent)' }}
                       >
                         {item.value}
                       </Link>
                     ) : (
-                      <p className="text-white text-sm font-medium">
+                      <p className="text-(--color-text-primary) text-sm font-medium">
                         {item.value}
                       </p>
                     )}
@@ -718,7 +730,7 @@ export default function ContactPage() {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-gray-400 hover:text-white group transition-colors duration-200"
+                    className="flex items-center gap-3 text-(--color-text-secondary) hover:text-(--color-text-primary) group transition-colors duration-200"
                   >
                     <span
                       className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 group-hover:border-white/25 transition-colors"
@@ -782,7 +794,7 @@ export default function ContactPage() {
             >
               FAQ
             </span>
-            <h2 className="text-3xl md:text-4xl font-black text-white leading-tight">
+            <h2 className="text-3xl md:text-4xl font-black text-(--color-text-primary) leading-tight">
               Common
               <br />
               <span className="text-accent-gradient">questions</span>
@@ -850,7 +862,7 @@ export default function ContactPage() {
             </motion.span>
             <motion.h2
               variants={fadeUp}
-              className="text-4xl md:text-6xl font-black text-white leading-tight mb-6"
+              className="text-4xl md:text-6xl font-black text-(--color-text-primary) leading-tight mb-6"
             >
               Your next project
               <br />
@@ -858,7 +870,7 @@ export default function ContactPage() {
             </motion.h2>
             <motion.p
               variants={fadeUp}
-              className="text-gray-400 text-lg mb-10 max-w-md mx-auto leading-relaxed"
+              className="text-(--color-text-secondary) text-lg mb-10 max-w-md mx-auto leading-relaxed"
             >
               No long forms. No waiting weeks for a reply. Just a conversation
               about what you need.

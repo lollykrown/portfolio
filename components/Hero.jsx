@@ -31,11 +31,19 @@ const cardVar = {
 };
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] mt-14 flex flex-col items-center justify-center px-6 overflow-hidden bg-[#0c0c14] shadow-[inset_0_0_1000px_1000px_rgba(0,0,0,0.747)]">
+    <section className="relative min-h-[90vh] mt-14 flex flex-col items-center justify-center px-6 overflow-hidden ">
       {/* Ambient amber glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-100 rounded-full bg-amber-700/20 blur-[120px]" />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-125h-50 bg-amber-900/30 blur-[80px]" />
+      <div className="absolute inset-0 pointer-events-none ">
+        <div
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-100 rounded-full bg-amber-700/20 blur-[120px]"
+          //         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-[120px]"
+          // style={{ backgroundColor: 'color-mix(in srgb, var(--color-accent-muted) 15%, transparent)' }}
+        />
+        <div
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-125h-50 bg-amber-900/30 blur-[80px]"
+          //         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[200px] blur-[80px]"
+          // style={{ backgroundColor: 'color-mix(in srgb, var(--color-accent-muted) 25%, transparent)' }}
+        />
       </div>
 
       {/* Floating icons */}
@@ -50,42 +58,40 @@ export default function Hero() {
       </div> */}
 
       {/* Hero Content */}
-      <motion.div           
-          className="relative z-10 text-center max-w-5xl mx-auto"
-          variants={stagger}
-          initial="hidden"
-          animate="show" >
-           <motion.span
-             variants={fadeUp}
-             className="inline-block text-xs font-semibold tracking-[0.25em] uppercase mb-5"
-             style={{ color: 'var(--color-accent-subtle)' }}
-           >
-             Welcome
-           </motion.span>           
+      <motion.div
+        className="relative z-10 text-center max-w-5xl mx-auto"
+        variants={stagger}
+        initial="hidden"
+        animate="show"
+      >
+        <motion.span
+          variants={fadeUp}
+          className="inline-block text-xs font-bold tracking-[0.25em] uppercase mb-5"
+          style={{ color: 'var(--color-accent-subtle)' }}
+        >
+          Welcome
+        </motion.span>
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl md:text-6xl lg:text-7xl   font-black leading-tight text-white tracking-tight mb-6"
+          className="text-5xl md:text-6xl lg:text-7xl  text-(--color-text-primary) font-black leading-tight tracking-tight mb-6"
         >
           {/* building building fast, scalable web apps with Next.js.
           I specialize in authentication systems, responsive UI, and performance optimization. */}
           Building fast,{' '}
-          <span className="bg-linear-to-r from-amber-400 to-orange-300 bg-clip-text text-transparent">
+          <span className="text-accent-gradient">
             scalable <br />
             web apps {''}
           </span>
-          for your{' '}
-          <span className="bg-linear-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent">
-            business
-          </span>
+          for your <span className="text-accent-gradient-alt">business</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="text-gray-400 text-xs md:text-base max-w-xl mx-auto leading-relaxed mb-10"
+          className="text-(--color-text-secondary) text-xs md:text-base max-w-xl mx-auto leading-relaxed mb-10"
         >
           Hi, I&apos;m Kay, a Frontend Developer building fast, scalable web
           apps with Next.js
@@ -95,33 +101,27 @@ export default function Hero() {
           <br />
           Let&apos;s get started by clicking on the button below.
         </motion.p>
-          <motion.div
-            variants={fadeUp}
-            className="flex items-center justify-center gap-4 flex-wrap"
-          >
-        <Link
-          href="/projects"
-          className="inline-flex items-center mr-4 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-7 py-3 rounded-full transition-all duration-200 backdrop-blur-sm group"
+        <motion.div
+          variants={fadeUp}
+          className="flex items-center justify-center gap-4 flex-wrap"
         >
-          View my Work
-        </Link>
-        <Link
-          href="/contact"
-          className="inline-flex items-center gap-3 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-7 py-3 rounded-full transition-all duration-200 backdrop-blur-sm group"
-        >
-          Hire Me
-          <span className="w-7 h-7 rounded-full bg-amber-600 flex items-center justify-center group-hover:bg-amber-500 transition-colors">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path
-                d="M2 6h8M7 3l3 3-3 3"
-                stroke="white"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-        </Link>
+          <Link href="/projects" className="btn-border">
+            View my Work
+          </Link>
+          <Link href="/contact" className="btn-border">
+            Hire Me
+            <span className="w-7 h-7 rounded-full bg-amber-600 flex items-center justify-center group-hover:bg-amber-500 transition-colors">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path
+                  d="M2 6h8M7 3l3 3-3 3"
+                  stroke="white"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+          </Link>
         </motion.div>
       </motion.div>
 
@@ -131,22 +131,22 @@ export default function Hero() {
           <div className="w-full h-full bg-linear-to-br from-amber-600/30 to-pink-600/20 flex items-center justify-center p-4">
             <div className="text-center">
               <p className="text-amber-300 text-[10px] uppercase tracking-widest font-bold mb-1">SEO</p>
-              <p className="text-white text-sm font-black uppercase leading-tight">Optimisation</p>
-              <p className="text-white text-sm font-black uppercase leading-tight">Maximise</p>
+              <p className="text-(--color-text-primary) text-sm font-black uppercase leading-tight">Optimisation</p>
+              <p className="text-(--color-text-primary) text-sm font-black uppercase leading-tight">Maximise</p>
               <p className="text-amber-300 text-sm font-black uppercase leading-tight">Your Online</p>
-              <p className="text-white text-sm font-black uppercase leading-tight">Visibility</p>
+              <p className="text-(--color-text-primary) text-sm font-black uppercase leading-tight">Visibility</p>
             </div>
           </div>
         </div>
         <div className="-mt-4 rounded-xl overflow-hidden border border-white/10 bg-[#111] aspect-video flex items-center justify-center shadow-2xl hover:scale-[1.02] transition-transform duration-300 z-10">
           <div className="text-center px-4">
             <p className="text-gray-500 text-[9px] tracking-[0.3em] uppercase mb-2">THE WEB IS THE</p>
-            <p className="text-white text-2xl font-black tracking-widest uppercase">FUTURE</p>
+            <p className="text-(--color-text-primary) text-2xl font-black tracking-widest uppercase">FUTURE</p>
           </div>
         </div>
         <div className="rounded-xl overflow-hidden border border-white/10 bg-[#0e0e1a] aspect-video flex items-center justify-center shadow-2xl hover:scale-[1.02] transition-transform duration-300">
           <div className="px-4 text-center">
-            <p className="text-white text-sm font-bold leading-snug mb-1">Smarter Workflows with</p>
+            <p className="text-(--color-text-primary) text-sm font-bold leading-snug mb-1">Smarter Workflows with</p>
             <p className="var(--color-subtle) text-sm font-bold">Ai-Powered Strategies</p>
           </div>
         </div>

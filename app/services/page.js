@@ -231,7 +231,9 @@ function FAQItem({ q, a }) {
       onClick={() => setOpen(!open)}
     >
       <div className="flex items-center justify-between py-5 gap-4">
-        <p className="text-white font-semibold text-sm md:text-base">{q}</p>
+        <p className="text-(--color-text-primary) font-semibold text-sm md:text-base">
+          {q}
+        </p>
         <span
           className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center border transition-all duration-300"
           style={{
@@ -260,7 +262,9 @@ function FAQItem({ q, a }) {
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         style={{ overflow: 'hidden' }}
       >
-        <p className="text-gray-400 text-sm leading-relaxed pb-5">{a}</p>
+        <p className="text-(--color-text-secondary) text-sm leading-relaxed pb-5">
+          {a}
+        </p>
       </motion.div>
     </div>
   );
@@ -268,10 +272,7 @@ function FAQItem({ q, a }) {
 
 export default function ServicesPage() {
   return (
-    <main
-      className="min-h-screen flex flex-col"
-      style={{ backgroundColor: 'var(--color-bg-page)' }}
-    >
+    <main className="min-h-screen flex flex-col bg-(--color-bg-page)">
       {/* ── HERO ──────────────────────────────────────────────────── */}
       <section className="relative min-h-[65vh] flex items-center justify-center px-6 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -316,7 +317,7 @@ export default function ServicesPage() {
           </motion.span>
           <motion.h1
             variants={fadeUp}
-            className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.92] tracking-tight mb-7"
+            className="text-5xl md:text-7xl lg:text-8xl font-black text-(--color-text-primary) leading-[0.92] tracking-tight mb-7"
           >
             Services built
             <br />
@@ -324,7 +325,7 @@ export default function ServicesPage() {
           </motion.h1>
           <motion.p
             variants={fadeUp}
-            className="text-gray-400 text-lg max-w-lg mx-auto leading-relaxed mb-10"
+            className="text-(--color-text-secondary) text-lg max-w-lg mx-auto leading-relaxed mb-10"
           >
             From a single landing page to a full SaaS product — I help
             businesses and founders ship better software, faster.
@@ -350,7 +351,7 @@ export default function ServicesPage() {
             </Link>
             <Link
               href="#pricing"
-              className="text-sm font-semibold text-gray-400 hover:text-white border border-white/10 hover:border-white/30 px-7 py-3 rounded-full transition-all duration-200"
+              className="text-sm font-semibold text-(--color-text-secondary) hover:text-(--color-text-primary) border border-white/10 hover:border-white/30 px-7 py-3 rounded-full transition-all duration-200"
             >
               View pricing
             </Link>
@@ -470,7 +471,7 @@ export default function ServicesPage() {
                     )}
                   </div>
 
-                  <h3 className="text-white font-black text-lg mb-3 leading-snug">
+                  <h3 className="text-(--color-text-primary) font-black text-lg mb-3 leading-snug">
                     {s.title}
                   </h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
@@ -547,7 +548,7 @@ export default function ServicesPage() {
               >
                 Pricing
               </span>
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
+              <h2 className="text-3xl md:text-4xl font-black text-(--color-text-primary) mb-3">
                 Transparent{' '}
                 <span className="text-accent-gradient">pricing</span>
               </h2>
@@ -614,7 +615,7 @@ export default function ServicesPage() {
                         </span>
                       )}
                     </div>
-                    <p className="text-4xl font-black text-white mb-2">
+                    <p className="text-4xl font-black text-(--color-text-primary) mb-2">
                       {pkg.price}
                     </p>
                     <p className="text-gray-500 text-sm leading-relaxed">
@@ -770,7 +771,7 @@ export default function ServicesPage() {
                         {item.step}
                       </span>
                     </div>
-                    <h3 className="text-white font-black text-base mb-2">
+                    <h3 className="text-(--color-text-primary) font-black text-base mb-2">
                       {item.title}
                     </h3>
                     <p className="text-gray-500 text-sm leading-relaxed">
@@ -815,7 +816,7 @@ export default function ServicesPage() {
             >
               FAQ
             </span>
-            <h2 className="text-3xl md:text-4xl font-black text-white leading-tight">
+            <h2 className="text-3xl md:text-4xl font-black text-(--color-text-primary) leading-tight">
               Common <span className="text-accent-gradient">questions</span>
             </h2>
             <p className="text-gray-500 text-sm leading-relaxed mt-4">
@@ -879,7 +880,7 @@ export default function ServicesPage() {
             </motion.span>
             <motion.h2
               variants={fadeUp}
-              className="text-4xl md:text-6xl font-black text-white leading-tight mb-6"
+              className="text-4xl md:text-6xl font-black text-(--color-text-primary) leading-tight mb-6"
             >
               Let&apos;s turn your{' '}
               <span className="text-accent-gradient">idea</span>
@@ -888,7 +889,7 @@ export default function ServicesPage() {
             </motion.h2>
             <motion.p
               variants={fadeUp}
-              className="text-gray-400 text-lg mb-10 max-w-md mx-auto leading-relaxed"
+              className="text-(--color-text-secondary) text-lg mb-10 max-w-md mx-auto leading-relaxed"
             >
               Book a free 30-minute discovery call. No commitment, no pitch —
               just a conversation about what you need.
@@ -914,7 +915,7 @@ export default function ServicesPage() {
               </Link>
               <Link
                 href="/projects"
-                className="text-sm font-semibold text-gray-400 hover:text-white border border-white/10 hover:border-white/30 px-8 py-4 rounded-full transition-all duration-200"
+                className="text-sm font-semibold text-(--color-text-secondary) hover:text-(--color-text-primary) border border-white/10 hover:border-white/30 px-8 py-4 rounded-full transition-all duration-200"
               >
                 See past work →
               </Link>

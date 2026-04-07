@@ -51,12 +51,11 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      {/* <body className="bg-white text-black dark:bg-zinc-950 dark:text-white transition-colors duration-300"> */}
       <body className="min-h-full flex flex-col">
-        <ThemeProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark">
         <Navbar />
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

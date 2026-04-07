@@ -104,8 +104,8 @@ function SkillBar({ name, level, index }) {
       className="flex flex-col gap-1.5"
     >
       <div className="flex justify-between items-center">
-        <span className="text-gray-300 text-sm font-medium">{name}</span>
-        <span className="text-xs font-bold" style={{ color: "color-mix(in srgb, var(--color-accent) 60%, transparent)" }}>
+        <span className="text-(--color-text-secondary) text-sm font-medium">{name}</span>
+        <span className="text-xs font-bold" style={{ color: "color-mix(in srgb, var(--color-accent-hover) 60%, transparent)" }}>
           {level}%
         </span>
       </div>
@@ -160,14 +160,14 @@ export default function HomeSkills() {
             </motion.span>
             <motion.h2
               variants={fadeUp}
-              className="text-4xl md:text-5xl font-black text-white leading-[0.95] tracking-tight"
+              className="text-4xl md:text-5xl font-black text-(--color-text-primary) leading-[0.95] tracking-tight"
             >
               Tools I use
               <br />
               <span className="text-accent-gradient">every day</span>
             </motion.h2>
           </div>
-          <motion.p variants={fadeUp} className="text-gray-500 text-sm max-w-xs leading-relaxed md:text-right">
+          <motion.p variants={fadeUp} className="text-(--color-text-secondary) text-sm max-w-xs leading-relaxed md:text-right">
             A snapshot of my current stack. Always learning, always adding to the list.
           </motion.p>
         </motion.div>
@@ -185,7 +185,7 @@ export default function HomeSkills() {
               key={group.category}
               variants={cardVar}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="group relative rounded-2xl p-6 border border-white/8 hover:border-white/18 transition-colors duration-300 overflow-hidden"
+              className="group relative rounded-2xl p-6 border border-(--color-border-hover) hover:border-white/18 transition-colors duration-300 overflow-hidden"
               style={{ backgroundColor: "var(--color-bg-card-darker)" }}
             >
               {/* Hover glow */}
@@ -195,7 +195,7 @@ export default function HomeSkills() {
               />
               {/* Top accent line */}
               <div
-                className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{ background: "linear-gradient(to right, var(--color-accent), transparent)" }}
               />
 
@@ -233,8 +233,7 @@ export default function HomeSkills() {
           className="flex justify-center mt-12"
         >
           <Link
-            href="/about"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-white border border-white/10 hover:border-white/25 px-6 py-3 rounded-full transition-all duration-200"
+            href="/about" className="btn-border"
           >
             Full background & experience
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">

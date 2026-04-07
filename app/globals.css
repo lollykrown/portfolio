@@ -35,7 +35,7 @@
 }
 
 @tailwind utilities;
-
+/* shadow-[inset_0_0_1000px_1000px_rgba(0,0,0,0.747)] */
 @layer base {
 :root,
   [data-theme="dark"] {
@@ -57,6 +57,7 @@
     --color-bg-mobile-menu: #111118; /* mobile nav dropdown                    */
     --color-bg-card-dark:   #111111; /* center card                            */
     --color-bg-card-darker: #0e0e1a; /* right card  
+    
  
     /* ── Text ── */
     --color-text-primary:   #ffffff;
@@ -79,7 +80,8 @@
     /* ── Scroll indicator ── */
     --color-scroll-stroke:  #fbbf24; /* amber-400 SVG stroke  */
 
-
+    /* --color-bb: #ffffff; */
+    --shad: inset 0 0 1000px 1000px rgba(0, 0, 0, 0.747);
 
 
     /* Purple palette (for secondary accents, hover states, and subtle glows) */
@@ -95,7 +97,7 @@
     --color-bg-page:        #0c0c14; /* hero section bg                        */
     --color-bg-mobile-menu: #111118; /* mobile nav dropdown                    */
     --color-bg-card-dark:   #111111; /* center card                            */
-    --color-bg-card-darker: #0e0e1a; /* right card 
+    --color-bg-card-darker: #0e0e1a; /* right card */
   }
  
   [data-theme="light"] {
@@ -135,6 +137,9 @@
     /* ── Arrow icon stroke (on accent bg) ── */
     --color-arrow-stroke:   #ffffff;
     --color-scroll-stroke:  #d97706;
+
+    /* --color-bb: #000000; */
+    --shad:'none'
   }
   
 }
@@ -157,12 +162,16 @@
 
   /* Accent button */
   .btn-accent {
-    @apply text-sm font-semibold px-5 py-2 rounded-full transition-colors duration-200;
-    background-color: var(--color-accent);
-    color: var(--color-arrow-stroke);
+    @apply text-sm text-(--color-text-primary) font-semibold px-5 py-2 bg-linear-to-r from-orange-400 to-amber-300 hover:bg-orange-800  rounded-full transition-colors duration-200;
   }
   .btn-accent:hover {
     background-color: var(--color-accent-hover);
+  }
+  .btn-border{
+    @apply border border-(--color-border-hover) bg-(--color-border) hover:bg-(--color-border-hover) gap-3 inline-flex font-semibold items-center mr-4 hover:border-(--color-border-card) text-(--color-text-secondary) hover:text-(--color-text-primary) transition-colors px-7 py-3 rounded-full duration-200 backdrop-blur-sm ;
+  }
+  .btn-border:hover {
+    border-color: var(--color-border-card);
   }
 
   /* ── Semantic helpers used across components ── */
