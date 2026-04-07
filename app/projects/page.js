@@ -83,7 +83,7 @@ export default function ProjectsPage() {
   return (
     <main className="min-h-screen flex flex-col bg-(--color-bg-page)">
       {/* ── HERO ──────────────────────────────────────────────────── */}
-      <section className="relative min-h-[70vh] flex flex-col items-center justify-center px-6 overflow-hidden">
+      <section className="relative min-h-[70vh] flex flex-col items-center mt-10 justify-center px-6 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <Glow left="10%" top="20%" size={600} opacity={14} />
           <Glow left="60%" top="50%" size={500} opacity={8} />

@@ -273,7 +273,7 @@ export default function ServicesPage() {
   return (
     <main className="min-h-screen flex flex-col bg-(--color-bg-page)">
       {/* ── HERO ──────────────────────────────────────────────────── */}
-      <section className="relative min-h-[65vh] flex items-center justify-center px-6 overflow-hidden">
+      <section className="relative min-h-[70vh] flex items-center mt-10 justify-center px-6 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <Glow
             style={{
