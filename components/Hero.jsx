@@ -31,7 +31,7 @@ const cardVar = {
 };
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] mt-14 flex flex-col items-center justify-center px-6 overflow-hidden ">
+    <section className="relative min-h-[90vh] mt-17 flex flex-col items-center justify-center px-6 overflow-hidden ">
       {/* Ambient amber glow */}
       <div className="absolute inset-0 pointer-events-none ">
         <div
