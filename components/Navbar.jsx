@@ -47,12 +47,6 @@ export default function Navbar() {
             href={link.href}
             className={`text-sm font-medium hover:text-(--color-text-primary) hover:border-b
                hover:border-amber-400 transition-border duration-200  ${isActive ? 'text-(--color-accent)' : 'text-(--color-text-secondary)'}`}
-            // onMouseEnter={(e) =>
-            //   (e.target.style.color = 'var(--color-text-primary)')
-            // }
-            // onMouseLeave={(e) =>
-            //   (e.target.style.color = 'var(--color-text-secondary)')
-            // }
           >
             {link.label}
           </Link>
