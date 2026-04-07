@@ -25,15 +25,6 @@
   }
 }
 
-/* body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-} */
-body {
-  background: #020617;
-  color: #e2e8f0;
-}
 /* globals.css */
 .card {
   @apply rounded-xl p-5 shadow-lg hover:shadow-xl transition;
@@ -46,42 +37,49 @@ body {
 @tailwind utilities;
 
 @layer base {
-  .dark {
-  /* DARK THEME */
-  --color-bg-page: #0a0a0f;
-  --color-bg-card-darker: #111118;
-
-  --color-accent: #6366f1;
-  --color-accent-muted: #6366f1;
-  --color-accent-subtle: #a5b4fc;
-
-  --color-arrow-stroke: #ffffff;
-}
-  :root {
-    /* ── Brand palette ── */
+:root,
+  [data-theme="dark"] {
+    /* ── Brand palette — DARK ── */
     --color-accent:         #f59e0b; /* amber-500  — primary accent            */
     --color-accent-light:   #fcd34d; /* amber-300  — light gradient stop       */
     --color-accent-hover:   #d97706; /* amber-600  — hover / darker accent     */
     --color-accent-muted:   #92400e; /* amber-800  — dark glow / card bg tint  */
     --color-accent-subtle:  #fbbf24; /* amber-400  — gradient start / icon     */
-    
+ 
     /* ── Gradient stops (used in bg-gradient-to-r) ── */
     --color-grad-from:      #f59e0b; /* amber-500  */
     --color-grad-via:       #fbbf24; /* amber-400  */
     --color-grad-to:        #fcd34d; /* yellow-300 */
     --color-grad-alt-to:    #fb923c; /* orange-400 — second gradient variant   */
-
+ 
     /* ── Page / surface backgrounds ── */
     --color-bg-page:        #0c0c14; /* hero section bg                        */
     --color-bg-mobile-menu: #111118; /* mobile nav dropdown                    */
     --color-bg-card-dark:   #111111; /* center card                            */
     --color-bg-card-darker: #0e0e1a; /* right card  
-                               */
+ 
+    /* ── Text ── */
+    --color-text-primary:   #ffffff;
+    --color-text-secondary: #9ca3af; /* gray-400 */
+    --color-text-muted:     #6b7280; /* gray-500 */
+    --color-text-faint:     #374151; /* gray-700 — for ghost text */
+ 
+    /* ── Borders & dividers ── */
+    --color-border:         rgba(255, 255, 255, 0.06);
+    --color-border-card:    rgba(255, 255, 255, 0.08);
+    --color-border-hover:   rgba(255, 255, 255, 0.20);
+ 
+    /* ── Dot grid ── */
+    --color-dot-grid:       #ffffff;
+    --color-dot-opacity:    0.035;
+
     /* ── Arrow icon stroke (on amber bg) ── */
     --color-arrow-stroke:   #1c1917; /* stone-900 — dark arrow on amber button */
 
     /* ── Scroll indicator ── */
     --color-scroll-stroke:  #fbbf24; /* amber-400 SVG stroke  */
+
+
 
 
     /* Purple palette (for secondary accents, hover states, and subtle glows) */
@@ -97,10 +95,48 @@ body {
     --color-bg-page:        #0c0c14; /* hero section bg                        */
     --color-bg-mobile-menu: #111118; /* mobile nav dropdown                    */
     --color-bg-card-dark:   #111111; /* center card                            */
-    --color-bg-card-darker: #0e0e1a; /* right card                             */
-
-               
+    --color-bg-card-darker: #0e0e1a; /* right card 
   }
+ 
+  [data-theme="light"] {
+    /* ── Brand palette — LIGHT ── */
+    --color-accent:         #d97706;
+    --color-accent-light:   #f59e0b;
+    --color-accent-hover:   #b45309;
+    --color-accent-muted:   #fde68a;
+    --color-accent-subtle:  #d97706;
+ 
+    --color-grad-from:      #d97706;
+    --color-grad-via:       #f59e0b;
+    --color-grad-to:        #fbbf24;
+    --color-grad-alt-to:    #ea580c;
+ 
+    /* ── Surfaces ── */
+    --color-bg-page:        #fafaf8;
+    --color-bg-mobile-menu: #ffffff;
+    --color-bg-card-dark:   #ffffff;
+    --color-bg-card-darker: #f5f4f0;
+ 
+    /* ── Text ── */
+    --color-text-primary:   #0c0c14;
+    --color-text-secondary: #4b5563; /* gray-600 */
+    --color-text-muted:     #9ca3af; /* gray-400 */
+    --color-text-faint:     #e5e7eb; /* gray-200 — for ghost text */
+ 
+    /* ── Borders & dividers ── */
+    --color-border:         rgba(0, 0, 0, 0.07);
+    --color-border-card:    rgba(0, 0, 0, 0.08);
+    --color-border-hover:   rgba(0, 0, 0, 0.20);
+ 
+    /* ── Dot grid ── */
+    --color-dot-grid:       #000000;
+    --color-dot-opacity:    0.04;
+ 
+    /* ── Arrow icon stroke (on accent bg) ── */
+    --color-arrow-stroke:   #ffffff;
+    --color-scroll-stroke:  #d97706;
+  }
+  
 }
 
 @layer components {
@@ -128,4 +164,14 @@ body {
   .btn-accent:hover {
     background-color: var(--color-accent-hover);
   }
+
+  /* ── Semantic helpers used across components ── */
+  .page-bg       { background-color: var(--color-bg-page); }
+  .card-dark     { background-color: var(--color-bg-card-dark); }
+  .card-darker   { background-color: var(--color-bg-card-darker); }
+  .text-primary  { color: var(--color-text-primary); }
+  .text-secondary { color: var(--color-text-secondary); }
+  .text-muted    { color: var(--color-text-muted); }
+  .border-subtle { border-color: var(--color-border); }
+  .border-card   { border-color: var(--color-border-card); }
 }

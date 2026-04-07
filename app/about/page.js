@@ -116,7 +116,7 @@ export default function AboutPage() {
                   <path d="M2 7h10M7 3l4 4-4 4" stroke="var(--color-arrow-stroke)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </Link>
-              <Link href="/cv.pdf" download className="text-sm font-semibold text-gray-400 hover:text-white border border-white/10 hover:border-white/30 px-7 py-3 rounded-full transition-all duration-200">
+              <Link href="/Kayode_Agboola_Resume.pdf" download className="text-sm font-semibold text-gray-400 hover:text-white border border-white/10 hover:border-white/30 px-7 py-3 rounded-full transition-all duration-200">
                 Download CV
               </Link>
             </motion.div>
@@ -139,16 +139,16 @@ export default function AboutPage() {
                 className="relative w-72 h-80 md:w-80 md:h-96 rounded-2xl overflow-hidden border border-white/10"
                 style={{ backgroundColor: "var(--color-bg-card-darker)" }}
               >
-                {/* Replace with your actual photo */}
                 <div
-                  className="w-full h-full flex items-end p-6"
+                  className="w-full h-full flex items-end pb-6 "
                   style={{ background: `linear-gradient(135deg, color-mix(in srgb, var(--color-accent-muted) 60%, transparent) 0%, color-mix(in srgb, var(--color-accent-hover) 20%, #0c0c14) 100%)` }}
                 >
-                  <div>
-                    <p className="text-white font-black text-xl">Kayode</p>
-                    <p className="text-xs tracking-widest uppercase mt-1" style={{ color: "var(--color-accent-subtle)" }}>Freelance Developer</p>
+                <Image src='/pp.jpg' alt="Kayode Agboola" fill className=" inset-0 object-cover" priority />
+                  <div className="z-50 bg-blur rounded-xl px-4 py-3 " > {/* style={{ backgroundColor: "color-mix(in srgb, var(--color-bg-card-dark) 90%, transparent)" }} */}
+                    <p className="text-black font-black text-xl">Kay</p>
+                    <p className="text-xs tracking-widest uppercase mt-1 shadow" style={{ color: "var(--color-accent-subtle)" }}>Freelance Developer</p>
                   </div>
-                </div>
+                </div>  
               </div>
               {/* Floating badge */}
               <div

@@ -74,7 +74,7 @@ export default function HomeAbout() {
                 }}
               >
                 <div>
-                  <p className="text-white font-black text-xl">Your Name</p>
+                  <p className="text-white font-black text-xl">Kay</p>
                   <p className="text-[11px] tracking-widest uppercase mt-1" style={{ color: "var(--color-accent-subtle)" }}>
                     Freelance Developer
                   </p>

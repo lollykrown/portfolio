@@ -20,11 +20,12 @@ export default function Navbar() {
   console.log(pathname);
 
   return (
-    <nav className="fixed bg-bg/80 backdrop-blur w-full px-6 md:px-10 py-3 flex items-center gap-4 justify-between z-50">
+    <nav className="fixed bg-bg/80 backdrop-blur w-full px-6 md:px-10 py-5 flex items-center gap-4 justify-between z-50"
+    style={{ backgroundColor: "var(--color-bg-page)" }}>
       {/* Logo */}
       <Link href="/" className="flex select-none justify-items-center items-center gap-2 group">
-      <Icon className="h-10 w-10 group-hover:scale-105 group-hover:text-(--color-accent) group-hover:drop-shadow-[0_0_12px_var(--color-accent)]" />
-        <span className="text-lg  text-gray-400 group-hover:text-(--color-accent) uppercase font-medium group-hover:drop-shadow-[0_0_12px_var(--color-accent)]">
+      <Icon className="h-10 w-10 group-hover:scale-105 group-hover:text-(--color-text-primary) group-hover:drop-shadow-[0_0_12px_var(--color-accent)]" />
+        <span className="text-lg text-(--color-text-primary) group-hover:text-(--color-accent) uppercase font-medium group-hover:drop-shadow-[0_0_12px_var(--color-accent)]" >
           Lollykrown
         </span>
       </Link>
@@ -42,6 +43,7 @@ export default function Navbar() {
             {link.label}
           </Link>
         ))}
+        <ThemeToggle />
         <Link
           href="/contact"
           className="bg-linear-to-r from-orange-400 to-amber-300 hover:bg-orange-800 text-white text-sm font-semibold px-5 py-2 rounded-full transition-colors duration-200"
@@ -73,6 +75,8 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+          <ThemeToggle  />
+
           <Link
             href="/contact"
             onClick={() => setMenuOpen(false)}
@@ -82,7 +86,6 @@ export default function Navbar() {
           </Link>
         </div>
       )}
-      <ThemeToggle className="cursor-pointer" />
     </nav>
   );
 }

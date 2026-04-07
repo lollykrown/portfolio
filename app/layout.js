@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import { Providers } from '@/components/ThemeProvider';
+import { ThemeProvider } from '@/components/ThemeProvider';
 import Footer from "@/components/Footer";
 
 const geistSans = Geist({
@@ -33,15 +33,31 @@ export default function RootLayout({ children }) {
   return (
     <html suppressHydrationWarning
       lang="en"
+      data-theme="dark"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        {/* Prevent flash of wrong theme */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var t = localStorage.getItem('theme') || 'dark';
+                  document.documentElement.setAttribute('data-theme', t);
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       {/* <body className="bg-white text-black dark:bg-zinc-950 dark:text-white transition-colors duration-300"> */}
       <body className="min-h-full flex flex-col">
-        {/* <Providers> */}
+        <ThemeProvider>
         <Navbar />
           {children}
           {/* <Footer /> */}
-        {/* </Providers> */}
+        </ThemeProvider>
       </body>
     </html>
   );

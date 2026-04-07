@@ -1,8 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Script from 'next/script';
+import {sendContactForm} from '@/actions/mail';
 
 // ─── Shared animation variants ────────────────────────────────────
 const fadeUp = {
@@ -201,23 +203,40 @@ export default function ContactPage() {
     email: '',
     budget: '',
     message: '',
+    website:'', // honeypot field
+    token:'', // CAPTCHA token
   });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState(null);
+
+    useEffect(() => {
+    // expose function globally for Turnstile
+    (window).onTurnstileSuccess = (t) => {
+      setFormState({ ...formState, token: t });
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Form submitted with data:', formState);
+
     setSending(true);
-    // Replace with your actual form submission logic
-    await new Promise((r) => setTimeout(r, 1200));
-    setSending(false);
+    const res = await sendContactForm(JSON.stringify(formState));
+    console.log('Form submission response:', res);
+
+    if (!res.success) {
+        setSending(false);
+        setError(res.error || {message:'An unknown error occurred'});
+        return;
+    }
     setSubmitted(true);
   };
 
   const inputStyle = {
     backgroundColor:
       'color-mix(in srgb, var(--color-accent) 4%, var(--color-bg-card-darker))',
-    border: '1px solid rgba(255,255,255,0.08)',
+    // border: '1px solid rgba(255,255,255,0.08)',
     color: 'white',
     borderRadius: '12px',
     padding: '14px 16px',
@@ -370,6 +389,12 @@ export default function ContactPage() {
                   </button>
                 </motion.div>
               ) : (
+                <>
+                <Script
+                  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+                  async
+                  defer
+                />
                 <form
                   onSubmit={handleSubmit}
                   className="relative z-10 flex flex-col gap-5"
@@ -386,14 +411,14 @@ export default function ContactPage() {
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-2">
                       <label
-                        className="text-xs font-semibold tracking-wide uppercase"
-                        style={{ color: 'var(--color-accent-subtle)' }}
+                        className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('name') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
                       >
                         Name
                       </label>
                       <input
                         required
                         type="text"
+                        className={`border ${error?.message?.includes('name') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
                         placeholder="Your name"
                         value={formState.name}
                         onChange={(e) =>
@@ -412,14 +437,14 @@ export default function ContactPage() {
                     </div>
                     <div className="flex flex-col gap-2">
                       <label
-                        className="text-xs font-semibold tracking-wide uppercase"
-                        style={{ color: 'var(--color-accent-subtle)' }}
+                        className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('email') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
                       >
-                        Email
+                        Email{error?.message?.includes('email') && '*'}
                       </label>
                       <input
                         required
                         type="email"
+                        className={`border ${error?.message?.includes('email') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
                         placeholder="you@example.com"
                         value={formState.email}
                         onChange={(e) =>
@@ -440,17 +465,17 @@ export default function ContactPage() {
 
                   <div className="flex flex-col gap-2">
                     <label
-                      className="text-xs font-semibold tracking-wide uppercase"
-                      style={{ color: 'var(--color-accent-subtle)' }}
+                        className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('budget') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
                     >
-                      Budget range
+                      Budget range {error?.message?.includes('budget') && '*'}
                     </label>
                     <select
                       value={formState.budget}
                       onChange={(e) =>
                         setFormState({ ...formState, budget: e.target.value })
                       }
-                      style={{ ...inputStyle, cursor: 'pointer' }}
+                      className={`border cursor-pointer ${error?.message?.includes('budget') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
+                      style={inputStyle}
                       onFocus={(e) =>
                         (e.target.style.borderColor =
                           'color-mix(in srgb, var(--color-accent) 50%, transparent)')
@@ -494,22 +519,21 @@ export default function ContactPage() {
                       </option>
                     </select>
                   </div>
-
                   <div className="flex flex-col gap-2">
                     <label
-                      className="text-xs font-semibold tracking-wide uppercase"
-                      style={{ color: 'var(--color-accent-subtle)' }}
+                      className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('message') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
                     >
-                      Message
+                      Message {error?.message?.includes('message') && '*'}
                     </label>
                     <textarea
                       required
-                      rows={5}
+                      rows={3}
                       placeholder="Tell me about your project..."
                       value={formState.message}
                       onChange={(e) =>
                         setFormState({ ...formState, message: e.target.value })
                       }
+                      className={`border ${error?.message?.includes('message') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
                       style={{ ...inputStyle, resize: 'none' }}
                       onFocus={(e) =>
                         (e.target.style.borderColor =
@@ -521,6 +545,23 @@ export default function ContactPage() {
                     />
                   </div>
 
+                  {/* Honeypot (hidden) */}
+                  <input
+                    name="website" 
+                    style={{ display: 'none' }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formState.website}
+                    onChange={(e) => setFormState({ ...formState, website: e.target.value })}
+                  />
+                  <p className='text-red-600 -mt-5 bg-blur text-xs'>{error && error.message}</p>
+
+                  {/* 🤖 CAPTCHA */}
+                  <div
+                    className="cf-turnstile"
+                    data-sitekey='0x4AAAAAAC1tQHw5OOyNOzLd'
+                    data-callback="onTurnstileSuccess"
+                  ></div>
                   <button
                     type="submit"
                     disabled={sending}
@@ -575,6 +616,7 @@ export default function ContactPage() {
                     )}
                   </button>
                 </form>
+                </>
               )}
             </div>
           </motion.div>
