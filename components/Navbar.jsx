@@ -21,7 +21,7 @@ export default function Navbar() {
   
 
   return (
-    <nav className="fixed bg-bg/80 backdrop-blur w-full px-6 md:px-10 py:3 md:py-5  flex items-center gap-4 justify-between z-50">
+    <nav className="fixed bg-bg/80 backdrop-blur w-full px-6 md:px-10  py-5  flex items-center gap-4 justify-between z-50">
       {/* Logo */}
       <Link
         href="/"
