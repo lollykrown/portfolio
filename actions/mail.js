@@ -84,14 +84,11 @@ export async function sendContactForm(data) {
       // },
       html: `
         <div style="font-family: Arial;">
-          <div style="text-align:center; margin-bottom:20px;">
-            <img src="https://lollykrown.xyz/logo.svg" width="120" />
-          </div>
 
           <h2>New Message</h2>
 
-          <p><strong>Name: </strong> (${name})</p>
-          <p><strong>Email: </strong> (${email})</p>
+          <p><strong>Name: </strong> ${name}</p>
+          <p><strong>Email: </strong> ${email}</p>
           <p><strong>Budget: </strong> ${budget}</p>
 
           <p><strong>Message: </strong> ${message}</p>
