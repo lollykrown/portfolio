@@ -19,7 +19,7 @@ export const projects = [
       Figma design system into a fully functional, responsive, and high-performance web experience. 
       This involved crafting reusable components, ensuring pixel-perfect implementation, 
       and delivering an intuitive interface that balances aesthetics with usability.`,
-    tech: ["Next.js", "Tailwind", 'API Integration', 'Figma to Code','Authentication', 'Payment Integration'],
+    tech: ["Next.js", "Tailwind", 'API Integration', 'Figma to Code','Authentication', 'Payment Integration', 'REST API'],
     github: "https://github.com/lollykrown",
     thumbnail: "/project2.png",
     live: "https://tivitea.africa",

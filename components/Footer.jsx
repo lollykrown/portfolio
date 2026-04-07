@@ -86,7 +86,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="relative overflow-hidden border-t bg-(--color-bg-page) border-(--color-border)">
+      className="relative overflow-hidden border-t bg-(--color-bg-page) border-(--color-border) shadow-(--shad)">
       <DotGrid />
 
       {/* Ambient glows */}

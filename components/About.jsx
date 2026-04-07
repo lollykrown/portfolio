@@ -150,7 +150,7 @@ export default function HomeAbout() {
             <Link href="/about" className="btn-accent px-7 py-3 rounded-full inline-flex items-center gap-2">
               More about me
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M2 7h10M7 3l4 4-4 4" stroke="var(--color-text-primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M2 7h10M7 3l4 4-4 4" stroke="var(--color-arrow-stroke)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </Link>
             <Link

@@ -165,21 +165,13 @@ function FAQItem({ q, a }) {
           {q}
         </p>
         <span
-          className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center border transition-all duration-300"
-          style={{
-            borderColor: open
-              ? 'var(--color-accent)'
-              : 'rgba(255,255,255,0.15)',
-            backgroundColor: open
-              ? 'color-mix(in srgb, var(--color-accent) 15%, transparent)'
-              : 'transparent',
-            transform: open ? 'rotate(45deg)' : 'rotate(0deg)',
-          }}
+          className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center border transition-all duration-300
+            ${open ? 'border-(--color-accent) text-(--color-accent) bg-[color-mix(in_srgb,var(--color-accent)_15%,transparent)] rotate-45' : 'border-(--color-border) bg-transparent rotate-0 text-(--color-text-primary)'}`}
         >
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
             <path
               d="M6 2v8M2 6h8"
-              stroke={open ? 'var(--color-accent)' : 'white'}
+              stroke={open ? 'var(--color-accent)' : 'var(--color-text-primary) '}
               strokeWidth="1.5"
               strokeLinecap="round"
             />
@@ -237,18 +229,6 @@ export default function ContactPage() {
     setSubmitted(true);
   };
 
-  const inputStyle = {
-    backgroundColor:
-      'color-mix(in srgb, var(--color-accent) 4%, var(--color-bg-card-darker))',
-    color: 'white',
-    borderRadius: '12px',
-    padding: '14px 16px',
-    fontSize: '14px',
-    width: '100%',
-    outline: 'none',
-    transition: 'border-color 0.2s',
-  };
-
   return (
     <main className="min-h-screen flex flex-col bg-(--color-bg-page)">
       {/* ── HERO ──────────────────────────────────────────────────── */}
@@ -289,7 +269,7 @@ export default function ContactPage() {
         >
           <motion.span
             variants={fadeUp}
-            className="inline-block text-xs font-semibold tracking-[0.25em] uppercase mb-5"
+            className="inline-block text-xs font-bold tracking-[0.25em] uppercase mb-5"
             style={{ color: 'var(--color-accent-subtle)' }}
           >
             Get in touch
@@ -327,7 +307,7 @@ export default function ContactPage() {
             viewport={{ once: true }}
           >
             <div
-              className="rounded-2xl p-8 md:p-10 border border-white/8 relative overflow-hidden"
+              className="rounded-2xl p-8 md:p-10 border border-(--color-border) relative overflow-hidden"
               style={{ backgroundColor: 'var(--color-bg-card-darker)' }}
             >
               {/* Subtle corner glow inside card */}
@@ -365,7 +345,7 @@ export default function ContactPage() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-black text-white">
+                  <h3 className="text-2xl font-black text-(--color-text-primary)">
                     Message sent!
                   </h3>
                   <p className="text-(--color-text-secondary) text-sm max-w-xs leading-relaxed">
@@ -403,7 +383,7 @@ export default function ContactPage() {
                       <p className="text-(--color-text-primary) font-black text-2xl mb-1">
                         Send a message
                       </p>
-                      <p className="text-gray-500 text-sm">
+                      <p className="text-(--color-text-secondary) text-sm">
                         Fill in the form and I&apos;ll be in touch shortly.
                       </p>
                     </div>
@@ -411,20 +391,20 @@ export default function ContactPage() {
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-2">
                         <label
-                          className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('name') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
+                          className={`text-xs font-bold tracking-wide uppercase ${error?.message?.includes('name') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
                         >
-                          Name
+                          Name {error?.message?.includes('name') && '*'}
                         </label>
                         <input
                           required
                           type="text"
-                          className={`border ${error?.message?.includes('name') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
                           placeholder="Your name"
                           value={formState.name}
                           onChange={(e) =>
                             setFormState({ ...formState, name: e.target.value })
                           }
-                          style={inputStyle}
+                          className={`w-full rounded-xl px-4 py-3.25 text-[14px] text-(--color-text-primary) outline-none transition-colors placeholder:text-(--color-text-muted)
+                            duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))] border ${error?.message?.includes('name') ? 'border-red-600' : 'border-(--color-border-card)'}`}
                           onFocus={(e) =>
                             (e.target.style.borderColor =
                               'color-mix(in srgb, var(--color-accent) 50%, transparent)')
@@ -444,7 +424,6 @@ export default function ContactPage() {
                         <input
                           required
                           type="email"
-                          className={`border ${error?.message?.includes('email') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
                           placeholder="you@example.com"
                           value={formState.email}
                           onChange={(e) =>
@@ -453,7 +432,8 @@ export default function ContactPage() {
                               email: e.target.value,
                             })
                           }
-                          style={inputStyle}
+                          className={`w-full rounded-xl px-4 py-3.25 text-[14px] text-(--color-text-primary) outline-none transition-colors placeholder:text-(--color-text-muted)
+                            duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))] border ${error?.message?.includes('email') ? 'border-red-600' : 'border-(--color-border-card)'}`}
                           onFocus={(e) =>
                             (e.target.style.borderColor =
                               'color-mix(in srgb, var(--color-accent) 50%, transparent)')
@@ -477,8 +457,8 @@ export default function ContactPage() {
                         onChange={(e) =>
                           setFormState({ ...formState, budget: e.target.value })
                         }
-                        className={`border cursor-pointer ${error?.message?.includes('budget') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
-                        style={inputStyle}
+                        className={`w-full rounded-xl px-4 py-3.25 text-[14px] text-(--color-text-primary) outline-none transition-colors 
+                            duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))] border ${error?.message?.includes('budget') ? 'border-red-600' : 'border-(--color-border-card)'}`}
                         onFocus={(e) =>
                           (e.target.style.borderColor =
                             'color-mix(in srgb, var(--color-accent) 50%, transparent)')
@@ -540,8 +520,8 @@ export default function ContactPage() {
                             message: e.target.value,
                           })
                         }
-                        className={`border ${error?.message?.includes('message') ? 'border-red-600' : 'border-[rgba(255,255,255,0.08)]'}`}
-                        style={{ ...inputStyle, resize: 'none' }}
+                        className={`w-full rounded-xl px-4 py-3.25 text-[14px] text-(--color-text-primary) outline-none transition-colors placeholder:text-(--color-text-muted)
+                            duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))] border ${error?.message?.includes('message') ? 'border-red-600' : 'border-(--color-border-card)'}`}
                         onFocus={(e) =>
                           (e.target.style.borderColor =
                             'color-mix(in srgb, var(--color-accent) 50%, transparent)')

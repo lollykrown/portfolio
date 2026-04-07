@@ -150,10 +150,7 @@ export default function ProjectsPage() {
                 />
               </svg>
             </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-gray-300 hover:text-(--color-text-primary) border border-white/10 hover:border-white/30 px-7 py-3 rounded-full transition-all duration-200"
-            >
+            <Link href="/contact" className="btn-border" >
               Start a project
             </Link>
           </motion.div>
@@ -203,19 +200,14 @@ export default function ProjectsPage() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: '-60px' }}
-        className="relative border-y overflow-hidden"
-        style={{ borderColor: 'rgba(255,255,255,0.06)' }}
-      >
+        className="relative border-y overflow-hidden border-(--color-border)" >
         <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((s) => (
             <motion.div key={s.label} variants={fadeUp} className="text-center">
-              <p
-                className="text-3xl md:text-4xl font-black mb-1"
-                style={{ color: 'var(--color-accent-subtle)' }}
-              >
+              <p className="text-3xl md:text-4xl font-black mb-1 text-(--color-accent-subtle)" >
                 {s.value}
               </p>
-              <p className="text-gray-500 text-sm tracking-wide">{s.label}</p>
+              <p className="text-(--color-text-secondary) text-sm tracking-wide">{s.label}</p>
             </motion.div>
           ))}
         </div>
@@ -243,19 +235,17 @@ export default function ProjectsPage() {
             >
               <div>
                 <span
-                  className="text-xs font-semibold tracking-[0.2em] uppercase block mb-3"
-                  style={{ color: 'var(--color-accent-subtle)' }}
-                >
+                  className="text-xs font-semibold tracking-[0.2em] uppercase block mb-3 text-(--color-accent-subtle)">
                   Selected Work
                 </span>
-                <h2 className="text-3xl md:text-4xl font-black text-white">
+                <h2 className="text-3xl md:text-4xl font-black text-(--color-text-primary)">
                   All projects
                 </h2>
               </div>
-              <p className="text-gray-500 text-sm max-w-xs leading-relaxed">
+              <p className="text-(--color-text-secondary) text-sm max-w-xs leading-relaxed">
                 {filtered.length} project{filtered.length !== 1 ? 's' : ''} —
                 filtered by{' '}
-                <span style={{ color: 'var(--color-accent-subtle)' }}>
+                <span className="text-(--color-accent-subtle) font-semibold">
                   {activeTag}
                 </span>
               </p>
@@ -315,7 +305,7 @@ export default function ProjectsPage() {
               >
                 {/* Top accent line on hover */}
                 <div
-                  className="absolute top-0 left-0 right-0 h-[2px] z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute top-0 left-0 right-0 h-0.5 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
                     background:
                       'linear-gradient(to right, var(--color-accent), transparent)',
@@ -466,8 +456,7 @@ export default function ProjectsPage() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         viewport={{ once: true, margin: '-100px' }}
-        className="relative py-24 px-6 overflow-hidden border-t"
-        style={{ borderColor: 'rgba(255,255,255,0.06)' }}
+        className="relative py-24 px-6 overflow-hidden border-t border-['rgba(255,255,255,0.06)']"
       >
         <div className="absolute inset-0 pointer-events-none">
           <Glow left="0" top="0" size={500} opacity={8} />
@@ -483,7 +472,7 @@ export default function ProjectsPage() {
           >
             <motion.span
               variants={fadeUp}
-              className="inline-block text-xs font-semibold tracking-[0.2em] uppercase mb-4"
+              className="inline-block text-xs font-bold tracking-[0.2em] uppercase mb-4"
               style={{ color: 'var(--color-accent-subtle)' }}
             >
               How I work
@@ -542,7 +531,7 @@ export default function ProjectsPage() {
                       className="text-4xl font-black block mb-4 leading-none"
                       style={{
                         color:
-                          'color-mix(in srgb, var(--color-accent) 25%, transparent)',
+                          'color-mix(in srgb, var(--color-accent) 50%, transparent)',
                       }}
                     >
                       {item.step}
@@ -550,7 +539,7 @@ export default function ProjectsPage() {
                     <h3 className="text-(--color-text-primary) font-black text-lg mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">
+                    <p className="text-(--color-text-secondary) text-sm leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
@@ -577,7 +566,7 @@ export default function ProjectsPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto text-center">
           <span
-            className="inline-block text-xs font-semibold tracking-[0.2em] uppercase mb-4"
+            className="inline-block text-xs font-bold tracking-[0.2em] uppercase mb-4"
             style={{ color: 'var(--color-accent-subtle)' }}
           >
             Tech stack
@@ -643,7 +632,7 @@ export default function ProjectsPage() {
           >
             <motion.span
               variants={fadeUp}
-              className="inline-block text-xs font-semibold tracking-[0.2em] uppercase mb-5"
+              className="inline-block text-xs font-bold tracking-[0.2em] uppercase mb-5"
               style={{ color: 'var(--color-accent-subtle)' }}
             >
               Let's build together
@@ -682,12 +671,12 @@ export default function ProjectsPage() {
                   />
                 </svg>
               </Link>
-              <Link
+              {/* <Link
                 href="mailto:hello@yourdomain.com"
                 className="text-sm font-semibold text-(--color-text-secondary) hover:text-(--color-text-primary) transition-colors"
               >
                 hello@yourdomain.com →
-              </Link>
+              </Link> */}
             </motion.div>
           </motion.div>
         </div>

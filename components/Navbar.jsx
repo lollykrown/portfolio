@@ -21,7 +21,7 @@ export default function Navbar() {
   
 
   return (
-    <nav className="fixed bg-bg/80 backdrop-blur w-full px-6 md:px-10 py-5 flex items-center gap-4 justify-between z-50">
+    <nav className="fixed bg-bg/80 backdrop-blur w-full px-6 md:px-10 py:3 md:py-5  flex items-center gap-4 justify-between z-50">
       {/* Logo */}
       <Link
         href="/"
@@ -36,11 +36,7 @@ export default function Navbar() {
       {/* Desktop Links */}
       <div className="hidden md:flex items-center gap-8 ml-auto">
         {navLinks.map((link) => {
-          const isActive =
-                pathname === link.href || pathname.startsWith(`${link.href}/`);
-          console.log("pathname:", pathname);
-        console.log("link.href:", link.href);
-
+          const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
           return (
           <Link
             key={link.label}

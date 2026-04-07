@@ -155,7 +155,7 @@ export default function Hero() {
       {/* Scroll indicator — sits between cards and bottom */}
       <Link
         href="/#projects"
-        className="relative p-4 hover:scale-110 transition z-10 mt-8 flex flex-col items-center gap-0"
+        className="relative p-4 hover:scale-110 transition z-10 mt-6 flex flex-col items-center gap-0"
       >
         <div className="w-px h-8 bg-linear-to-b from-transparent to-amber-500/60" />
         <div className="w-10 h-10 rounded-full border border-amber-500/50 bg-amber-600/20 flex items-center justify-center">

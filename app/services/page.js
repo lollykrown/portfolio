@@ -226,8 +226,7 @@ function FAQItem({ q, a }) {
   const [open, setOpen] = require('react').useState(false);
   return (
     <div
-      className="border-b cursor-pointer"
-      style={{ borderColor: 'rgba(255,255,255,0.07)' }}
+      className="border-b cursor-pointer border-(--color-border-card)"
       onClick={() => setOpen(!open)}
     >
       <div className="flex items-center justify-between py-5 gap-4">
@@ -310,7 +309,7 @@ export default function ServicesPage() {
         >
           <motion.span
             variants={fadeUp}
-            className="inline-block text-xs font-semibold tracking-[0.25em] uppercase mb-5"
+            className="inline-block text-xs font-bold tracking-[0.25em] uppercase mb-5"
             style={{ color: 'var(--color-accent-subtle)' }}
           >
             What I do
@@ -351,8 +350,7 @@ export default function ServicesPage() {
             </Link>
             <Link
               href="#pricing"
-              className="text-sm font-semibold text-(--color-text-secondary) hover:text-(--color-text-primary) border border-white/10 hover:border-white/30 px-7 py-3 rounded-full transition-all duration-200"
-            >
+              className="btn-border py-2.5" >
               View pricing
             </Link>
           </motion.div>
@@ -392,12 +390,12 @@ export default function ServicesPage() {
           >
             <motion.div variants={fadeUp} className="mb-12">
               <span
-                className="inline-block text-xs font-semibold tracking-[0.2em] uppercase mb-3"
+                className="inline-block text-xs font-bold tracking-[0.2em] uppercase mb-3"
                 style={{ color: 'var(--color-accent-subtle)' }}
               >
                 Services
               </span>
-              <h2 className="text-3xl md:text-4xl font-black text-white">
+              <h2 className="text-3xl md:text-4xl font-black text-(--color-text-primary)">
                 Everything you{' '}
                 <span className="text-accent-gradient">need to ship</span>
               </h2>
@@ -429,7 +427,7 @@ export default function ServicesPage() {
                     }}
                   />
                   <div
-                    className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     style={{
                       background:
                         'linear-gradient(to right, var(--color-accent), transparent)',
@@ -474,7 +472,7 @@ export default function ServicesPage() {
                   <h3 className="text-(--color-text-primary) font-black text-lg mb-3 leading-snug">
                     {s.title}
                   </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
+                  <p className="text-(--color-text-secondary) text-sm leading-relaxed mb-6 flex-1">
                     {s.desc}
                   </p>
 
@@ -482,7 +480,7 @@ export default function ServicesPage() {
                     {s.features.map((f) => (
                       <li
                         key={f}
-                        className="flex items-center gap-2.5 text-sm text-gray-400"
+                        className="flex items-center gap-2.5 text-sm text-(--color-text-secondary)"
                       >
                         <svg
                           width="14"
@@ -552,7 +550,7 @@ export default function ServicesPage() {
                 Transparent{' '}
                 <span className="text-accent-gradient">pricing</span>
               </h2>
-              <p className="text-gray-500 text-sm max-w-md mx-auto">
+              <p className="text-(--color-text-secondary) text-sm max-w-md mx-auto">
                 No surprises. Fixed prices on standard projects, custom scopes
                 for everything else.
               </p>
@@ -576,7 +574,7 @@ export default function ServicesPage() {
                 >
                   {pkg.featured && (
                     <div
-                      className="absolute top-0 left-0 right-0 h-[2px]"
+                      className="absolute top-0 left-0 right-0 h-0.5"
                       style={{
                         background:
                           'linear-gradient(to right, transparent, var(--color-accent), transparent)',
@@ -618,7 +616,7 @@ export default function ServicesPage() {
                     <p className="text-4xl font-black text-(--color-text-primary) mb-2">
                       {pkg.price}
                     </p>
-                    <p className="text-gray-500 text-sm leading-relaxed">
+                    <p className="text-(--color-text-secondary) text-sm leading-relaxed">
                       {pkg.desc}
                     </p>
                   </div>
@@ -627,7 +625,7 @@ export default function ServicesPage() {
                     {pkg.features.map((f) => (
                       <li
                         key={f}
-                        className="flex items-center gap-2.5 text-sm text-gray-400"
+                        className="flex items-center gap-2.5 text-sm text-(--color-text-secondary)"
                       >
                         <svg
                           width="14"
@@ -691,8 +689,7 @@ export default function ServicesPage() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         viewport={{ once: true, margin: '-80px' }}
-        className="relative py-24 px-6 border-t overflow-hidden"
-        style={{ borderColor: 'rgba(255,255,255,0.06)' }}
+        className="relative py-24 px-6 border-t overflow-hidden border-[rgba(255,255,255,0.06)]"
       >
         <div className="absolute inset-0 pointer-events-none">
           <Glow
@@ -721,19 +718,17 @@ export default function ServicesPage() {
             >
               <div>
                 <span
-                  className="inline-block text-xs font-semibold tracking-[0.2em] uppercase mb-3"
-                  style={{ color: 'var(--color-accent-subtle)' }}
-                >
+                  className="inline-block text-xs font-bold tracking-[0.2em] uppercase mb-3 text-(--color-accent-subtle)">
                   Process
                 </span>
-                <h2 className="text-3xl md:text-4xl font-black text-white">
+                <h2 className="text-3xl md:text-4xl font-black text-(--color-text-primary)">
                   How we&apos;ll{' '}
                   <span className="text-accent-gradient-alt">
                     work together
                   </span>
                 </h2>
               </div>
-              <p className="text-gray-500 text-sm max-w-xs leading-relaxed">
+              <p className="text-(--color-text-secondary) text-sm max-w-xs leading-relaxed">
                 A clear, structured approach so you always know what&apos;s
                 happening and what comes next.
               </p>
@@ -774,7 +769,7 @@ export default function ServicesPage() {
                     <h3 className="text-(--color-text-primary) font-black text-base mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">
+                    <p className="text-(--color-text-secondary) text-sm leading-relaxed">
                       {item.desc}
                     </p>
                   </motion.div>
@@ -791,8 +786,7 @@ export default function ServicesPage() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         viewport={{ once: true, margin: '-80px' }}
-        className="relative py-24 px-6 border-t overflow-hidden"
-        style={{ borderColor: 'rgba(255,255,255,0.06)' }}
+        className="relative py-24 px-6 border-t overflow-hidden border-(--color-border)"
       >
         <div className="absolute inset-0 pointer-events-none">
           <Glow
@@ -811,7 +805,7 @@ export default function ServicesPage() {
         <div className="relative z-10 max-w-6xl mx-auto grid lg:grid-cols-[280px_1fr] gap-16 items-start">
           <div>
             <span
-              className="inline-block text-xs font-semibold tracking-[0.2em] uppercase mb-4"
+              className="inline-block text-xs font-bold tracking-[0.2em] uppercase mb-4"
               style={{ color: 'var(--color-accent-subtle)' }}
             >
               FAQ
@@ -819,7 +813,7 @@ export default function ServicesPage() {
             <h2 className="text-3xl md:text-4xl font-black text-(--color-text-primary) leading-tight">
               Common <span className="text-accent-gradient">questions</span>
             </h2>
-            <p className="text-gray-500 text-sm leading-relaxed mt-4">
+            <p className="text-(--color-text-secondary) text-sm leading-relaxed mt-4">
               Still have questions?{' '}
               <Link
                 href="/contact"
@@ -847,8 +841,7 @@ export default function ServicesPage() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         viewport={{ once: true, margin: '-80px' }}
-        className="relative py-28 px-6 border-t overflow-hidden"
-        style={{ borderColor: 'rgba(255,255,255,0.06)' }}
+        className="relative py-28 px-6 border-t overflow-hidden border-(--color-border)"
       >
         <div className="absolute inset-0 pointer-events-none">
           <Glow
@@ -873,7 +866,7 @@ export default function ServicesPage() {
           >
             <motion.span
               variants={fadeUp}
-              className="inline-block text-xs font-semibold tracking-[0.2em] uppercase mb-5"
+              className="inline-block text-xs font-bold tracking-[0.2em] uppercase mb-5"
               style={{ color: 'var(--color-accent-subtle)' }}
             >
               Ready to start?
@@ -915,7 +908,7 @@ export default function ServicesPage() {
               </Link>
               <Link
                 href="/projects"
-                className="text-sm font-semibold text-(--color-text-secondary) hover:text-(--color-text-primary) border border-white/10 hover:border-white/30 px-8 py-4 rounded-full transition-all duration-200"
+                className="btn-border"
               >
                 See past work →
               </Link>
