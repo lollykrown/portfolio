@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
 import { sendContactForm } from '@/actions/mail';
+import { p } from 'framer-motion/client';
 
 // ─── Shared animation variants ────────────────────────────────────
 const fadeUp = {
@@ -551,7 +552,7 @@ export default function ContactPage() {
                     {/* 🤖 CAPTCHA */}
                     <div
                       className="cf-turnstile"
-                      data-sitekey="0x4AAAAAAC1tQHw5OOyNOzLd"
+                      data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
                       data-callback="onTurnstileSuccess"
                     ></div>
                     <button
