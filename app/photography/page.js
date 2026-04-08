@@ -45,7 +45,7 @@ const categories = [
 // ─── Photo data ───────────────────────────────────────────────────
 // Replace src with real image paths. aspectRatio controls grid cell height.
 const photos = [
-  { id: 1,  category: "portraits", src: "/photos/portrait-1.jpg",  alt: "Golden hour portrait",      aspectRatio: "tall",   location: "London, UK" },
+  { id: 1,  category: "portraits", src: "/photos/portrait-1.jpg",  alt: "Newborn Baby Portrait",     aspectRatio: "tall",   location: "London, UK" },
   { id: 2,  category: "weddings",  src: "/photos/wedding-1.jpg",   alt: "Wedding ceremony arch",     aspectRatio: "wide",   location: "Tuscany, Italy" },
   { id: 3,  category: "travel",    src: "/photos/travel-1.jpg",    alt: "Mountain sunrise",          aspectRatio: "square", location: "Dolomites, Italy" },
   { id: 4,  category: "events",    src: "/photos/event-1.jpg",     alt: "Concert crowd energy",      aspectRatio: "tall",   location: "Manchester, UK" },
@@ -217,7 +217,7 @@ export default function Photography() {
   const nextPhoto = () => setLightboxIndex((i) => (i + 1) % filtered.length);
 
   return (
-    <main className="min-h-screen flex flex-col" style={{ backgroundColor: "var(--color-bg-page)" }}>
+    <main className="min-h-screen flex flex-col bg-(--color-bg-page) pt-20" >
 
       {/* ── HERO ──────────────────────────────────────────────────── */}
       <section className="relative min-h-[80vh] flex items-end px-6 pb-20 overflow-hidden">
@@ -407,8 +407,9 @@ export default function Photography() {
                 >
                   {/* Image / placeholder */}
                   <div className="w-full h-full relative overflow-hidden rounded-xl">
-                    <PhotoPlaceholder photo={photo} index={i} />
-                    {/* Swap with: <Image src={photo.src} fill className="object-cover transition-transform duration-700 group-hover:scale-105" alt={photo.alt} /> */}
+                    {/* <PhotoPlaceholder photo={photo} index={i} /> */}
+                    {photo.id===1? <Image src={photo.src} fill className="object-cover transition-transform duration-700 group-hover:scale-105" alt={photo.alt} />:
+                    <PhotoPlaceholder photo={photo} index={i} />}
 
                     {/* Overlay */}
                     <div

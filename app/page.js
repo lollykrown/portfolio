@@ -25,7 +25,7 @@ const cardVariants = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col bg-(--color-bg-page) shadow-(--shad)" >
+    <main className="min-h-screen flex flex-col bg-(--color-bg-page) shadow-(--shad) pt-20" >
       <Hero />
       <motion.section
         id="projects"

@@ -93,7 +93,7 @@ export async function sendContactForm(data) {
 
           <p><strong>Message: </strong> ${message}</p>
           <br/>
-          <p style="font-size:12px; color:#888;">This email was sent from the contact form on lollykrown.com</p>
+          <p style="font-size:12px; color:#888;">This email was sent from the contact form on lollykrown.xyz</p>
         </div>
         `
     });

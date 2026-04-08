@@ -166,7 +166,7 @@ const skills = [
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen flex flex-col bg-(--color-bg-page) ">
+    <main className="min-h-screen flex flex-col bg-(--color-bg-page) pt-12">
       {/* ── HERO ────────────────────────────────────────────────── */}
       <section className="relative min-h-[70vh] flex items-center px-6 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
