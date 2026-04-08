@@ -45,8 +45,8 @@ function DotGrid() {
 const contactInfo = [
   {
     label: 'Email',
-    value: 'hello@yourdomain.com',
-    href: 'mailto:hello@yourdomain.com',
+    value: 'hello@lollykrown.xyz',
+    href: 'mailto:joe_kayu@yahoo.com',
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5">
         <path

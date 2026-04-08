@@ -132,7 +132,7 @@ const services = [
 const packages = [
   {
     name: 'Starter',
-    price: '£1,500',
+    price: '£400',
     desc: 'Perfect for landing pages, portfolios, and small business sites.',
     features: [
       'Up to 5 pages',
@@ -145,7 +145,7 @@ const packages = [
   },
   {
     name: 'Growth',
-    price: '£4,000',
+    price: '£700',
     desc: 'For businesses that need a full website with more pages and functionality.',
     features: [
       'Up to 12 pages',

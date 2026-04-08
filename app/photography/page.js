@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import CountStat from "@/components/CountStat";
 
 // ─── Shared helpers ───────────────────────────────────────────────
 const fadeUp = {
@@ -37,7 +38,8 @@ const categories = [
   { id: "events",    label: "Events" },
   { id: "travel",    label: "Travel" },
   { id: "editorial", label: "Editorial" },
-  { id: "nature",    label: "Nature" },
+  { id: "nature",     label: "Nature" },
+  { id: "product",    label: "Product" },
   { id: "baby",      label: "Baby" },
   { id: "other",     label: "Other" },
 ];
@@ -70,10 +72,10 @@ const heightMap = { tall: "420px", wide: "260px", square: "320px" };
 
 // ─── Stats ────────────────────────────────────────────────────────
 const stats = [
-  { value: "1,200+", label: "Shoots completed" },
-  { value: "8+",     label: "Years of experience" },
-  { value: "40+",    label: "Countries captured" },
-  { value: "98%",    label: "Client satisfaction" },
+  { value: "1,200+", label: "Pictures Delivered" },
+  { value: "2+",     label: "Countries captured" },
+  { value: "40+",    label: "Locations explored" },
+  { value: "99%",    label: "Client satisfaction" },
 ];
 
 // ─── Testimonials ─────────────────────────────────────────────────
@@ -321,17 +323,7 @@ export default function Photography() {
       >
         <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <p className="text-3xl md:text-4xl font-black mb-1" style={{ color: "var(--color-accent-subtle)" }}>{s.value}</p>
-              <p className="text-sm tracking-wide" style={{ color: "var(--color-text-muted)" }}>{s.label}</p>
-            </motion.div>
+            <CountStat key={s.label} stat={s} index={i} />
           ))}
         </div>
       </motion.section>
@@ -359,10 +351,27 @@ export default function Photography() {
                 <h2 className="text-4xl md:text-5xl font-black leading-tight" style={{ color: "var(--color-text-primary)" }}>
                   Selected <span className="text-accent-gradient">work</span>
                 </h2>
+                <p className="text-sm max-w-xs leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
+                  {filtered.length} {activeCategory === "all" ? "photographs" : activeCategory} — click any image to explore
+                </p>
               </div>
-              <p className="text-sm max-w-xs leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
-                {filtered.length} {activeCategory === "all" ? "photographs" : activeCategory} — click any image to explore
-              </p>
+              <Link
+                href="https://lollykrown.pixieset.com"
+                className="inline-flex self-center items-center gap-2 text-sm font-semibold text-(--color-text-primary) hover:text-(--color-accent) transition-colors group"
+              >
+                View all
+                <span
+                  className="w-6 h-6 rounded-full flex items-center justify-center"
+                  style={{
+                    backgroundColor: "color-mix(in srgb, var(--color-accent) 20%, transparent)",
+                    border: "1px solid color-mix(in srgb, var(--color-accent) 40%, transparent)",
+                  }}
+                >
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M2 5h6M5 2l3 3-3 3" stroke="var(--color-accent-subtle)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </Link>
             </motion.div>
 
             {/* Category filter pills */}
@@ -484,7 +493,7 @@ export default function Photography() {
               style={{ backgroundColor: "var(--color-bg-card-dark)", borderColor: "var(--color-border-card)", width: "200px" }}
             >
               <p className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: "var(--color-accent-subtle)" }}>Based in</p>
-              <p className="font-black text-lg" style={{ color: "var(--color-text-primary)" }}>London, UK</p>
+              <p className="font-black text-lg" style={{ color: "var(--color-text-primary)" }}>Sunderland, UK</p>
               <p className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>Available worldwide</p>
             </div>
             {/* Small accent photo */}
@@ -511,7 +520,7 @@ export default function Photography() {
               I believe every photograph is a collaboration between the subject and the light. My job is simply to be ready when that moment arrives — and patient enough to wait for it.
             </motion.p>
             <motion.p variants={fadeUp} className="text-base leading-relaxed mb-10" style={{ color: "var(--color-text-muted)" }}>
-              With over 8 years shooting across 40+ countries — from intimate portrait sessions to large-scale editorial commissions — I bring the same intentionality to every project, regardless of size.
+              With over 4 years shooting across 40+ locations — from intimate portrait sessions to big events — I bring the same intentionality to every project, regardless of size.
             </motion.p>
 
             {/* Approach pillars */}
@@ -536,7 +545,7 @@ export default function Photography() {
             </motion.div>
 
             <motion.div variants={fadeUp}>
-              <Link href="/contact" className="btn-accent px-7 py-3 rounded-full inline-flex items-center gap-2">
+              <Link href="https://wa.me/+447425932661" className="btn-accent px-7 py-3 rounded-full inline-flex items-center gap-2">
                 Book a session
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M2 7h10M7 3l4 4-4 4" stroke="var(--color-arrow-stroke)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -572,12 +581,14 @@ export default function Photography() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {[
-                { icon: "👤", category: "Portraits", desc: "Individual, couple, and family sessions. Studio or location. Relaxed, natural, and always you.", price: "From £350", tag: null },
-                { icon: "💍", category: "Weddings", desc: "Full-day documentary coverage from prep to dance floor. No missed moments, no forced smiles.", price: "From £2,200", tag: "Most booked" },
-                { icon: "🎉", category: "Events", desc: "Corporate, private, and cultural events. Discreet, fast-moving, and always delivering.", price: "From £600", tag: null },
+                { icon: "👤", category: "Portraits", desc: "Individual, couple, and family sessions. Studio or location. Relaxed, natural, and always you.", price: "From £150", tag: null },
+                { icon: "💍", category: "Weddings", desc: "Full-day documentary coverage from prep to dance floor. No missed moments, no forced smiles.", price: "On request", tag: "Most booked" },
+                { icon: "🎉", category: "Events", desc: "Corporate, private, and cultural events. Discreet, fast-moving, and always delivering.", price: "From 250", tag: null },
                 { icon: "✈️", category: "Travel",   desc: "Destination shoots, travel editorial, and commercial location photography worldwide.", price: "On request", tag: null },
-                { icon: "🎨", category: "Editorial", desc: "Magazine, brand, and fashion editorial work. Concept to final retouched images.", price: "From £900", tag: null },
-                { icon: "🌿", category: "Nature",   desc: "Landscape, wildlife, and botanical photography. Patience is part of the process.", price: "From £500", tag: null },
+                // { icon: "🎨", category: "Editorial", desc: "Magazine, brand, and fashion editorial work. Concept to final retouched images.", price: "From £900", tag: null },
+                // { icon: "🌿", category: "Nature",   desc: "Landscape, wildlife, and botanical photography. Patience is part of the process.", price: "From £500", tag: null },
+                { icon: "👶", category: "Baby & Maternity", desc: "Capturing the beauty and emotion of pregnancy, newborns, and family milestones.", price: "From £150", tag: null },
+
               ].map((s, i) => (
                 <motion.div
                   key={s.category}

@@ -114,9 +114,24 @@ const values = [
 
 const timeline = [
   {
+    year: '2015',
+    title: 'Wrote first line of code',
+    desc: 'Started with HTML and CSS, building simple websites and learning the basics of how the web works.',
+  },
+  {
+    year: '2016',
+    title: 'Learnt Android development',
+    desc: 'Built several small apps in Android Java and Kotlin, and got a taste for mobile development.',
+  },
+  {
+    year: '2018',
+    title: 'Learnt React and Node.js',
+    desc: 'Discovered the power of JavaScript and the ecosystem around it. Built several projects and got comfortable with full-stack development.',
+  },
+  {
     year: '2020',
     title: 'Started freelancing',
-    desc: 'Took on first client projects while building skills in React and Next.js.',
+    desc: 'Took on first client projects while improving skills in React and Node.js.',
   },
   {
     year: '2021',
@@ -138,6 +153,11 @@ const timeline = [
     title: '20+ projects shipped',
     desc: 'Working with startups, agencies, and founders to turn ideas into production-ready products.',
   },
+  {
+    year: '2025',
+    title: 'Learnt React Native and TypeScript',
+    desc: 'Expanded skillset to include mobile development and strong typing for better code quality and maintainability.',
+  }
 ];
 
 const skills = [

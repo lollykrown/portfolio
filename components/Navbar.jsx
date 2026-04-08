@@ -67,7 +67,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-(--color-bg-mobile-menu) border-t border-(--color-border) flex flex-col items-start gap-4 px-6 py-6 md:hidden shadow-xl">
+        <div className="absolute backdrop-blur top-full left-0 right-0 bg-(--color-bg-mobile-menu) border-t border-(--color-border) flex flex-col items-start gap-4 px-6 py-6 md:hidden shadow-xl">
           {navLinks.map((link) => (
             <Link
               key={link.label}

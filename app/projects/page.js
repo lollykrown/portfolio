@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { projects } from '@/data/projects';
+import CountStat from '@/components/CountStat';
 
 // ─── Animation variants ───────────────────────────────────────────
 const fadeUp = {
@@ -66,10 +67,11 @@ const allTags = [
 
 // ─── Stats ────────────────────────────────────────────────────────
 const stats = [
-  { value: `${projects.length}+`, label: 'Projects shipped' },
+  // { value: `${projects.length}+`, label: 'Projects shipped' },
+  { value: '28+', label: 'Projects shipped' },
   { value: '100%', label: 'Client satisfaction' },
-  { value: '3+', label: 'Years building' },
-  { value: '20+', label: 'Happy clients' },
+  { value: '11+', label: 'Years building' },
+  { value: '30+', label: 'Happy clients' },
 ];
 
 export default function ProjectsPage() {
@@ -202,13 +204,8 @@ export default function ProjectsPage() {
         viewport={{ once: true, margin: '-60px' }}
         className="relative border-y overflow-hidden border-(--color-border)" >
         <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((s) => (
-            <motion.div key={s.label} variants={fadeUp} className="text-center">
-              <p className="text-3xl md:text-4xl font-black mb-1 text-(--color-accent-subtle)" >
-                {s.value}
-              </p>
-              <p className="text-(--color-text-secondary) text-sm tracking-wide">{s.label}</p>
-            </motion.div>
+          {stats.map((s,i) => (
+           <CountStat key={s.label} stat={s} index={i} />
           ))}
         </div>
       </motion.section>
@@ -577,18 +574,45 @@ export default function ProjectsPage() {
 
           <div className="flex flex-wrap justify-center gap-3">
             {[
-              'Next.js',
+              'HTML/CSS',
+              'Javascript',
+              'Node.js',
               'React',
+              'React Native',
+              'Next.js',
               'TypeScript',
               'Tailwind CSS',
               'Framer Motion',
               'Prisma',
-              'PostgreSQL',
-              'Supabase',
               'Vercel',
               'Figma',
-              'Node.js',
-              'REST APIs',
+              'Digital Ocean',
+              'Git',
+              'GitHub',
+              'CI/CD',
+              'Agile methodologies',
+              'Test-driven development',
+              'RESTful APIs',
+              'GraphQL',
+              'SEO',
+              'Firebase',
+              'Stripe',
+              'Headless CMS',
+              'Microservices',
+              'WebSockets',
+              'OAuth',
+              'JWT',
+              'Accessibility best practices',
+              'Performance optimization techniques',  
+              'Cross-browser compatibility strategies',
+              'Progressive Web App (PWA) development',
+              'Mobile-first design principles',
+              'Cloud platforms (AWS, Azure, GCP)',
+              'API design and development',
+              'Database management (SQL and NoSQL)',
+              'Testing frameworks (Jest, Cypress)',
+              'Performance monitoring tools',
+              'Collaboration tools (Slack, Jira, Trello)',
             ].map((tech) => (
               <span
                 key={tech}
