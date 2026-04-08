@@ -62,11 +62,10 @@ export default function HomeAbout() {
               style={{ background: "linear-gradient(135deg, var(--color-accent), transparent 60%)" }}
             />
             {/* Photo card */}
-            <div
+            {/* <div
               className="relative w-72 h-80 md:w-80 md:h-96 rounded-2xl overflow-hidden border border-white/10"
               style={{ backgroundColor: "var(--color-bg-card-darker)" }}
             >
-              {/* Swap this div for <Image src="/your-photo.jpg" fill className="object-cover" alt="Your name" /> */}
               <div
                 className="w-full h-full flex items-end p-6"
                 style={{
@@ -82,7 +81,35 @@ export default function HomeAbout() {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
+<div className="relative w-72 h-80 md:w-80 md:h-96 rounded-2xl overflow-hidden border border-white/10">
+  
+  {/* Image */}
+  <Image
+    src="/pp.jpg"
+    alt="Kayode Agboola"
+    fill
+    priority
+    sizes="(max-width: 768px) 288px, 320px"
+    className="object-cover"
+  />
+
+  {/* Gradient overlay */}
+  <div
+    className="absolute inset-0 flex items-end p-6"
+    // style={{
+    //   background:
+    //     "linear-gradient(135deg, color-mix(in srgb, var(--color-accent-muted) 55%, transparent) 0%, color-mix(in srgb, var(--color-accent-hover) 15%, #0c0c14) 100%)",
+    // }}
+  >
+    <div className="z-10 bg-blur rounded-xl">
+      <p className="text-(--color-text-primary) font-black text-xl">Kay</p>
+      <p className="text-[11px] tracking-widest font-black uppercase mt-1 text-(--color-accent-hover)">
+        Freelance Developer
+      </p>
+    </div>
+  </div>
+</div>
 
             {/* Floating availability pill */}
             <div

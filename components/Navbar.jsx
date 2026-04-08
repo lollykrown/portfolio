@@ -11,7 +11,7 @@ const navLinks = [
   { label: 'About',        href: '/about' },
   { label: 'Projects',     href: '/projects' },
   { label: 'Services',     href: '/services' },
-  { label: 'Photography',  href: '/photography', isPhoto: true },
+  // { label: 'Photography',  href: '/photography', isPhoto: true },
 ];
 
 // Tiny aperture SVG — rotates on hover, blades open/close feel

@@ -17,13 +17,30 @@ function DotGrid() {
     />
   );
 }
-
+function ApertureIcon({ active }) {
+  return (
+    <svg
+      width="13" height="13" viewBox="0 0 13 13" fill="none"
+      className="transition-transform duration-500 group-hover:rotate-90"
+      style={{ color: active ? 'var(--color-accent)' : 'currentColor' }}
+    >
+      <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" strokeWidth="1.1" />
+      <circle cx="6.5" cy="6.5" r="2"   fill="currentColor" opacity="0.6" />
+      {/* aperture blades */}
+      <line x1="6.5" y1="1"   x2="6.5" y2="4"   stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+      <line x1="6.5" y1="9"   x2="6.5" y2="12"  stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+      <line x1="1"   y1="6.5" x2="4"   y2="6.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+      <line x1="9"   y1="6.5" x2="12"  y2="6.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    </svg>
+  );
+}
 const navLinks = [
   { label: "Home",     href: "/" },
   { label: "About",    href: "/about" },
   { label: "Projects", href: "/projects" },
   { label: "Services", href: "/services" },
   { label: "Contact",  href: "/contact" },
+  { label: 'Photography',  href: '/photography', isPhoto: true },
 ];
 
 const services = [
@@ -231,7 +248,27 @@ export default function Footer() {
               Navigation
             </p>
             <ul className="flex flex-col gap-3">
-              {navLinks.map((link) => (
+              {navLinks.map((link) => {
+                if (link.isPhoto) {
+                  return (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-sm transition-colors duration-200 flex items-center gap-1.5 group text-(--color-text-secondary)"
+                      onMouseEnter={(e) => e.currentTarget.style.color = "var(--color-text-primary)"}
+                      onMouseLeave={(e) => e.currentTarget.style.color = "var(--color-text-secondary)"}
+                    >
+                    <span
+                      className="w-0 group-hover:w-3 h-px transition-all duration-200 rounded bg-(--color-accent)"
+                    />
+                    <ApertureIcon />
+                      <span className="italic tracking-wide">{link.label}</span>
+                    </Link>
+                  </li>
+                  );
+                }
+
+                return (
                 <li key={link.label}>
                   <Link
                     href={link.href}
@@ -246,7 +283,8 @@ export default function Footer() {
                     {link.label}
                   </Link>
                 </li>
-              ))}
+              )              
+              })}
             </ul>
           </div>
 

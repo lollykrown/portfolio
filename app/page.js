@@ -124,6 +124,8 @@ export default function Home() {
                     src={project.thumbnail}
                     alt={project.title}
                     fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                 ) : (

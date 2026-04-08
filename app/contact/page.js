@@ -404,7 +404,7 @@ export default function ContactPage() {
                           onChange={(e) =>
                             setFormState({ ...formState, name: e.target.value })
                           }
-                          className={`w-full rounded-xl px-4 py-3.25 text-[14px] text-(--color-text-primary) outline-none transition-colors placeholder:text-(--color-text-muted)
+                          className={`w-full capitalize rounded-xl px-4 py-3.25 text-[14px] text-(--color-text-primary) outline-none transition-colors placeholder:text-(--color-text-muted)
                             duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))] border ${error?.message?.includes('name') ? 'border-red-600' : 'border-(--color-border-card)'}`}
                           onFocus={(e) =>
                             (e.target.style.borderColor =
