@@ -5,6 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import CountStat from "@/components/CountStat";
+import portrait1 from "@/public/photos/portrait-1.jpg";
+import portrait2 from "@/public/photos/portrait-2.jpg";
+
 
 // ─── Shared helpers ───────────────────────────────────────────────
 const fadeUp = {
@@ -47,13 +50,13 @@ const categories = [
 // ─── Photo data ───────────────────────────────────────────────────
 // Replace src with real image paths. aspectRatio controls grid cell height.
 const photos = [
-  { id: 1,  category: "portraits", src: "/photos/portrait-1.jpg",  alt: "Newborn Baby Portrait",     aspectRatio: "tall",   location: "London, UK" },
+  { id: 1,  category: "portraits", src: portrait1,  alt: "Newborn Baby Portrait",     aspectRatio: "tall",   location: "London, UK" },
   { id: 2,  category: "weddings",  src: "/photos/wedding-1.jpg",   alt: "Wedding ceremony arch",     aspectRatio: "wide",   location: "Tuscany, Italy" },
   { id: 3,  category: "travel",    src: "/photos/travel-1.jpg",    alt: "Mountain sunrise",          aspectRatio: "square", location: "Dolomites, Italy" },
   { id: 4,  category: "events",    src: "/photos/event-1.jpg",     alt: "Concert crowd energy",      aspectRatio: "tall",   location: "Manchester, UK" },
   { id: 5,  category: "editorial", src: "/photos/editorial-1.jpg", alt: "High fashion editorial",    aspectRatio: "square", location: "Paris, France" },
   { id: 6,  category: "nature",    src: "/photos/nature-1.jpg",    alt: "Misty forest path",         aspectRatio: "wide",   location: "Scottish Highlands" },
-  { id: 7,  category: "portraits", src: "/photos/portrait-2.jpg",  alt: "Studio chiaroscuro",        aspectRatio: "square", location: "London, UK" },
+  { id: 7,  category: "portraits", src: portrait2,  alt: "Studio chiaroscuro",        aspectRatio: "square", location: "London, UK" },
   { id: 8,  category: "weddings",  src: "/photos/wedding-2.jpg",   alt: "First dance moment",        aspectRatio: "tall",   location: "Cotswolds, UK" },
   { id: 9,  category: "travel",    src: "/photos/travel-2.jpg",    alt: "Desert dune shadows",       aspectRatio: "wide",   location: "Sahara, Morocco" },
   { id: 10, category: "events",    src: "/photos/event-2.jpg",     alt: "Corporate gala evening",    aspectRatio: "square", location: "London, UK" },
@@ -115,9 +118,7 @@ function Lightbox({ photo, onClose, onPrev, onNext }) {
       {/* Close */}
       <button
         onClick={onClose}
-        className="absolute top-5 right-5 w-10 h-10 rounded-full border flex items-center justify-center transition-colors z-10"
-        style={{ borderColor: "rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.7)" }}
-      >
+        className="absolute top-5 right-5 w-10 h-10 rounded-full border border-stone-600 hover:border-white hover:text-white flex items-center justify-center transition-colors z-10 text-stone-600" >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M3 3l10 10M13 3L3 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
@@ -126,9 +127,7 @@ function Lightbox({ photo, onClose, onPrev, onNext }) {
       {/* Prev */}
       <button
         onClick={(e) => { e.stopPropagation(); onPrev(); }}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border flex items-center justify-center transition-all z-10"
-        style={{ borderColor: "rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.7)" }}
-      >
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 border border-stone-600 hover:border-white hover:text-white rounded-full flex items-center justify-center transition-all z-10  text-stone-600">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -137,8 +136,7 @@ function Lightbox({ photo, onClose, onPrev, onNext }) {
       {/* Next */}
       <button
         onClick={(e) => { e.stopPropagation(); onNext(); }}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border flex items-center justify-center transition-all z-10"
-        style={{ borderColor: "rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.7)" }}
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-stone-600 hover:border-white hover:text-white flex items-center justify-center transition-all z-10 text-stone-600"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -156,19 +154,8 @@ function Lightbox({ photo, onClose, onPrev, onNext }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative w-full rounded-xl overflow-hidden" style={{ height: "70vh" }}>
-          <div
-            className="w-full h-full rounded-xl flex items-center justify-center"
-            style={{ backgroundColor: "#111" }}
-          >
-            {/* Replace with <Image src={photo.src} fill className="object-contain" alt={photo.alt} /> */}
-            <div className="flex flex-col items-center gap-3 opacity-30">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                <rect x="3" y="3" width="18" height="18" rx="2" stroke="white" strokeWidth="1.5"/>
-                <circle cx="8.5" cy="8.5" r="1.5" fill="white"/>
-                <path d="M21 15l-5-5L5 21" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-              <span className="text-white text-sm">{photo.alt}</span>
-            </div>
+          <div className="w-full h-full rounded-xl flex items-center justify-center bg-[#111]">
+            <Image src={photo.src} fill className="object-contain" alt={photo.alt} sizes="100vw"/> 
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -417,7 +404,15 @@ export default function Photography() {
                   {/* Image / placeholder */}
                   <div className="w-full h-full relative overflow-hidden rounded-xl">
                     {/* <PhotoPlaceholder photo={photo} index={i} /> */}
-                    {photo.id===1? <Image src={photo.src} fill className="object-cover transition-transform duration-700 group-hover:scale-105" alt={photo.alt} />:
+                    {photo.id===1||photo.id===7? 
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fill
+                      placeholder="blur"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />:
                     <PhotoPlaceholder photo={photo} index={i} />}
 
                     {/* Overlay */}
