@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import CountStat from "@/components/CountStat";
 import portrait1 from "@/public/photos/portrait-1.jpg";
 import portrait2 from "@/public/photos/portrait-2.jpg";
@@ -90,16 +90,16 @@ const testimonials = [
     initials: "SJ",
   },
   {
-    quote: "Working with this photographer transformed our brand. The editorial series stopped people mid-scroll every time.",
-    name: "Aria Mondelli",
-    role: "Creative Director, Lumène",
-    initials: "AM",
-  },
-  {
     quote: "The portraits from our event felt cinematic. Guests were speechless when they saw the gallery.",
-    name: "Marcus Chen",
+    name: "Maya Chen",
     role: "Events Manager, Soho House",
     initials: "MC",
+  },
+  {
+    quote: "The newborn portraits are so tender and intimate. They truly capture the essence of those precious early moments.",
+    name: "Olamide & Jaiye",
+    role: "Parents",
+    initials: "OJ",
   },
 ];
 
@@ -190,7 +190,175 @@ function PhotoPlaceholder({ photo, index }) {
     </div>
   );
 }
-
+// ─── Testimonials carousel ────────────────────────────────────────
+function TestimonialsCarousel() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const timerRef = useRef(null);
+  const total = testimonials.length;
+ 
+  const goTo = (index) => setActive((index + total) % total);
+ 
+  // Auto-advance every 5s, pause on hover
+  useEffect(() => {
+    if (paused) return;
+    timerRef.current = setInterval(() => {
+      setActive((prev) => (prev + 1) % total);
+    }, 5000);
+    return () => clearInterval(timerRef.current);
+  }, [paused, total]);
+ 
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-80px" }}
+      className="relative py-24 px-6 border-t overflow-hidden"
+      style={{ borderColor: "var(--color-border)" }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div className="absolute inset-0 pointer-events-none">
+        <Glow style={{ width: 600, height: 300, top: 0, left: "25%", backgroundColor: "color-mix(in srgb, var(--color-accent-muted) 10%, transparent)" }} />
+        <DotGrid />
+      </div>
+ 
+      <div className="relative z-10 max-w-3xl mx-auto">
+        {/* Header */}
+        <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}>
+          <motion.div variants={fadeUp} className="text-center mb-14">
+            <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase mb-3" style={{ color: "var(--color-accent-subtle)" }}>Testimonials</span>
+            <h2 className="text-4xl md:text-5xl font-black" style={{ color: "var(--color-text-primary)" }}>
+              What clients <span className="text-accent-gradient-alt">say</span>
+            </h2>
+          </motion.div>
+        </motion.div>
+ 
+        {/* Card */}
+        <div className="relative" style={{ minHeight: "240px" }}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, x: 60, scale: 0.97 }}
+              animate={{ opacity: 1, x: 0,  scale: 1    }}
+              exit={{   opacity: 0, x: -60, scale: 0.97 }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              className="relative rounded-2xl p-10 border overflow-hidden"
+              style={{ backgroundColor: "var(--color-bg-card-darker)", borderColor: "var(--color-border-card)" }}
+            >
+              {/* Large decorative quote */}
+              <span
+                className="absolute top-4 right-8 text-8xl font-black leading-none select-none pointer-events-none"
+                style={{ color: "color-mix(in srgb, var(--color-accent) 10%, transparent)" }}
+              >&ldquo;</span>
+ 
+              <p className="text-base md:text-lg leading-relaxed mb-10 relative z-10 italic" style={{ color: "var(--color-text-secondary)" }}>
+                &ldquo;{testimonials[active].quote}&rdquo;
+              </p>
+ 
+              <div className="flex items-center gap-4">
+                <div
+                  className="w-11 h-11 rounded-full flex items-center justify-center text-sm font-black shrink-0"
+                  style={{ backgroundColor: "color-mix(in srgb, var(--color-accent) 15%, transparent)", color: "var(--color-accent-subtle)" }}
+                >
+                  {testimonials[active].initials}
+                </div>
+                <div>
+                  <p className="font-black text-sm" style={{ color: "var(--color-text-primary)" }}>{testimonials[active].name}</p>
+                  <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>{testimonials[active].role}</p>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+ 
+        {/* Controls */}
+        <div className="flex items-center justify-between mt-8">
+          {/* Prev / Next */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => goTo(active - 1)}
+              className="w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-200"
+              style={{ borderColor: "var(--color-border-card)", color: "var(--color-text-muted)" }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--color-accent)"; e.currentTarget.style.color = "var(--color-accent-subtle)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--color-border-card)"; e.currentTarget.style.color = "var(--color-text-muted)"; }}
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M9 3L5 7l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            <button
+              onClick={() => goTo(active + 1)}
+              className="w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-200"
+              style={{ borderColor: "var(--color-border-card)", color: "var(--color-text-muted)" }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--color-accent)"; e.currentTarget.style.color = "var(--color-accent-subtle)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--color-border-card)"; e.currentTarget.style.color = "var(--color-text-muted)"; }}
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M5 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
+ 
+          {/* Progress dots with timer ring */}
+          <div className="flex items-center gap-3">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                className="relative flex items-center justify-center"
+                style={{ width: 20, height: 20 }}
+              >
+                {/* Animated SVG ring — only on active */}
+                {i === active && (
+                  <svg
+                    className="absolute inset-0"
+                    width="20" height="20" viewBox="0 0 20 20"
+                    style={{ transform: "rotate(-90deg)" }}
+                  >
+                    <circle cx="10" cy="10" r="8" fill="none" stroke="var(--color-border-card)" strokeWidth="1.5" />
+                    <circle
+                      cx="10" cy="10" r="8" fill="none"
+                      stroke="var(--color-accent)" strokeWidth="1.5"
+                      strokeDasharray={`${2 * Math.PI * 8}`}
+                      strokeDashoffset="0"
+                      strokeLinecap="round"
+                      style={{
+                        animation: paused ? "none" : "drain 5s linear forwards",
+                      }}
+                    />
+                  </svg>
+                )}
+                <span
+                  className="rounded-full transition-all duration-300"
+                  style={{
+                    width: i === active ? 6 : 5,
+                    height: i === active ? 6 : 5,
+                    backgroundColor: i === active ? "var(--color-accent)" : "var(--color-border-card)",
+                  }}
+                />
+              </button>
+            ))}
+          </div>
+ 
+          {/* Counter */}
+          <span className="text-xs font-mono" style={{ color: "var(--color-text-muted)" }}>
+            {String(active + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+          </span>
+        </div>
+      </div>
+ 
+      {/* CSS for the ring drain animation */}
+      <style>{`
+        @keyframes drain {
+          from { stroke-dashoffset: 0; }
+          to   { stroke-dashoffset: ${2 * Math.PI * 8}; }
+        }
+      `}</style>
+    </motion.section>
+  );
+}
 // ─── Main page ────────────────────────────────────────────────────
 export default function Photography() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -475,16 +643,125 @@ export default function Photography() {
             className="relative"
           >
             {/* Main photo */}
-            <div
+            {/* <div
               className="relative w-full rounded-2xl overflow-hidden border"
               style={{ height: "520px", backgroundColor: "var(--color-bg-card-darker)", borderColor: "var(--color-border-card)" }}
             >
               <PhotoPlaceholder photo={{ alt: "Photographer at work — behind the lens" }} index={4} />
-              {/* <Image src="/pp.png" fill className="object-cover" alt="Photographer at work — behind the lens" /> */}
-            </div>
+              <Image src="/pp.png" fill className="object-cover" alt="Photographer at work — behind the lens" />
+            </div> */}
+{/* Polaroid mood board */}
+<div
+  className="relative w-full rounded-2xl overflow-hidden border"
+  style={{
+    height: "520px",
+    backgroundColor: "var(--color-bg-card-darker)",
+    borderColor: "var(--color-border-card)",
+  }}
+>
+  {/* Subtle linen texture background */}
+  <div
+    className="absolute inset-0 opacity-[0.03]"
+    style={{
+      backgroundImage: `repeating-linear-gradient(
+        0deg, transparent, transparent 2px,
+        rgba(255,255,255,0.4) 2px, rgba(255,255,255,0.4) 3px
+      ), repeating-linear-gradient(
+        90deg, transparent, transparent 2px,
+        rgba(255,255,255,0.4) 2px, rgba(255,255,255,0.4) 3px
+      )`,
+    }}
+  />
+
+  {/* Ambient warm centre glow */}
+  <div
+    className="absolute inset-0 pointer-events-none"
+    style={{
+      background: "radial-gradient(ellipse at 50% 50%, color-mix(in srgb, var(--color-accent-muted) 12%, transparent) 0%, transparent 70%)",
+    }}
+  />
+
+  {/* ── Polaroids ── */}
+  {[
+    { rotate: "-7deg",  top: "6%",  left: "4%",   w: "34%", h: "200px", caption: "golden hour",   delay: 0    },
+    { rotate: "4deg",   top: "4%",  left: "34%",  w: "30%", h: "185px", caption: "ceremony arch", delay: 0.07 },
+    { rotate: "-2deg",  top: "5%",  left: "62%",  w: "34%", h: "195px", caption: "first dance",   delay: 0.14 },
+    { rotate: "6deg",   top: "48%", left: "6%",   w: "28%", h: "175px", caption: "candid joy",    delay: 0.21 },
+    { rotate: "-5deg",  top: "50%", left: "32%",  w: "36%", h: "190px", caption: "behind the lens",delay: 0.28 },
+    { rotate: "3deg",   top: "47%", left: "65%",  w: "30%", h: "180px", caption: "the highlands", delay: 0.35 },
+  ].map((p, i) => (
+    <motion.div
+      key={i}
+      initial={{ opacity: 0, y: 24, rotate: p.rotate }}
+      whileInView={{ opacity: 1, y: 0, rotate: p.rotate }}
+      whileHover={{ scale: 1.06, rotate: "0deg", zIndex: 30, transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] } }}
+      transition={{ duration: 0.65, delay: p.delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true }}
+      className="absolute cursor-pointer"
+      style={{ top: p.top, left: p.left, width: p.w, zIndex: i + 1 }}
+    >
+      {/* Polaroid frame */}
+      <div
+        className="flex flex-col shadow-2xl"
+        style={{
+          backgroundColor: "var(--color-bg-card-dark)",
+          border: "1px solid color-mix(in srgb, var(--color-text-primary) 8%, transparent)",
+          padding: "8px 8px 28px 8px",
+          borderRadius: "3px",
+        }}
+      >
+        {/* Photo area */}
+        <div
+          className="w-full rounded-xs overflow-hidden"
+          style={{
+            height: p.h,
+            background: [
+              "linear-gradient(135deg, #1a1206 0%, #0d1a0a 100%)",
+              "linear-gradient(135deg, #0d0a1a 0%, #1a0a0d 100%)",
+              "linear-gradient(135deg, #0a1a12 0%, #1a1206 100%)",
+              "linear-gradient(135deg, #0d1206 0%, #060d1a 100%)",
+              "linear-gradient(135deg, #1a0612 0%, #0d1a0a 100%)",
+              "linear-gradient(135deg, #06121a 0%, #1a0a06 100%)",
+            ][i],
+          }}
+        >
+          {/* Replace with <Image src={...} fill className="object-cover" alt={p.caption} /> */}
+          <div className="w-full h-full flex items-center justify-center opacity-15">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="18" height="18" rx="2" stroke="white" strokeWidth="1.5"/>
+              <circle cx="8.5" cy="8.5" r="1.5" fill="white"/>
+              <path d="M21 15l-5-5L5 21" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        {/* Handwritten caption */}
+        <p
+          className="text-center mt-1.5 text-[11px] tracking-wide"
+          style={{
+            fontFamily: "cursive",
+            color: "var(--color-text-muted)",
+            lineHeight: 1.2,
+          }}
+        >
+          {p.caption}
+        </p>
+      </div>
+
+      {/* Washi tape strip */}
+      <div
+        className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-10 h-5 rounded-[2px] opacity-40"
+        style={{
+          backgroundColor: ["var(--color-accent)", "rgba(255,255,255,0.3)", "var(--color-accent)", "rgba(255,255,255,0.3)", "var(--color-accent)", "rgba(255,255,255,0.3)"][i],
+          transform: `translateX(-50%) rotate(${[-3,2,-1,4,-2,3][i]}deg)`,
+        }}
+      />
+    </motion.div>
+  ))}
+</div>
             {/* Floating accent card */}
             <div
-              className="absolute -bottom-6 -right-6 rounded-2xl p-5 border"
+              className="absolute -bottom-16 -right-6 rounded-2xl p-5 border z-50"
               style={{ backgroundColor: "var(--color-bg-card-dark)", borderColor: "var(--color-border-card)", width: "200px" }}
             >
               <p className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: "var(--color-accent-subtle)" }}>Based in</p>
@@ -493,7 +770,7 @@ export default function Photography() {
             </div>
             {/* Small accent photo */}
             <div
-              className="absolute -top-6 -left-6 w-32 h-40 rounded-xl overflow-hidden border"
+              className="absolute -top-6 -left-6 w-32 h-40 rounded-xl overflow-hidden border z-50"
               style={{ backgroundColor: "var(--color-bg-card-darker)", borderColor: "var(--color-border-card)" }}
             >
               <PhotoPlaceholder photo={{ alt: "Camera detail" }} index={2} />
@@ -578,11 +855,30 @@ export default function Photography() {
               {[
                 { icon: "👤", category: "Portraits", desc: "Individual, couple, and family sessions. Studio or location. Relaxed, natural, and always you.", price: "From £150", tag: null },
                 { icon: "💍", category: "Weddings", desc: "Full-day documentary coverage from prep to dance floor. No missed moments, no forced smiles.", price: "On request", tag: "Most booked" },
-                { icon: "🎉", category: "Events", desc: "Corporate, private, and cultural events. Discreet, fast-moving, and always delivering.", price: "From 250", tag: null },
+                { icon: "🎉", category: "Events & Special Occasions", desc: "Photography for birthdays, anniversaries, and other special life events. Capturing joy and celebration.", price: "From £250", tag: null },
+                { icon: "👶", category: "Baby & Maternity", desc: "Capturing the beauty and emotion of pregnancy, newborns, and family milestones.", price: "From £150", tag: null },
                 { icon: "✈️", category: "Travel",   desc: "Destination shoots, travel editorial, and commercial location photography worldwide.", price: "On request", tag: null },
+                { icon: "📸", category: "Commercial", desc: "Brand, product, and lifestyle photography. Clean, compelling images that sell.", price: "From £200", tag: null },
+                { icon: "📅", category: "Others", desc: "Specialized photography services for unique projects and creative endeavors.", price: "On request", tag: null },
+
+                // { icon: "🎓", category: "Senior & Graduation", desc: "Personalized sessions celebrating academic milestones with style and authenticity.", price: "From £150", tag: null },
                 // { icon: "🎨", category: "Editorial", desc: "Magazine, brand, and fashion editorial work. Concept to final retouched images.", price: "From £900", tag: null },
                 // { icon: "🌿", category: "Nature",   desc: "Landscape, wildlife, and botanical photography. Patience is part of the process.", price: "From £500", tag: null },
-                { icon: "👶", category: "Baby & Maternity", desc: "Capturing the beauty and emotion of pregnancy, newborns, and family milestones.", price: "From £150", tag: null },
+                // { icon: "📷", category: "Photojournalism", desc: "Documentary photography for news, NGOs, and storytelling projects worldwide.", price: "On request", tag: null },
+                // { icon: "🎬", category: "Film & Video", desc: "Cinematic video production and photography for brands, events, and personal projects.", price: "On request", tag: null },
+                // { icon: "🖼️", category: "Fine Art Prints", desc: "Limited edition prints of my work, available for purchase and worldwide shipping.", price: "From £100", tag: null },
+                // { icon: "📚", category: "Workshops & Mentoring", desc: "In-person and virtual photography workshops, portfolio reviews, and one-on-one mentoring.", price: "From £200", tag: null },
+                // { icon: "🤝", category: "Collaborations", desc: "Open to creative collaborations, brand partnerships, and pro bono work for causes I care about.", price: "Varies", tag: null },
+                // { icon: "🖌️", category: "Retouching & Editing", desc: "Professional photo retouching, color grading, and editing services for photographers and clients.", price: "From £50 per image", tag: null },
+                // { icon: "📅", category: "Event Coverage", desc: "Comprehensive photography coverage for corporate events, conferences, and private parties.", price: "From £300", tag: null },
+                // { icon: "🌟", category: "Personal Branding", desc: "Tailored photo sessions to elevate your personal brand and online presence.", price: "From £250", tag: null },
+                // { icon: "🎭", category: "Theatrical & Performance", desc: "Dynamic photography capturing the energy and emotion of live performances and theater productions.", price: "On request", tag: null },
+                // { icon: "📸", category: "Headshots", desc: "Professional headshot sessions for actors, corporate professionals, and creatives.", price: "From £120", tag: null },
+                // { icon: "🏞️", category: "Real Estate & Architecture", desc: "High-quality photography showcasing properties, architecture, and interior design.", price: "From £200", tag: null } ,
+                // { icon: "🎨", category: "Creative Projects", desc: "Open to unique and experimental photography projects that push creative boundaries.", price: "Varies", tag: null },
+                // { icon: "📖", category: "Photo Books & Zines", desc: "Design and production of custom photo books and zines, perfect for personal projects or gifts.", price: "From £50", tag: null },
+                // { icon: "🌍", category: "Environmental & Conservation", desc: "Photography projects focused on environmental issues, conservation efforts, and nature's beauty.", price: "On request", tag: null },
+                // { icon: "📸", category: "Virtual Photoshoots", desc: "Remote photography sessions conducted via video call, perfect for clients worldwide.", price: "From £100", tag: null },
 
               ].map((s, i) => (
                 <motion.div
@@ -624,7 +920,7 @@ export default function Photography() {
       </motion.section>
 
       {/* ── TESTIMONIALS ──────────────────────────────────────────── */}
-      <motion.section
+      {/* <motion.section
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
@@ -654,7 +950,6 @@ export default function Photography() {
                   className="relative rounded-2xl p-8 border overflow-hidden"
                   style={{ backgroundColor: "var(--color-bg-card-darker)", borderColor: "var(--color-border-card)" }}
                 >
-                  {/* Large quote mark */}
                   <span
                     className="absolute top-4 right-6 text-7xl font-black leading-none select-none pointer-events-none"
                     style={{ color: "color-mix(in srgb, var(--color-accent) 12%, transparent)" }}
@@ -681,8 +976,10 @@ export default function Photography() {
             </div>
           </motion.div>
         </div>
-      </motion.section>
-
+      </motion.section> */}
+      {/* ── TESTIMONIALS ──────────────────────────────────────────── */}
+      <TestimonialsCarousel />
+      
       {/* ── CTA ───────────────────────────────────────────────────── */}
       <motion.section
         initial={{ opacity: 0, y: 60 }}
