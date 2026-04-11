@@ -897,10 +897,10 @@ export default function ContactPage() {
             </motion.p>
             <motion.div variants={fadeUp}>
               <Link
-                href="mailto:hello@yourdomain.com"
+                href="mailto:joe_kayu@yahoo.com"
                 className="inline-flex items-center gap-3 btn-accent px-8 py-4 rounded-full text-base"
               >
-                hello@yourdomain.com
+                hello@lollykrown.xyz
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path
                     d="M2 8h12M9 4l4 4-4 4"
