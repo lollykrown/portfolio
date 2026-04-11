@@ -165,11 +165,8 @@ export default function Footer() {
               </svg>
             </Link>
             <Link
-              href="mailto:hello@yourdomain.com"
+              href="mailto:joe_kayu@yahoo.com"
               className="btn-border"
-              
-              onMouseEnter={(e) => { e.currentTarget.style.color = "var(--color-text-primary)"; e.currentTarget.style.borderColor = "var(--color-border-hover)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = "var(--color-text-secondary)"; e.currentTarget.style.borderColor = "var(--color-border-card)"; }}
             >
               Say hello →
             </Link>

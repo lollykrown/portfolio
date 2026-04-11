@@ -68,6 +68,10 @@ const photos = [
   { id: 16, category: "events",    src: "/photos/event-3.jpg",     alt: "Awards night emotion",      aspectRatio: "wide",   location: "Edinburgh, UK" },
   { id: 17, category: "nature",    src: "/photos/nature-3.jpg",    alt: "Aurora over lake",          aspectRatio: "square", location: "Iceland" },
   { id: 18, category: "editorial", src: "/photos/editorial-3.jpg", alt: "Street style editorial",    aspectRatio: "tall",   location: "Milan, Italy" },
+  { id: 19, category: "product",   src: "/photos/product-3.jpg",   alt: "Product photography",       aspectRatio: "square", location: "Berlin, Germany" },
+  { id: 20, category: "baby",      src: "/photos/baby-1.jpg",      alt: "Sleeping newborn",          aspectRatio: "tall",   location: "London, UK" },
+  { id: 21, category: "baby",      src: "/photos/baby-2.jpg",      alt: "Baby's first smile",       aspectRatio: "wide",   location: "Manchester, UK" },
+  { id: 22, category: "other",     src: "/photos/other-1.jpg",     alt: "Abstract light trails",    aspectRatio: "square", location: "Various" },
 ];
 
 // ─── Aspect ratio → CSS height ────────────────────────────────────
@@ -458,7 +462,7 @@ export default function Photography() {
                 </svg>
               </a>
               <Link
-                href="/contact"
+                href="https://wa.me/+447425932661?text=Hi%20Lolly%2C%20I%27m%20interested%20in%20booking%20a%20photography%20session.%20Could%20you%20please%20provide%20more%20details%3F"
                 className="btn-border" >
                 Book a session
               </Link>
@@ -750,7 +754,7 @@ export default function Photography() {
 
       {/* Washi tape strip */}
       <div
-        className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-10 h-5 rounded-[2px] opacity-40"
+        className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-10 h-5 rounded-xs opacity-40"
         style={{
           backgroundColor: ["var(--color-accent)", "rgba(255,255,255,0.3)", "var(--color-accent)", "rgba(255,255,255,0.3)", "var(--color-accent)", "rgba(255,255,255,0.3)"][i],
           transform: `translateX(-50%) rotate(${[-3,2,-1,4,-2,3][i]}deg)`,
@@ -1009,21 +1013,12 @@ export default function Photography() {
               Whether it&apos;s a wedding, editorial shoot, or something entirely different — I&apos;d love to hear about it.
             </motion.p>
             <motion.div variants={fadeUp} className="flex items-center justify-center gap-4 flex-wrap">
-              <Link href="/contact" className="btn-accent px-9 py-4 rounded-full text-base inline-flex items-center gap-2">
+              <Link href="https://wa.me/+447425932661" className="btn-accent px-9 py-4 rounded-full text-base inline-flex items-center gap-2">
                 Book a session
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M2 8h12M9 4l4 4-4 4" stroke="var(--color-arrow-stroke)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </Link>
-              <a
-                href="mailto:hello@yourdomain.com"
-                className="text-sm font-semibold px-9 py-4 rounded-full border transition-all duration-200"
-                style={{ color: "var(--color-text-secondary)", borderColor: "var(--color-border-card)" }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = "var(--color-text-primary)"; e.currentTarget.style.borderColor = "var(--color-border-hover)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = "var(--color-text-secondary)"; e.currentTarget.style.borderColor = "var(--color-border-card)"; }}
-              >
-                hello@yourdomain.com
-              </a>
             </motion.div>
           </motion.div>
         </div>

@@ -131,6 +131,45 @@ const socials = [
       </svg>
     ),
   },
+  // {
+  //   label: 'Email',
+  //   href: 'mailto:kay@kayode.dev',
+  //   icon: (
+  //     <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+  //       <path
+  //         d="M2 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5z"
+  //         stroke="currentColor"
+  //         strokeWidth="1.5"
+  //       />
+  //       <path
+  //         d="M2 7l8 5 8-5"
+  //         stroke="currentColor"
+  //         strokeWidth="1.5"
+  //         strokeLinecap="round"
+  //       />
+  //     </svg>
+  //   ),
+  // },
+  // {
+  //   label: 'Instagram',
+  //   href: 'https://instagram.com/lollykrown',
+  //   icon: (
+  //     <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+  //       <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+  //       <path d="M16 11.37a4 4 0 1 1-7.999-.001A4 4 0 0 1 16 11.37z" fill="#fff" />
+  //       <circle cx="17.5" cy="6.5" r="1.5" fill="#fff" />
+  //     </svg>
+  //   ),
+  // },
+  // {
+  //   label: 'Facebook',
+  //   href: 'https://facebook.com/lollykrown',
+  //   icon: (
+  //     <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+  //       <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.215-1.333 1.327-1.333h2.673v-5h-3.658c-3.612 0-6.342 2.23-6.342 6.333V8z" />
+  //     </svg>
+  //   ),
+  // }
 ];
 
 // ─── FAQ ──────────────────────────────────────────────────────────

@@ -23,7 +23,7 @@ function DotGrid() {
 }
 
 const highlights = [
-  { value: "3+", label: "Years building" },
+  { value: "11+", label: "Years building" },
   { value: "20+", label: "Projects shipped" },
   { value: "100%", label: "Remote friendly" },
 ];

@@ -286,36 +286,36 @@ export default function AboutPage() {
                   borderRadius: '24px',
                 }}
               />
-              <div
-                className="relative w-72 h-80 md:w-80 md:h-96 rounded-2xl overflow-hidden border border-white/10"
-                style={{ backgroundColor: 'var(--color-bg-card-darker)' }}
-              >
-                <div
-                  className="w-full h-full flex items-end pb-6 "
-                  style={{
-                    background: `linear-gradient(135deg, color-mix(in srgb, var(--color-accent-muted) 60%, transparent) 0%, color-mix(in srgb, var(--color-accent-hover) 20%, #0c0c14) 100%)`,
-                  }}
-                >
-                  <Image
-                    src="/pp.jpg"
-                    alt="Kayode Agboola"
-                    fill
-                    className=" inset-0 object-cover"
-                    priority
-                  />
-                  <div className="z-50 bg-blur rounded-xl px-4 py-3 ">
-                    {' '}
-                    {/* style={{ backgroundColor: "color-mix(in srgb, var(--color-bg-card-dark) 90%, transparent)" }} */}
-                    <p className="text-black font-black text-xl">Kay</p>
-                    <p
-                      className="text-xs tracking-widest uppercase mt-1 shadow"
-                      style={{ color: 'var(--color-accent-subtle)' }}
-                    >
-                      Freelance Developer
-                    </p>
-                  </div>
-                </div>
-              </div>
+<div
+  className="relative w-72 h-80 md:w-80 md:h-96 rounded-2xl overflow-hidden border border-white/10"
+  style={{ backgroundColor: 'var(--color-bg-card-darker)' }}
+>
+  <div
+    className="relative w-full h-full flex items-end pb-6"
+    style={{
+      background: `linear-gradient(135deg, color-mix(in srgb, var(--color-accent-muted) 60%, transparent) 0%, color-mix(in srgb, var(--color-accent-hover) 20%, #0c0c14) 100%)`,
+    }}
+  >
+    <Image
+      src="/pp.jpg"
+      alt="Kayode Agboola"
+      fill
+      priority
+      sizes="(max-width: 768px) 288px, 320px"
+      className="object-cover"
+    />
+
+    <div className="z-10 bg-blur rounded-xl px-4 py-3">
+      <p className="text-black font-black text-xl">Kay</p>
+      <p
+        className="text-xs tracking-widest uppercase mt-1"
+        style={{ color: 'var(--color-accent-subtle)' }}
+      >
+        Freelance Developer
+      </p>
+    </div>
+  </div>
+</div>
               {/* Floating badge */}
               <div
                 className="absolute -bottom-4 -left-4 flex items-center gap-2 px-4 py-3 rounded-xl border border-white/10 backdrop-blur-sm"
