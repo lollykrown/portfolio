@@ -39,10 +39,11 @@ const categories = [
   { id: "portraits", label: "Portraits" },
   { id: "weddings",  label: "Weddings" },
   { id: "events",    label: "Events" },
-  { id: "travel",    label: "Travel" },
-  { id: "editorial", label: "Editorial" },
-  { id: "nature",     label: "Nature" },
-  { id: "product",    label: "Product" },
+  { id: "maternity",    label: "Maternity" },
+  // { id: "editorial", label: "Editorial" },
+  // { id: "nature",     label: "Nature" },
+  // { id:"travel", label:"Travel" },
+  // { id: "product",    label: "Product" },
   { id: "baby",      label: "Baby" },
   { id: "other",     label: "Other" },
 ];
@@ -50,28 +51,30 @@ const categories = [
 // ─── Photo data ───────────────────────────────────────────────────
 // Replace src with real image paths. aspectRatio controls grid cell height.
 const photos = [
-  { id: 1,  category: "portraits", src: portrait1,  alt: "Newborn Baby Portrait",     aspectRatio: "tall",   location: "London, UK" },
-  { id: 2,  category: "weddings",  src: "/photos/wedding-1.jpg",   alt: "Wedding ceremony arch",     aspectRatio: "wide",   location: "Tuscany, Italy" },
-  { id: 3,  category: "travel",    src: "/photos/travel-1.jpg",    alt: "Mountain sunrise",          aspectRatio: "square", location: "Dolomites, Italy" },
-  { id: 4,  category: "events",    src: "/photos/event-1.jpg",     alt: "Concert crowd energy",      aspectRatio: "tall",   location: "Manchester, UK" },
-  { id: 5,  category: "editorial", src: "/photos/editorial-1.jpg", alt: "High fashion editorial",    aspectRatio: "square", location: "Paris, France" },
-  { id: 6,  category: "nature",    src: "/photos/nature-1.jpg",    alt: "Misty forest path",         aspectRatio: "wide",   location: "Scottish Highlands" },
-  { id: 7,  category: "portraits", src: portrait2,  alt: "Studio chiaroscuro",        aspectRatio: "square", location: "London, UK" },
-  { id: 8,  category: "weddings",  src: "/photos/wedding-2.jpg",   alt: "First dance moment",        aspectRatio: "tall",   location: "Cotswolds, UK" },
-  { id: 9,  category: "travel",    src: "/photos/travel-2.jpg",    alt: "Desert dune shadows",       aspectRatio: "wide",   location: "Sahara, Morocco" },
-  { id: 10, category: "events",    src: "/photos/event-2.jpg",     alt: "Corporate gala evening",    aspectRatio: "square", location: "London, UK" },
-  { id: 11, category: "nature",    src: "/photos/nature-2.jpg",    alt: "Coastal cliff at dusk",     aspectRatio: "tall",   location: "Cornwall, UK" },
-  { id: 12, category: "editorial", src: "/photos/editorial-2.jpg", alt: "Minimalist product shoot",  aspectRatio: "square", location: "Berlin, Germany" },
-  { id: 13, category: "portraits", src: "/photos/portrait-3.jpg",  alt: "Environmental portrait",    aspectRatio: "wide",   location: "New York, USA" },
-  { id: 14, category: "weddings",  src: "/photos/wedding-3.jpg",   alt: "Bridal prep candid",        aspectRatio: "square", location: "Lake Como, Italy" },
-  { id: 15, category: "travel",    src: "/photos/travel-3.jpg",    alt: "City lights reflection",    aspectRatio: "tall",   location: "Tokyo, Japan" },
-  { id: 16, category: "events",    src: "/photos/event-3.jpg",     alt: "Awards night emotion",      aspectRatio: "wide",   location: "Edinburgh, UK" },
-  { id: 17, category: "nature",    src: "/photos/nature-3.jpg",    alt: "Aurora over lake",          aspectRatio: "square", location: "Iceland" },
-  { id: 18, category: "editorial", src: "/photos/editorial-3.jpg", alt: "Street style editorial",    aspectRatio: "tall",   location: "Milan, Italy" },
-  { id: 19, category: "product",   src: "/photos/product-3.jpg",   alt: "Product photography",       aspectRatio: "square", location: "Berlin, Germany" },
-  { id: 20, category: "baby",      src: "/photos/baby-1.jpg",      alt: "Sleeping newborn",          aspectRatio: "tall",   location: "London, UK" },
-  { id: 21, category: "baby",      src: "/photos/baby-2.jpg",      alt: "Baby's first smile",       aspectRatio: "wide",   location: "Manchester, UK" },
-  { id: 22, category: "other",     src: "/photos/other-1.jpg",     alt: "Abstract light trails",    aspectRatio: "square", location: "Various" },
+  { id: 1,  category: "weddings",  src: "https://res.cloudinary.com/lollykrown/image/upload/v1775987390/photography/KAY_2447-Edit.jpg", alt: "Civil Wedding", aspectRatio: "wide", location: "City Hall,Sunderland, UK" },
+  { id: 2,  category: "portraits",  src: "https://res.cloudinary.com/lollykrown/image/upload/v1776007141/photography/0737.jpg", alt: "Studio Portrait", aspectRatio: "tall", location: "Lollykrown Studios, Sunderland, UK" },
+  { id: 3,  category: "events",    src: "https://res.cloudinary.com/lollykrown/image/upload/v1775995918/photography/KAY_0505.jpg",    alt: "Birthday Celebrant's Dance", aspectRatio: "wide",   location: "Maya Suite, Sheffield, UK" },
+  { id: 4,  category: "baby",      src: "https://res.cloudinary.com/lollykrown/image/upload/v1775988516/photography/KAY_8943-Edit.jpg", alt: "Newborn Baby Portrait", aspectRatio: "tall", location: "Lollykrown Studios, Sunderland, UK" },
+  { id: 5,  category: "portraits", src: "https://res.cloudinary.com/lollykrown/image/upload/v1775987389/photography/KAY_2106-Edit.jpg", alt: "Sunset Portrait", aspectRatio: "tall", location: "Osaka Gardens, Sunderland, UK" },
+  { id: 6,  category: "events",    src: "https://res.cloudinary.com/lollykrown/image/upload/v1775989009/photography/KAY_0805.jpg", alt: "Aso Ebi Ladies", aspectRatio: "wide", location: "Fedash Centre, Sunderland, UK" },
+  { id: 7,  category: "maternity", src: "https://res.cloudinary.com/lollykrown/image/upload/v1776006164/photography/KAY_3868.jpg", alt: "Maternity Photoshoot", aspectRatio: "tall", location: "Mowbray Park, Sunderland, UK" },
+  { id: 8,  category: "portraits", src: "https://res.cloudinary.com/lollykrown/image/upload/v1776007342/photography/KAY_7587.jpg", alt: "Birthday Portrait", aspectRatio: "tall", location: "Lezzet Restaurant, Newcastle, UK" },
+  { id: 9,  category: "weddings",  src: "https://res.cloudinary.com/lollykrown/image/upload/v1775987389/photography/KAY_2369.jpg", alt: "Couple Portrait", aspectRatio: "wide",   location: "Brew & Bake, Sunderland, UK" },
+  { id: 10, category: "maternity", src: "https://res.cloudinary.com/lollykrown/image/upload/v1776006161/photography/KAY_3783.jpg", alt: "Maternity Photoshoot", aspectRatio: "tall", location: "Mowbray Park, Sunderland, UK" },
+  { id: 11, category: "events",    src: "https://res.cloudinary.com/lollykrown/image/upload/v1775995079/photography/KAY_1451.jpg", alt: "Birthday Celebrant's Dance", aspectRatio: "square", location: "Fedash Centre, Sunderland, UK" },
+  { id: 12, category: "portraits", src: "https://res.cloudinary.com/lollykrown/image/upload/v1776007144/photography/0589a.jpg", alt: "Studio Portrait", aspectRatio: "tall", location: "Lollykrown Studios, Sunderland, UK" },
+  { id: 13, category: "baby",      src: "https://res.cloudinary.com/lollykrown/image/upload/v1775988552/photography/KAY_8941.jpg", alt: "Newborn Baby Portrait",  aspectRatio: "square", location: "Lollykrown Studios, Sunderland, UK" },
+  { id: 14, category: "portraits", src: "https://res.cloudinary.com/lollykrown/image/upload/v1776007341/photography/KAY_7604.jpg", alt: "Birthday Portrait",    aspectRatio: "tall",   location: "Lezzet Restaurant, Newcastle, UK" },
+  { id: 15, category: "baby",      src: "https://res.cloudinary.com/lollykrown/image/upload/v1775988521/photography/KAY_9019-Edit.jpg", alt: "Newborn Baby Portrait",  aspectRatio: "square", location: "Lollykrown Studios, Sunderland, UK" },
+  { id: 16, category: "events",    src: "https://res.cloudinary.com/lollykrown/image/upload/v1775987392/photography/KAY_5469.jpg", alt: "African Cultural Dance and Drama", aspectRatio: "wide", location: "Fedash Centre, Sunderland, UK" },
+  { id: 17, category: "weddings",  src: "https://res.cloudinary.com/lollykrown/image/upload/v1776007195/photography/IMG_7011.jpg", alt: "Couple Photoshoot", aspectRatio: "square", location: "Heaton Park, Newcastle, UK" },
+  { id: 18, category: "events",    src: "https://res.cloudinary.com/lollykrown/image/upload/v1776007340/photography/KAY_7539.jpg", alt: "Birthday Dinner", aspectRatio: "square", location: "Lezzet Restaurant, Newcastle, UK" },
+  { id: 19, category: "maternity", src: "https://res.cloudinary.com/lollykrown/image/upload/v1776006168/photography/KAY_3867.jpg", alt: "Maternity Photoshoot",    aspectRatio: "tall",   location: "Mowbray Park, Sunderland, UK" },
+  { id: 20, category: "events",    src: "https://res.cloudinary.com/lollykrown/image/upload/v1775995080/photography/KAY_0693.jpg",     alt: "Awards night emotion",      aspectRatio: "tall",   location: "Seaham City Hall, Seaham, UK" },
+  // { id: 17, category: "nature",    src: "/photos/nature-3.jpg",    alt: "Aurora over lake",          aspectRatio: "square", location: "Iceland" },
+  // { id: 18, category: "editorial", src: "/photos/editorial-3.jpg", alt: "Street style editorial",    aspectRatio: "tall",   location: "Milan, Italy" },
+  // { id: 19, category: "product",   src: "/photos/product-3.jpg",   alt: "Product photography",       aspectRatio: "square", location: "Berlin, Germany" },
+  { id: 21, category: "baby",      src: "https://res.cloudinary.com/lollykrown/image/upload/v1775988554/photography/KAY_9055-Edit.jpg", alt: "Sleeping newborn", aspectRatio: "wide",   location: "Lollykrown Studios, Sunderland, UK" },
 ];
 
 // ─── Aspect ratio → CSS height ────────────────────────────────────
@@ -576,16 +579,19 @@ export default function Photography() {
                   {/* Image / placeholder */}
                   <div className="w-full h-full relative overflow-hidden rounded-xl">
                     {/* <PhotoPlaceholder photo={photo} index={i} /> */}
-                    {photo.id===1||photo.id===7? 
+                    {photo.src? 
                     <Image
                       src={photo.src}
                       alt={photo.alt}
                       fill
+                      priority
                       placeholder="blur"
+                        blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJy8+" 
+
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />:
-                    <PhotoPlaceholder photo={photo} index={i} />}
+                    />
+                    : <PhotoPlaceholder photo={photo} index={i} />}
 
                     {/* Overlay */}
                     <div
@@ -860,7 +866,7 @@ export default function Photography() {
                 { icon: "👤", category: "Portraits", desc: "Individual, couple, and family sessions. Studio or location. Relaxed, natural, and always you.", price: "From £150", tag: null },
                 { icon: "💍", category: "Weddings", desc: "Full-day documentary coverage from prep to dance floor. No missed moments, no forced smiles.", price: "On request", tag: "Most booked" },
                 { icon: "🎉", category: "Events & Special Occasions", desc: "Photography for birthdays, anniversaries, and other special life events. Capturing joy and celebration.", price: "From £250", tag: null },
-                { icon: "👶", category: "Baby & Maternity", desc: "Capturing the beauty and emotion of pregnancy, newborns, and family milestones.", price: "From £150", tag: null },
+                { icon: "👶", category: "Baby & Maternity", desc: "Capturing the beauty and emotion of Maternity, newborns, and family milestones.", price: "From £150", tag: null },
                 { icon: "✈️", category: "Travel",   desc: "Destination shoots, travel editorial, and commercial location photography worldwide.", price: "On request", tag: null },
                 { icon: "📸", category: "Commercial", desc: "Brand, product, and lifestyle photography. Clean, compelling images that sell.", price: "From £200", tag: null },
                 { icon: "📅", category: "Others", desc: "Specialized photography services for unique projects and creative endeavors.", price: "On request", tag: null },

@@ -20,6 +20,7 @@ function DotGrid() {
 const links = [
   { label: "Home",        href: "/" },
   { label: "Projects",    href: "/projects" },
+  { label: "Services",    href: "/services" },
   { label: "Photography", href: "/photography" },
   { label: "Contact",     href: "/contact" },
 ];
