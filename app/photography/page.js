@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, useEffect, useState } from "react";
 import CountStat from "@/components/CountStat";
-import portrait1 from "@/public/photos/portrait-1.jpg";
+import polaroid from "@/public/photos/polaroid.jpg";
 import portrait2 from "@/public/photos/portrait-2.jpg";
 
 
@@ -734,15 +734,23 @@ export default function Photography() {
               "linear-gradient(135deg, #06121a 0%, #1a0a06 100%)",
             ][i],
           }}
-        >
-          {/* Replace with <Image src={...} fill className="object-cover" alt={p.caption} /> */}
-          <div className="w-full h-full flex items-center justify-center opacity-15">
+        ><div className="w-full h-full relative overflow-hidden rounded-[2px]">
+  <Image
+    src={polaroid}
+    fill
+    alt={p.caption}
+    className="object-cover transition-transform duration-700"
+    style={{ objectPosition: p.pos }}
+  />
+</div>
+          {/* <Image src={polaroid} fill className="object-cover" alt={p.caption} /> */}
+          {/* <div className="w-full h-full flex items-center justify-center opacity-15">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <rect x="3" y="3" width="18" height="18" rx="2" stroke="white" strokeWidth="1.5"/>
               <circle cx="8.5" cy="8.5" r="1.5" fill="white"/>
               <path d="M21 15l-5-5L5 21" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
-          </div>
+          </div> */}
         </div>
 
         {/* Handwritten caption */}
@@ -783,8 +791,7 @@ export default function Photography() {
               className="absolute -top-6 -left-6 w-32 h-40 rounded-xl overflow-hidden border z-50"
               style={{ backgroundColor: "var(--color-bg-card-darker)", borderColor: "var(--color-border-card)" }}
             >
-              <PhotoPlaceholder photo={{ alt: "Camera detail" }} index={2} />
-              {/* <Image src="/pp.png" fill className="object-cover" alt="Photographer at work — behind the lens" />  */}
+              <Image src="/photos/kay.jpg" fill className="object-cover" alt="Photographer at work — behind the lens" /> 
             </div>
           </motion.div>
 
