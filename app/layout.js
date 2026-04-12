@@ -5,7 +5,6 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import Footer from "@/components/Footer";
 import Script from "next/script";
 import AnalyticsManager from "@/components/AnalyticsManager";
-import AnalyticsTracker from "@/components/AnalyticsTracker";
 import { PageTracker } from "@/components/PageTracker";
 
 const geistSans = Geist({
@@ -131,24 +130,7 @@ export default function RootLayout({ children }) {
         <ThemeProvider attribute="class" defaultTheme="dark">
         <Navbar />
           {children}
-          {/* <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=G-1CQLF3S0NN`}
-            strategy="afterInteractive"
-          />
 
-          <Script id="ga-init">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-
-              gtag('js', new Date());
-
-              // Default: no tracking until consent
-              gtag('consent', 'default', {
-                analytics_storage: 'denied'
-              });
-            `}
-          </Script> */}
           <Footer />
           <PageTracker/>
         </ThemeProvider>

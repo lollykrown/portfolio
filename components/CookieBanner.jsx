@@ -26,7 +26,7 @@ export default function CookieBanner({ onAccept }) {
 
   return (
     <AnimatePresence>
-      {visible && (
+      {/* {visible && ( */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -98,7 +98,7 @@ export default function CookieBanner({ onAccept }) {
             </div>
           </div>
         </motion.div>
-      )}
+      {/* )} */}
     </AnimatePresence>
   );
 }
