@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
 import { sendContactForm } from '@/actions/mail';
-import { p } from 'framer-motion/client';
+import { Glow , DotGrid} from "@/components/Cont"
 
 // ─── Shared animation variants ────────────────────────────────────
 const fadeUp = {
@@ -20,27 +20,6 @@ const stagger = {
   hidden: {},
   show: { transition: { staggerChildren: 0.1 } },
 };
-
-// ─── Reusable ambient elements ────────────────────────────────────
-function Glow({ style }) {
-  return (
-    <div
-      className="absolute rounded-full blur-[120px] pointer-events-none"
-      style={style}
-    />
-  );
-}
-function DotGrid() {
-  return (
-    <div
-      className="absolute inset-0 opacity-[0.035] pointer-events-none"
-      style={{
-        backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)',
-        backgroundSize: '28px 28px',
-      }}
-    />
-  );
-}
 
 // ─── Contact info items ───────────────────────────────────────────
 const contactInfo = [

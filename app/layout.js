@@ -15,19 +15,77 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Portfolio - Full Stack Developer",
-  description: "I build fast, scalable web apps with Next.js and Tailwind CSS.",
-};
-    // <meta charset="UTF-8">
-    // <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  metadataBase: new URL('https://lollykrown.xyz'),
 
-    // <meta name="viewport" content="width=device-width, initial-scale=1">
-    // <meta name="description" content="Portfolio - " />
-    // <meta name="author" content="Kayode Agboola">
-    // <meta name="robots" content="noodp" />
-    // <link rel="canonical" href="https://lollykrown.xyz" />
-    // <meta content="Portfolio website" name="description" />
-    // <meta content="HTML5, CSS3, JavaScript, websites, sites, portfolio, responsive, lollykrown" name="keywords" />
+  title: {
+    default: 'Lollykrown | Creative Developer',
+    template: '%s | Lollykrown',
+  },
+
+  description:
+    'LollyKrown is a creative developer crafting modern, high-performance web experiences with clean design and smooth interactions.',
+
+  keywords: [
+    'Lollykrown',
+    'Frontend Developer',
+    'Next.js Developer',
+    'Web Developer Portfolio',
+    'UI Developer',
+    'React.js Developer',
+    'Fullstack Developer',
+    'Node.js Developer',
+    'React Native Developer',
+    'SEO',
+    'HTML5', 'CSS3', 'JavaScript', 'websites', 'sites', 'portfolio', 'responsive',
+  ],
+
+  openGraph: {
+    title: 'LollyKrown | Creative Developer',
+    description:
+      'Modern web experiences built with performance, design, and scalability in mind.',
+    url: 'https://lollykrown.xyz',
+    siteName: 'Lollykrown',
+    images: [
+      {
+        url: '/og-image.jpg', // 👈 add this image
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en_GB',
+    type: 'website',
+  },
+  author:'Kayode Agboola',
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Lollykrown | Creative Developer',
+    description:
+      'Explore modern web projects and creative development work.',
+    images: ['/og-image.jpg'],
+  },
+  metadataBase: new URL('https://lollykrown.xyz'),
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -48,6 +106,19 @@ export default function RootLayout({ children }) {
                 } catch(e) {}
               })();
             `,
+          }}
+        />
+
+        {/* Structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'ImageGallery',
+              name: 'LollyKrown Photography',
+              url: 'https://lollykrown.xyz/photography',
+            }),
           }}
         />
       </head>
