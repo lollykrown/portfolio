@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
-export default function CookieBanner({ onAccept }) {
+export default function CookieBanner({ onAccept, onReject }) {
   // const [visible, setVisible] = useState(false);
 
   // useEffect(() => {
@@ -22,6 +22,7 @@ export default function CookieBanner({ onAccept }) {
   const decline = () => {
     setConsent("declined");
     // setVisible(false);
+    onReject?.();
   };
 
   return (

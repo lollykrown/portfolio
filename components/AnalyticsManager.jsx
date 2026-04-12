@@ -26,12 +26,21 @@ export default function AnalyticsManager({ children }) {
         })
     }, 0);
   };
+  const handleReject = () => {
+    setConsentState("declined");
+    loadGoogleAnalytics();
+    setTimeout(() => {
+      window.gtag?.('consent', 'update', {
+          analytics_storage:'denied'
+        })
+    }, 0);
+  };
 
   if (consent === null) {
     return (
       <>
         {children}
-        <CookieBanner onAccept={handleAccept} />
+        <CookieBanner onAccept={handleAccept} onReject={handleReject} />
       </>
     );
   }
