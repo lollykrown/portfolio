@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Script from 'next/script';
 import { sendContactForm } from '@/actions/mail';
 import { Glow , DotGrid} from "@/components/Cont"
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 // ─── Shared animation variants ────────────────────────────────────
 const fadeUp = {
@@ -224,6 +225,7 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(null);
+  const analytics = useAnalytics();
 
   useEffect(() => {
     // expose function globally for Turnstile
@@ -239,7 +241,7 @@ export default function ContactPage() {
     setSending(true);
     const res = await sendContactForm(JSON.stringify(formState));
     console.log('Form submission response:', res);
-
+    analytics.trackFormSubmission(formState.email)
     if (!res.success) {
       setSending(false);
       setError(res.error || { message: 'An unknown error occurred' });

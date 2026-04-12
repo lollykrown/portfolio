@@ -5,6 +5,8 @@ import { track } from "@/lib/analytics";
 export function useAnalytics() {
   if (!window.gtag) return;
   return {
+    trackFormSubmission: (email) =>
+      track("Contact Form Submitted", { email: email  }),
     trackSignupStarted: () =>
       track("Signup Started", { method: "email" }),
 
