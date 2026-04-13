@@ -262,7 +262,7 @@ export default function ContactPage() {
               top: '10%',
               left: '15%',
               backgroundColor:
-                'color-mix(in srgb, var(--color-accent-muted) 14%, transparent)',
+                'color-mix(in srgb, var(--color-accent-muted) 34%, transparent)',
             }}
           />
           <Glow
@@ -272,7 +272,7 @@ export default function ContactPage() {
               bottom: 0,
               right: '10%',
               backgroundColor:
-                'color-mix(in srgb, var(--color-accent-muted) 8%, transparent)',
+                'color-mix(in srgb, var(--color-accent-muted) 18%, transparent)',
             }}
           />
           <DotGrid />

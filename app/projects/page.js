@@ -87,8 +87,8 @@ export default function ProjectsPage() {
       {/* ── HERO ──────────────────────────────────────────────────── */}
       <section className="relative min-h-[70vh] flex flex-col items-center justify-center px-6 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <Glow left="10%" top="20%" size={600} opacity={14} />
-          <Glow left="60%" top="50%" size={500} opacity={8} />
+          <Glow left="10%" top="20%" size={600} opacity={30} />
+          <Glow left="60%" top="50%" size={500} opacity={18} />
           <DotGrid />
           {/* Horizontal rule accents */}
           <div className="absolute top-1/2 left-0 right-0 h-px bg-white/4" />

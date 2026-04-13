@@ -282,7 +282,7 @@ export default function ServicesPage() {
               top: '5%',
               left: '10%',
               backgroundColor:
-                'color-mix(in srgb, var(--color-accent-muted) 14%, transparent)',
+                'color-mix(in srgb, var(--color-accent-muted) 36%, transparent)',
             }}
           />
           <Glow
@@ -292,7 +292,7 @@ export default function ServicesPage() {
               bottom: 0,
               right: '5%',
               backgroundColor:
-                'color-mix(in srgb, var(--color-accent-muted) 8%, transparent)',
+                'color-mix(in srgb, var(--color-accent-muted) 18%, transparent)',
             }}
           />
           <DotGrid />

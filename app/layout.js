@@ -126,15 +126,16 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-full flex flex-col">
-        <AnalyticsManager>
         <ThemeProvider attribute="class" defaultTheme="dark">
+        <AnalyticsManager>
+
         <Navbar />
           {children}
 
           <Footer />
           <PageTracker/>
-        </ThemeProvider>
         </AnalyticsManager>
+        </ThemeProvider>
       </body>
     </html>
   );

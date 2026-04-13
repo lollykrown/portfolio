@@ -35,7 +35,7 @@ export default function Hero() {
       {/* Ambient amber glow */}
       <div className="absolute inset-0 pointer-events-none ">
         <div
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-100 rounded-full bg-amber-700/20 blur-[120px]"
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-100 rounded-full bg-amber-700/40 blur-[120px]"
           //         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-[120px]"
           // style={{ backgroundColor: 'color-mix(in srgb, var(--color-accent-muted) 15%, transparent)' }}
         />
