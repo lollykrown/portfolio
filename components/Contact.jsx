@@ -416,8 +416,7 @@ export default function HomeContact() {
             {/* Availability */}
             <div className="flex items-center gap-3 px-5 py-4 rounded-2xl border border-white/8 bg-(--color-bg-card-dark)">
               <span
-                className="w-2.5 h-2.5 rounded-full animate-pulse shrink-0"
-                style={{ backgroundColor: 'var(--color-accent)' }}
+                className="w-2.5 h-2.5 rounded-full animate-pulse shrink-0 bg-(--color-accent)"
               />
               <div>
                 <p className="text-(--color-text-primary) font-semibold text-sm">
@@ -431,8 +430,7 @@ export default function HomeContact() {
 
             {/* Direct email */}
             <div
-              className="rounded-2xl border border-white/8 p-6"
-              style={{ backgroundColor: 'var(--color-bg-card-darker)' }}
+              className="rounded-2xl border border-white/8 p-6 bg-(--color-bg-card-darker)"
             >
               <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3 text-(--color-accent-subtle)">
                 Prefer email?
@@ -440,7 +438,6 @@ export default function HomeContact() {
               <Link
                 href="mailto:joe@yahoo.com"
                 className="text-(--color-text-primary) font-semibold text-sm hover:underline block mb-1"
-                style={{ textDecorationColor: 'var(--color-accent)' }}
               >
                 hello@lollykrown.xyz
               </Link>
@@ -451,9 +448,7 @@ export default function HomeContact() {
 
             {/* Socials */}
             <div
-              className="rounded-2xl border border-white/8 p-6"
-              style={{ backgroundColor: 'var(--color-bg-card-darker)' }}
-            >
+              className="rounded-2xl border border-white/8 p-6 bg-(--color-bg-card-darker)" >
               <p
                 className="text-xs font-semibold tracking-[0.18em] uppercase mb-4"
                 style={{ color: 'var(--color-accent-subtle)' }}
@@ -470,11 +465,7 @@ export default function HomeContact() {
                     className="flex items-center gap-3 text-(--color-text-secondary) hover:text-(--color-text-primary) group transition-colors duration-200"
                   >
                     <span
-                      className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 group-hover:border-white/25 transition-colors"
-                      style={{
-                        backgroundColor:
-                          'color-mix(in srgb, var(--color-accent) 5%, transparent)',
-                      }}
+                      className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 group-hover:border-white/25 transition-colors bg-[color-mix(in_srgb,var(--color-accent)_5%,transparent)] group-hover:bg-[color-mix(in_srgb,var(--color-accent)_15%,transparent)]"
                     >
                       {s.icon}
                     </span>

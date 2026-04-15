@@ -686,12 +686,7 @@ export default function ContactPage() {
                   }}
                 >
                   <div
-                    className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5"
-                    style={{
-                      backgroundColor:
-                        'color-mix(in srgb, var(--color-accent) 10%, transparent)',
-                      color: 'var(--color-accent-subtle)',
-                    }}
+                    className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5 bg-[color-mix(in_srgb,var(--color-accent)_10%,transparent)] text-(--color-accent-subtle)"
                   >
                     {item.icon}
                   </div>
@@ -723,8 +718,7 @@ export default function ContactPage() {
               style={{ backgroundColor: 'var(--color-bg-card-dark)' }}
             >
               <p
-                className="text-xs font-semibold tracking-[0.18em] uppercase mb-4"
-                style={{ color: 'var(--color-accent-subtle)' }}
+                className="text-xs font-semibold tracking-[0.18em] uppercase mb-4 text-(--color-accent-subtle)"
               >
                 Find me online
               </p>
@@ -738,11 +732,7 @@ export default function ContactPage() {
                     className="flex items-center gap-3 text-(--color-text-secondary) hover:text-(--color-text-primary) group transition-colors duration-200"
                   >
                     <span
-                      className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 group-hover:border-white/25 transition-colors"
-                      style={{
-                        backgroundColor:
-                          'color-mix(in srgb, var(--color-accent) 5%, transparent)',
-                      }}
+                      className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 group-hover:border-white/25 transition-colors bg-['color-mix(in_srgb,var(--color-accent)_5%,transparent)] group-hover:bg-[color-mix(in_srgb,var(--color-accent)_15%,transparent)]"
                     >
                       {s.icon}
                     </span>

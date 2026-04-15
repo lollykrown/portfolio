@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useEffect, useState } from "react";
+import { useState } from "react";
 import CountStat from "@/components/CountStat";
 import polaroid from "@/public/photos/polaroid.jpg";
 import kay from "@/public/photos/kay.jpg";
