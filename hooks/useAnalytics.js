@@ -1,22 +1,23 @@
-'use client';
-
-import { track } from "@/lib/analytics";
-
 export function useAnalytics() {
-  if (!window.gtag) return;
+  const safeTrack = (event, data) => {
+    if (typeof window === "undefined" || !window.gtag) return;
+    track(event, data);
+  };
+
   return {
     trackFormSubmission: (email) =>
-      track("Contact Form Submitted", { email: email  }),
+      safeTrack("Contact Form Submitted", { email }),
+
     trackSignupStarted: () =>
-      track("Signup Started", { method: "email" }),
+      safeTrack("Signup Started", { method: "email" }),
 
     trackSignupCompleted: (userId) =>
-      track("Signup Completed", { user_id: userId }),
+      safeTrack("Signup Completed", { user_id: userId }),
 
     trackPaymentInitiated: (plan) =>
-      track("Payment Initiated", { plan }),
+      safeTrack("Payment Initiated", { plan }),
 
     trackPaymentSuccess: (value) =>
-      track("Payment Success", { value }),
+      safeTrack("Payment Success", { value }),
   };
 }

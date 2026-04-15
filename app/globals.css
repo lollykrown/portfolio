@@ -64,7 +64,8 @@
     --color-text-secondary: #9ca3af; /* gray-400 */
     --color-text-muted:     #6b7280; /* gray-500 */
     --color-text-faint:     #374151; /* gray-700 — for ghost text */
- 
+    --error-text:           #ffffff; 
+
     /* ── Borders & dividers ── */
     --color-border:         rgba(255, 255, 255, 0.06);
     --color-border-card:    rgba(255, 255, 255, 0.08);
@@ -124,7 +125,8 @@
     --color-text-secondary: #4b5563; /* gray-600 */
     --color-text-muted:     #9ca3af; /* gray-400 */
     --color-text-faint:     #e5e7eb; /* gray-200 — for ghost text */
- 
+    --error-text:           #fb2c36;
+
     /* ── Borders & dividers ── */
     --color-border:         rgba(0, 0, 0, 0.07);
     --color-border-card:    rgba(0, 0, 0, 0.08);

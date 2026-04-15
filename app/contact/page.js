@@ -239,15 +239,20 @@ export default function ContactPage() {
     console.log('Form submitted with data:', formState);
 
     setSending(true);
+    try{
     const res = await sendContactForm(JSON.stringify(formState));
     console.log('Form submission response:', res);
     analytics.trackFormSubmission(formState.email)
-    if (!res.success) {
+    if (res.error) {
       setSending(false);
       setError(res.error || { message: 'An unknown error occurred' });
       return;
     }
     setSubmitted(true);
+  }catch(e){
+    console.log('e',e)
+    setError(e?.message)
+  }
   };
 
   return (
@@ -393,8 +398,7 @@ export default function ContactPage() {
                 <>
                   <Script
                     src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-                    async
-                    defer
+                    strategy="afterInteractive"
                   />
                   <form
                     onSubmit={handleSubmit}
@@ -566,7 +570,7 @@ export default function ContactPage() {
                       }
                     />
                     <p className="text-red-600 -mt-5 bg-blur text-xs">
-                      {error && error.message}
+                      {error?`*${error}*`:''}
                     </p>
 
                     {/* 🤖 CAPTCHA */}

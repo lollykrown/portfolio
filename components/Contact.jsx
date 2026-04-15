@@ -1,8 +1,10 @@
 'use client';
-
+import Script from 'next/script';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAnalytics } from '@/hooks/useAnalytics';
+import { sendContactForm } from '@/actions/mail';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -70,16 +72,38 @@ export default function HomeContact() {
     name: '',
     email: '',
     message: '',
+    website: '', // honeypot field
+    token: '', // CAPTCHA token
   });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState(null);
+  const analytics = useAnalytics();
+
+  useEffect(() => {
+      // expose function globally for Turnstile
+      window.onTurnstileSuccess = (t) => {
+        setFormState({ ...formState, token: t });
+      };
+    }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null)
     setSending(true);
-    await new Promise((r) => setTimeout(r, 1200));
-    setSending(false);
-    setSubmitted(true);
+    try{
+      const res = await sendContactForm(JSON.stringify(formState));
+      console.log('Form submission response:', res);
+      analytics.trackFormSubmission(formState.email)
+      if (res.error) {
+        setSending(false);
+        setError(res.error || { message: 'An unknown error occurred' });
+        return;
+      }
+      setSubmitted(true);
+    }catch(e){
+      setError(e?.message)
+    }
   };
 
   return (
@@ -214,14 +238,19 @@ export default function HomeContact() {
                   </button>
                 </motion.div>
               ) : (
+                <>
+                  <Script
+                    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+                    strategy="afterInteractive"
+                  />
                 <form
                   onSubmit={handleSubmit}
                   className="relative z-10 flex flex-col gap-4"
                 >
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-2">
-                      <label className="text-xs font-bold tracking-wide uppercase text-(--color-accent-subtle)">
-                        Name
+                      <label className={`text-xs font-bold tracking-wide uppercase ${error?.message?.includes('name') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}>
+                        Name {error?.message?.includes('name') && '*'}
                       </label>
                       <input
                         required
@@ -231,7 +260,8 @@ export default function HomeContact() {
                         onChange={(e) =>
                           setFormState({ ...formState, name: e.target.value })
                         }
-                        className=" w-full rounded-xl placeholder:text-(--color-text-muted)  px-4 py-3.25 text-[14px] text-(--color-text-primary) border border-(--color-border-hover) outline-none transition-colors duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))]"
+                        className={`w-full capitalize rounded-xl px-4 py-3.25 text-[14px] text-(--color-text-primary) outline-none transition-colors placeholder:text-(--color-text-muted)
+                            duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))] border ${error?.message?.includes('name') ? 'border-red-600' : 'border-(--color-border-card)'}`}
                         onFocus={(e) =>
                           (e.target.style.borderColor =
                             'color-mix(in srgb, var(--color-accent) 50%, transparent)')
@@ -244,10 +274,9 @@ export default function HomeContact() {
                     </div>
                     <div className="flex flex-col gap-2">
                       <label
-                        className="text-xs font-bold tracking-wide uppercase"
-                        style={{ color: 'var(--color-accent-subtle)' }}
-                      >
-                        Email
+                          className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('email') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
+                        >
+                          Email{error?.message?.includes('email') && '*'}
                       </label>
                       <input
                         required
@@ -257,7 +286,8 @@ export default function HomeContact() {
                         onChange={(e) =>
                           setFormState({ ...formState, email: e.target.value })
                         }
-                        className=" w-full rounded-xl placeholder:text-(--color-text-muted)  px-4 py-3.25 text-[14px] text-(--color-text-primary) border border-(--color-border-hover) outline-none transition-colors duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))]"
+                        className={`w-full rounded-xl px-4 py-3.25 text-[14px] text-(--color-text-primary) outline-none transition-colors placeholder:text-(--color-text-muted)
+                            duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))] border ${error?.message?.includes('name') ? 'border-red-600' : 'border-(--color-border-card)'}`}                        
                         onFocus={(e) =>
                           (e.target.style.borderColor =
                             'color-mix(in srgb, var(--color-accent) 50%, transparent)')
@@ -271,10 +301,9 @@ export default function HomeContact() {
                   </div>
                   <div className="flex flex-col gap-2">
                     <label
-                      className="text-xs font-bold tracking-wide uppercase"
-                      style={{ color: 'var(--color-accent-subtle)' }}
-                    >
-                      Message
+                        className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('message') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
+                      >
+                        Message {error?.message?.includes('message') && '*'}
                     </label>
                     <textarea
                       required
@@ -284,7 +313,8 @@ export default function HomeContact() {
                       onChange={(e) =>
                         setFormState({ ...formState, message: e.target.value })
                       }
-                      className="w-full rounded-xl px-4 py-3.25 text-[14px] text-(--color-text-primary) placeholder:text-(--color-text-muted) border border-(--color-border-hover) outline-none transition-colors duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))]"
+                      className={`w-full rounded-xl px-4 py-3.25 text-[14px] text-(--color-text-primary) outline-none transition-colors placeholder:text-(--color-text-muted)
+                        duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))] border ${error?.message?.includes('name') ? 'border-red-600' : 'border-(--color-border-card)'}`}
                       onFocus={(e) =>
                         (e.target.style.borderColor =
                           'color-mix(in srgb, var(--color-accent) 50%, transparent)')
@@ -294,6 +324,28 @@ export default function HomeContact() {
                       }
                     />
                   </div>
+
+                    {/* Honeypot (hidden) */}
+                    <input
+                      name="website"
+                      style={{ display: 'none' }}
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formState.website}
+                      onChange={(e) =>
+                        setFormState({ ...formState, website: e.target.value })
+                      }
+                    />
+                    <p className="text-(--error-text) -mt-3 px-2 bg-blur text-xs">
+                      {error?`*${error}*`:''}
+                    </p>
+
+                    {/* 🤖 CAPTCHA */}
+                    <div
+                      className="cf-turnstile"
+                      data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                      data-callback="onTurnstileSuccess"
+                    ></div>
                   <button
                     type="submit"
                     disabled={sending}
@@ -344,6 +396,7 @@ export default function HomeContact() {
                     )}
                   </button>
                 </form>
+                </>
               )}
             </div>
           </motion.div>

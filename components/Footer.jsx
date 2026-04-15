@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 import Icon from "./Icon";
+import { subscribeNewsletter } from "@/actions/mail";
+// import { useAnalytics } from "@/hooks/useAnalytics";
 
 function DotGrid() {
   return (
@@ -95,10 +97,32 @@ const socials = [
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [website, setWebsite] = useState(""); // honeypot
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  // const analytics = useAnalytics();
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async(e) => {
     e.preventDefault();
-    if (email) { setSubscribed(true); setEmail(""); }
+    setLoading(true);
+    setError(null);
+    console.log(email)
+    if (!email) { 
+      setError('Email is required');
+      return
+    }
+    const res = await subscribeNewsletter({ email, website });
+
+    if (res?.error) {
+      setError(res.error);
+      setLoading(false);
+      return;
+    }
+
+    // analytics.trackFormSubmission(email); 
+    setSubscribed(true);
+    setLoading(false);
+    setEmail("");
   };
 
   return (
@@ -195,14 +219,12 @@ export default function Footer() {
 
             {/* Availability pill */}
             <div
-              className="inline-flex items-center gap-2 px-3 py-2 rounded-full border mb-6"
-              style={{
-                backgroundColor: "color-mix(in srgb, var(--color-accent) 8%, transparent)",
-                borderColor: "color-mix(in srgb, var(--color-accent) 25%, transparent)",
-              }}
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-full border mb-6
+              bg-[color-mix(in_srgb,var(--color-accent)_8%,transparent)]
+                borderColor: border-[color-mix(in_srgb,var(--color-accent)_25%,transparent)]"
             >
-              <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: "var(--color-accent)" }} />
-              <span className="text-xs font-semibold" style={{ color: "var(--color-accent-subtle)" }}>
+              <span className="w-1.5 h-1.5 rounded-full animate-pulse bg-(--color-accent)" />
+              <span className="text-xs font-semibold text-(--color-accent-subtle)">
                 Open to new projects
               </span>
             </div>
@@ -216,23 +238,10 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-200"
-                  style={{
-                    color: "var(--color-text-muted)",
-                    borderColor: "var(--color-border-card)",
-                    backgroundColor: "transparent",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "var(--color-accent-subtle)";
-                    e.currentTarget.style.borderColor = "color-mix(in srgb, var(--color-accent) 40%, transparent)";
-                    e.currentTarget.style.backgroundColor = "color-mix(in srgb, var(--color-accent) 10%, transparent)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = "var(--color-text-muted)";
-                    e.currentTarget.style.borderColor = "var(--color-border-card)";
-                    e.currentTarget.style.backgroundColor = "transparent";
-                  }}
-                >
+                  className="w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-200
+                    text-(--color-text-muted) border-(--color-border-card) bg-transparent
+                  hover:text-(--color-accent-subtle) hover:border-[color-mix(in_srgb,var(--color-accent)_40%,transparent)]
+                    hover:bg-[color-mix(in_srgb,var(--color-accent)_10%,transparent)]">
                   {s.icon}
                 </Link>
               ))}
@@ -241,7 +250,7 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <p className="text-xs font-black tracking-[0.18em] uppercase mb-5" style={{ color: "var(--color-accent-subtle)" }}>
+            <p className="text-xs font-black tracking-[0.18em] uppercase mb-5 text-(--color-accent-subtle)">
               Navigation
             </p>
             <ul className="flex flex-col gap-3">
@@ -251,12 +260,11 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm transition-colors duration-200 flex items-center gap-1.5 group text-(--color-text-secondary)"
-                      onMouseEnter={(e) => e.currentTarget.style.color = "var(--color-text-primary)"}
-                      onMouseLeave={(e) => e.currentTarget.style.color = "var(--color-text-secondary)"}
+                      className="text-sm transition-colors duration-200 flex items-center gap-1.5 group text-(--color-text-secondary)
+                      hover:text-(--color-text-primary)"
                     >
                     <span
-                      className="w-0 group-hover:w-3 h-px transition-all duration-200 rounded bg-(--color-accent)"
+                      className="w-0 group-hover:w-3 h-[1.125px] transition-all duration-200 rounded bg-(--color-accent)"
                     />
                     <ApertureIcon />
                       <span className="italic tracking-wide">{link.label}</span>
@@ -269,13 +277,11 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm transition-colors duration-200 flex items-center gap-1.5 group text-(--color-text-secondary)"
-                    onMouseEnter={(e) => e.currentTarget.style.color = "var(--color-text-primary)"}
-                    onMouseLeave={(e) => e.currentTarget.style.color = "var(--color-text-secondary)"}
+                    className="text-sm transition-colors duration-200 flex items-center gap-1.5 group text-(--color-text-secondary)
+                    hover:text-(--color-text-primary)"
                   >
                     <span
-                      className="w-0 group-hover:w-3 h-px transition-all duration-200 rounded"
-                      style={{ backgroundColor: "var(--color-accent)" }}
+                      className="w-0 group-hover:w-3 h-[1.125px] transition-all duration-200 rounded bg-(--color-accent)"
                     />
                     {link.label}
                   </Link>
@@ -295,15 +301,10 @@ export default function Footer() {
                 <li key={s.label}>
                   <Link
                     href={s.href}
-                    className="text-sm transition-colors duration-200 flex items-center gap-1.5 group leading-snug"
-                    style={{ color: "var(--color-text-secondary)" }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = "var(--color-text-primary)"}
-                    onMouseLeave={(e) => e.currentTarget.style.color = "var(--color-text-secondary)"}
+                    className="text-sm transition-colors duration-200 flex items-center gap-1.5 group leading-snug
+                    text-(--color-text-secondary) hover:text-(--color-text-primary)"
                   >
-                    <span
-                      className="w-0 group-hover:w-3 h-px shrink-0 transition-all duration-200 rounded"
-                      style={{ backgroundColor: "var(--color-accent)" }}
-                    />
+                    <span className="w-0 group-hover:w-3 h-[1.125px] shrink-0 transition-all duration-200 rounded bg-(--color-accent)"/>
                     {s.label}
                   </Link>
                 </li>
@@ -324,14 +325,17 @@ export default function Footer() {
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="flex items-center gap-2 text-sm font-semibold"
-                style={{ color: "var(--color-accent-subtle)" }}
+                className="flex flex-col text-sm font-semibold text-(--color-accent-subtle)"
               >
+                <div className="flex items-center gap-2 text-sm font-semibold">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8l4 4 6-6" stroke="var(--color-accent)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                You&apos;re in — thanks!
+                  You&apos;re in — thanks!
+                </div>
+                <p className="text-(--color-text-primary)">Check your inbox soon.</p>
               </motion.div>
+
             ) : (
               <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
                 <input
@@ -340,23 +344,28 @@ export default function Footer() {
                   placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="text-sm rounded-xl px-4 py-3 outline-none w-full transition-all duration-200"
-                  style={{
-                    backgroundColor: "var(--color-bg-card-darker)",
-                    border: "1px solid var(--color-border-card)",
-                    color: "var(--color-text-primary)",
-                  }}
-                  onFocus={(e) => (e.target.style.borderColor = "color-mix(in srgb, var(--color-accent) 50%, transparent)")}
-                  onBlur={(e) => (e.target.style.borderColor = "var(--color-border-card)")}
+                  className="text-sm rounded-xl px-4 py-3 outline-none w-full transition-all duration-200 bg-(--color-bg-card-darker) text-(--color-text-primary)
+                  border border-[color-mix(in_srgb,var(--color-accent)_25%,transparent)]"
                 />
+                 {/* 🕵️ honeypot */}
+                <input
+                  type="text"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
+                {error && (
+                  <p className="text-red-500 text-xs">{error}</p>
+                )}
                 <button
+                  disabled={!email||loading}
                   type="submit"
-                  className="text-sm font-bold py-2.5 rounded-xl transition-colors duration-200"
-                  style={{ backgroundColor: "var(--color-accent)", color: "var(--color-arrow-stroke)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--color-accent-hover)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--color-accent)")}
+                  className="text-sm font-bold py-2.5 rounded-xl transition-colors duration-200 bg-(--color-accent) text-(--color-arrow-stroke) hover:bg-(--color-accent-hover)"
                 >
-                  Subscribe
+                  {loading ? "Subscribing..." : "Subscribe"}
                 </button>
               </form>
             )}
