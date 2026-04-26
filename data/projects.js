@@ -68,7 +68,7 @@ export const photos = [
   { id: 17, category: "weddings",  src: "https://res.cloudinary.com/lollykrown/image/upload/v1776007195/photography/IMG_7011.jpg", alt: "Couple Photoshoot", aspectRatio: "square", location: "Heaton Park, Newcastle, UK" },
   { id: 18, category: "events",    src: "https://res.cloudinary.com/lollykrown/image/upload/v1776007340/photography/KAY_7539.jpg", alt: "Birthday Dinner", aspectRatio: "square", location: "Lezzet Restaurant, Newcastle, UK" },
   { id: 19, category: "maternity", src: "https://res.cloudinary.com/lollykrown/image/upload/v1776006168/photography/KAY_3867.jpg", alt: "Maternity Photoshoot",    aspectRatio: "tall",   location: "Mowbray Park, Sunderland, UK" },
-  { id: 20, category: "events",    src: "https://res.cloudinary.com/lollykrown/image/upload/v1775995080/photography/KAY_0693.jpg",     alt: "Awards night emotion",      aspectRatio: "tall",   location: "Seaham City Hall, Seaham, UK" },
+  { id: 20, category: "events",    src: "https://res.cloudinary.com/lollykrown/image/upload/v1775995080/photography/KAY_0693.jpg",     alt: "Birthday dance",      aspectRatio: "tall",   location: "Seaham City Hall, Seaham, UK" },
   // { id: 17, category: "nature",    src: "/photos/nature-3.jpg",    alt: "Aurora over lake",          aspectRatio: "square", location: "Iceland" },
   // { id: 18, category: "editorial", src: "/photos/editorial-3.jpg", alt: "Street style editorial",    aspectRatio: "tall",   location: "Milan, Italy" },
   // { id: 19, category: "product",   src: "/photos/product-3.jpg",   alt: "Product photography",       aspectRatio: "square", location: "Berlin, Germany" },

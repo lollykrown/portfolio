@@ -66,10 +66,10 @@ export function Lightbox({ photo, onClose, onPrev, onNext }) {
       onTouchEnd={handleTouchEnd}
     >
       {/* Close */}
-      <button
+      <button 
+        title='close'
         onClick={onClose}
-        className="absolute top-5 right-5 w-10 h-10 rounded-full border flex items-center justify-center transition-colors z-10"
-        style={{ borderColor: "rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.7)" }}
+        className="absolute top-5 right-5 w-10 h-10 rounded-full border border-white/30 text-white/80 flex items-center justify-center transition-colors z-10 hover:border-white hover:text-white"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M3 3l10 10M13 3L3 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -78,9 +78,10 @@ export function Lightbox({ photo, onClose, onPrev, onNext }) {
  
       {/* Prev — hidden on mobile (use swipe instead) */}
       <button
-        onClick={(e) => { e.stopPropagation(); onPrev(); }}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border items-center justify-center transition-all z-10 hidden md:flex"
-        style={{ borderColor: "rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.7)" }}
+        title='previous'
+        onClick={(e) => { e.stopPropagation(); onPrev(); }}               
+        // style={{ borderColor: "rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.6)" }}
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border items-center justify-center transition-all z-10 hidden md:flex border-white/30 text-white/80 hover:border-white hover:text-white"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -89,9 +90,9 @@ export function Lightbox({ photo, onClose, onPrev, onNext }) {
  
       {/* Next — hidden on mobile */}
       <button
+        title='next'
         onClick={(e) => { e.stopPropagation(); onNext(); }}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border items-center justify-center transition-all z-10 hidden md:flex"
-        style={{ borderColor: "rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.7)" }}
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border items-center justify-center transition-all z-10 hidden md:flex border-white/30 text-white/80 hover:border-white hover:text-white"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -126,9 +127,9 @@ export function Lightbox({ photo, onClose, onPrev, onNext }) {
         {/* Caption + swipe hint on mobile */}
         <div className="flex flex-col items-center gap-2 w-full">
           <div className="flex items-center gap-3">
-            <span className="text-white/70 text-sm">{photo.alt}</span>
+            <span className="text-white text-sm">{photo.alt}</span>
             <span className="w-1 h-1 rounded-full bg-white/30" />
-            <span className="text-white/40 text-sm">{photo.location}</span>
+            <span className="text-white/50 text-sm">{photo.location}</span>
           </div>
           {/* Mobile swipe hint — only shown once via opacity fade */}
           <div className="flex items-center gap-2 md:hidden" style={{ color: "rgba(255,255,255,0.3)" }}>
@@ -144,8 +145,7 @@ export function Lightbox({ photo, onClose, onPrev, onNext }) {
           <div className="flex items-center gap-4 md:hidden mt-1">
             <button
               onClick={(e) => { e.stopPropagation(); onPrev(); }}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-full border text-xs font-semibold transition-all"
-              style={{ borderColor: "rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.6)" }}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-full border text-xs font-semibold transition-all border-white/30 text-white/80 hover:border-white hover:text-white"
             >
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path d="M8 2L4 6l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -154,8 +154,7 @@ export function Lightbox({ photo, onClose, onPrev, onNext }) {
             </button>
             <button
               onClick={(e) => { e.stopPropagation(); onNext(); }}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-full border text-xs font-semibold transition-all"
-              style={{ borderColor: "rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.6)" }}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-full border text-xs font-semibold transition-all border-white/30 text-white/80  hover:border-white hover:text-white"
             >
               Next
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">

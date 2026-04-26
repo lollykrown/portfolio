@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
 import { sendContactForm } from '@/actions/mail';
-import { Glow , DotGrid} from "@/components/Cont"
-import { useAnalytics } from "@/hooks/useAnalytics";
+import { Glow, DotGrid } from '@/components/Cont';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 // ─── Shared animation variants ────────────────────────────────────
 const fadeUp = {
@@ -18,16 +18,16 @@ const fadeUp = {
   },
 };
 const stagger = {
-  hidden: {},
+  hidden: {    },
   show: { transition: { staggerChildren: 0.1 } },
 };
 
-// ─── Contact info items ───────────────────────────────────────────
+// ─── Contact info items ─────────────────────────────§§ ──────────────
 const contactInfo = [
   {
     label: 'Email',
-    value: 'hello@lollykrown.xyz',
-    href: 'mailto:joe_kayu@yahoo.com',
+    value: 'admin@lollykrown.xyz',
+    href: 'mailto:admin@lollykrown.xyz',
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5">
         <path
@@ -191,7 +191,9 @@ function FAQItem({ q, a }) {
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
             <path
               d="M6 2v8M2 6h8"
-              stroke={open ? 'var(--color-accent)' : 'var(--color-text-primary) '}
+              stroke={
+                open ? 'var(--color-accent)' : 'var(--color-text-primary) '
+              }
               strokeWidth="1.5"
               strokeLinecap="round"
             />
@@ -239,20 +241,20 @@ export default function ContactPage() {
     console.log('Form submitted with data:', formState);
 
     setSending(true);
-    try{
-    const res = await sendContactForm(JSON.stringify(formState));
-    console.log('Form submission response:', res);
-    analytics.trackFormSubmission(formState.email)
-    if (res.error) {
-      setSending(false);
-      setError(res.error || { message: 'An unknown error occurred' });
-      return;
+    try {
+      const res = await sendContactForm(JSON.stringify(formState));
+      console.log('Form submission response:', res);
+      analytics.trackFormSubmission(formState.email);
+      if (res.error) {
+        setSending(false);
+        setError(res.error || { message: 'An unknown error occurred' });
+        return;
+      }
+      setSubmitted(true);
+    } catch (e) {
+      console.log('e', e);
+      setError(e?.message);
     }
-    setSubmitted(true);
-  }catch(e){
-    console.log('e',e)
-    setError(e?.message)
-  }
   };
 
   return (
@@ -570,7 +572,7 @@ export default function ContactPage() {
                       }
                     />
                     <p className="text-red-600 -mt-5 bg-blur text-xs">
-                      {error?`*${error}*`:''}
+                      {error ? `*${error}*` : ''}
                     </p>
 
                     {/* 🤖 CAPTCHA */}
@@ -685,9 +687,7 @@ export default function ContactPage() {
                         : 'none',
                   }}
                 >
-                  <div
-                    className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5 bg-[color-mix(in_srgb,var(--color-accent)_10%,transparent)] text-(--color-accent-subtle)"
-                  >
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5 bg-[color-mix(in_srgb,var(--color-accent)_10%,transparent)] text-(--color-accent-subtle)">
                     {item.icon}
                   </div>
                   <div>
@@ -714,12 +714,9 @@ export default function ContactPage() {
 
             {/* Socials */}
             <div
-              className="rounded-2xl border border-white/8 p-6"
-              style={{ backgroundColor: 'var(--color-bg-card-dark)' }}
+              className="rounded-2xl border border-white/8 p-6 bg-(--color-bg-card-dark)"
             >
-              <p
-                className="text-xs font-semibold tracking-[0.18em] uppercase mb-4 text-(--color-accent-subtle)"
-              >
+              <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-4 text-(--color-accent-subtle)">
                 Find me online
               </p>
               <div className="flex flex-col gap-3">
@@ -729,14 +726,12 @@ export default function ContactPage() {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-(--color-text-secondary) hover:text-(--color-text-primary) group transition-colors duration-200"
+                    className="flex hover:underline items-center gap-3 text-(--color-text-secondary) hover:text-(--color-text-primary) group transition-colors duration-200"
                   >
-                    <span
-                      className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 group-hover:border-white/25 transition-colors bg-['color-mix(in_srgb,var(--color-accent)_5%,transparent)] group-hover:bg-[color-mix(in_srgb,var(--color-accent)_15%,transparent)]"
-                    >
+                    <span className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 group-hover:border-white/25 transition-colors bg-['color-mix(in_srgb,var(--color-accent)_5%,transparent)] group-hover:bg-[color-mix(in_srgb,var(--color-accent)_15%,transparent)]">
                       {s.icon}
                     </span>
-                    <span className="text-sm font-medium">{s.label}</span>
+                    <span className="text-sm font-medium ">{s.label}</span>
                     <svg
                       className="w-3.5 h-3.5 ml-auto opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200"
                       viewBox="0 0 14 14"
@@ -797,7 +792,7 @@ export default function ContactPage() {
             <p className="text-gray-500 text-sm leading-relaxed mt-4">
               Don&apos;t see your question?{' '}
               <Link
-                href="mailto:hello@yourdomain.com"
+                href="mailto:admin@yourdomain.com"
                 className="underline"
                 style={{
                   color: 'var(--color-accent-subtle)',
@@ -872,10 +867,10 @@ export default function ContactPage() {
             </motion.p>
             <motion.div variants={fadeUp}>
               <Link
-                href="mailto:joe_kayu@yahoo.com"
+                href="mailto:admin@lollykrown.xyz"
                 className="inline-flex items-center gap-3 btn-accent px-8 py-4 rounded-full text-base"
               >
-                hello@lollykrown.xyz
+                admin@lollykrown.xyz
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path
                     d="M2 8h12M9 4l4 4-4 4"

@@ -81,7 +81,7 @@ export default function PhotographyComp() {
             </motion.div>
           ))}
           {/* Dark vignette over right side */}
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(10,10,18,1) 40%, rgba(10,10,18,0.6) 70%, rgba(10,10,18,0.2) 100%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(10,10,18,1) 40%, rgba(10,10,18,0.6) 10%, rgba(10,10,18,0.1) 10%)" }} />
           {/* Bottom fade */}
           <div className="absolute bottom-0 left-0 right-0 h-48" style={{ background: "linear-gradient(to top, var(--color-bg-page), transparent)" }} />
           <DotGrid />

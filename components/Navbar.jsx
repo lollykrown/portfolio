@@ -82,7 +82,7 @@ export default function Navbar() {
                 onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.color = 'var(--color-text-primary)'; }}
                 onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.color = 'var(--color-text-secondary)'; }}
               >
-                <ApertureIcon active={isActive} />
+                <ApertureIcon />
                 <span className="italic tracking-wide">{link.label}</span>
                 {/* subtle animated underline */}
                 <span

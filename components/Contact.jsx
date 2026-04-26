@@ -81,28 +81,28 @@ export default function HomeContact() {
   const analytics = useAnalytics();
 
   useEffect(() => {
-      // expose function globally for Turnstile
-      window.onTurnstileSuccess = (t) => {
-        setFormState({ ...formState, token: t });
-      };
-    }, []);
+    // expose function globally for Turnstile
+    window.onTurnstileSuccess = (t) => {
+      setFormState({ ...formState, token: t });
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null)
+    setError(null);
     setSending(true);
-    try{
+    try {
       const res = await sendContactForm(JSON.stringify(formState));
       console.log('Form submission response:', res);
-      analytics.trackFormSubmission(formState.email)
+      analytics.trackFormSubmission(formState.email);
       if (res.error) {
         setSending(false);
         setError(res.error || { message: 'An unknown error occurred' });
         return;
       }
       setSubmitted(true);
-    }catch(e){
-      setError(e?.message)
+    } catch (e) {
+      setError(e?.message);
     }
   };
 
@@ -243,51 +243,86 @@ export default function HomeContact() {
                     src="https://challenges.cloudflare.com/turnstile/v0/api.js"
                     strategy="afterInteractive"
                   />
-                <form
-                  onSubmit={handleSubmit}
-                  className="relative z-10 flex flex-col gap-4"
-                >
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="flex flex-col gap-2">
-                      <label className={`text-xs font-bold tracking-wide uppercase ${error?.message?.includes('name') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}>
-                        Name {error?.message?.includes('name') && '*'}
-                      </label>
-                      <input
-                        required
-                        type="text"
-                        placeholder="Your name"
-                        value={formState.name}
-                        onChange={(e) =>
-                          setFormState({ ...formState, name: e.target.value })
-                        }
-                        className={`w-full capitalize rounded-xl px-4 py-3.25 text-[14px] text-(--color-text-primary) outline-none transition-colors placeholder:text-(--color-text-muted)
+                  <form
+                    onSubmit={handleSubmit}
+                    className="relative z-10 flex flex-col gap-4"
+                  >
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div className="flex flex-col gap-2">
+                        <label
+                          className={`text-xs font-bold tracking-wide uppercase ${error?.message?.includes('name') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
+                        >
+                          Name {error?.message?.includes('name') && '*'}
+                        </label>
+                        <input
+                          required
+                          type="text"
+                          placeholder="Your name"
+                          value={formState.name}
+                          onChange={(e) =>
+                            setFormState({ ...formState, name: e.target.value })
+                          }
+                          className={`w-full capitalize rounded-xl px-4 py-3.25 text-[14px] text-(--color-text-primary) outline-none transition-colors placeholder:text-(--color-text-muted)
                             duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))] border ${error?.message?.includes('name') ? 'border-red-600' : 'border-(--color-border-card)'}`}
-                        onFocus={(e) =>
-                          (e.target.style.borderColor =
-                            'color-mix(in srgb, var(--color-accent) 50%, transparent)')
-                        }
-                        onBlur={(e) =>
-                          (e.target.style.borderColor =
-                            'rgba(255,255,255,0.08)')
-                        }
-                      />
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <label
+                          onFocus={(e) =>
+                            (e.target.style.borderColor =
+                              'color-mix(in srgb, var(--color-accent) 50%, transparent)')
+                          }
+                          onBlur={(e) =>
+                            (e.target.style.borderColor =
+                              'rgba(255,255,255,0.08)')
+                          }
+                        />
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <label
                           className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('email') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
                         >
                           Email{error?.message?.includes('email') && '*'}
+                        </label>
+                        <input
+                          required
+                          type="email"
+                          placeholder="you@example.com"
+                          value={formState.email}
+                          onChange={(e) =>
+                            setFormState({
+                              ...formState,
+                              email: e.target.value,
+                            })
+                          }
+                          className={`w-full rounded-xl px-4 py-3.25 text-[14px] text-(--color-text-primary) outline-none transition-colors placeholder:text-(--color-text-muted)
+                            duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))] border ${error?.message?.includes('name') ? 'border-red-600' : 'border-(--color-border-card)'}`}
+                          onFocus={(e) =>
+                            (e.target.style.borderColor =
+                              'color-mix(in srgb, var(--color-accent) 50%, transparent)')
+                          }
+                          onBlur={(e) =>
+                            (e.target.style.borderColor =
+                              'rgba(255,255,255,0.08)')
+                          }
+                        />
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label
+                        className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('message') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
+                      >
+                        Message {error?.message?.includes('message') && '*'}
                       </label>
-                      <input
+                      <textarea
                         required
-                        type="email"
-                        placeholder="you@example.com"
-                        value={formState.email}
+                        rows={10}
+                        placeholder="Tell me about your project..."
+                        value={formState.message}
                         onChange={(e) =>
-                          setFormState({ ...formState, email: e.target.value })
+                          setFormState({
+                            ...formState,
+                            message: e.target.value,
+                          })
                         }
                         className={`w-full rounded-xl px-4 py-3.25 text-[14px] text-(--color-text-primary) outline-none transition-colors placeholder:text-(--color-text-muted)
-                            duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))] border ${error?.message?.includes('name') ? 'border-red-600' : 'border-(--color-border-card)'}`}                        
+                        duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))] border ${error?.message?.includes('name') ? 'border-red-600' : 'border-(--color-border-card)'}`}
                         onFocus={(e) =>
                           (e.target.style.borderColor =
                             'color-mix(in srgb, var(--color-accent) 50%, transparent)')
@@ -298,32 +333,6 @@ export default function HomeContact() {
                         }
                       />
                     </div>
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <label
-                        className={`text-xs font-semibold tracking-wide uppercase ${error?.message?.includes('message') ? 'text-red-600' : 'text-(--color-accent-subtle)'}`}
-                      >
-                        Message {error?.message?.includes('message') && '*'}
-                    </label>
-                    <textarea
-                      required
-                      rows={10}
-                      placeholder="Tell me about your project..."
-                      value={formState.message}
-                      onChange={(e) =>
-                        setFormState({ ...formState, message: e.target.value })
-                      }
-                      className={`w-full rounded-xl px-4 py-3.25 text-[14px] text-(--color-text-primary) outline-none transition-colors placeholder:text-(--color-text-muted)
-                        duration-200 bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-bg-card-darker))] border ${error?.message?.includes('name') ? 'border-red-600' : 'border-(--color-border-card)'}`}
-                      onFocus={(e) =>
-                        (e.target.style.borderColor =
-                          'color-mix(in srgb, var(--color-accent) 50%, transparent)')
-                      }
-                      onBlur={(e) =>
-                        (e.target.style.borderColor = 'rgba(255,255,255,0.08)')
-                      }
-                    />
-                  </div>
 
                     {/* Honeypot (hidden) */}
                     <input
@@ -337,7 +346,7 @@ export default function HomeContact() {
                       }
                     />
                     <p className="text-(--error-text) -mt-3 px-2 bg-blur text-xs">
-                      {error?`*${error}*`:''}
+                      {error ? `*${error}*` : ''}
                     </p>
 
                     {/* 🤖 CAPTCHA */}
@@ -346,56 +355,56 @@ export default function HomeContact() {
                       data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
                       data-callback="onTurnstileSuccess"
                     ></div>
-                  <button
-                    type="submit"
-                    disabled={sending}
-                    className="w-full py-4 rounded-xl font-black text-base flex items-center justify-center gap-3 transition-all duration-200 disabled:opacity-70 mt-1 bg-(--color-accent) text-(--color-arrow-stroke)"
-                  >
-                    {sending ? (
-                      <>
-                        <svg
-                          className="animate-spin w-4 h-4"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                        >
-                          <circle
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="3"
-                            strokeOpacity="0.25"
-                          />
-                          <path
-                            d="M12 2a10 10 0 0 1 10 10"
-                            stroke="currentColor"
-                            strokeWidth="3"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        Send message
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                        >
-                          <path
-                            d="M2 8h12M9 4l4 4-4 4"
-                            stroke="var(--color-arrow-stroke)"
-                            strokeWidth="1.8"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </>
-                    )}
-                  </button>
-                </form>
+                    <button
+                      type="submit"
+                      disabled={sending}
+                      className="w-full py-4 rounded-xl font-black text-base flex items-center justify-center gap-3 transition-all duration-200 disabled:opacity-70 mt-1 bg-(--color-accent) text-(--color-arrow-stroke)"
+                    >
+                      {sending ? (
+                        <>
+                          <svg
+                            className="animate-spin w-4 h-4"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <circle
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              strokeOpacity="0.25"
+                            />
+                            <path
+                              d="M12 2a10 10 0 0 1 10 10"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                            />
+                          </svg>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          Send message
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                          >
+                            <path
+                              d="M2 8h12M9 4l4 4-4 4"
+                              stroke="var(--color-arrow-stroke)"
+                              strokeWidth="1.8"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </>
+                      )}
+                    </button>
+                  </form>
                 </>
               )}
             </div>
@@ -415,9 +424,7 @@ export default function HomeContact() {
           >
             {/* Availability */}
             <div className="flex items-center gap-3 px-5 py-4 rounded-2xl border border-white/8 bg-(--color-bg-card-dark)">
-              <span
-                className="w-2.5 h-2.5 rounded-full animate-pulse shrink-0 bg-(--color-accent)"
-              />
+              <span className="w-2.5 h-2.5 rounded-full animate-pulse shrink-0 bg-(--color-accent)" />
               <div>
                 <p className="text-(--color-text-primary) font-semibold text-sm">
                   Available for projects
@@ -429,17 +436,15 @@ export default function HomeContact() {
             </div>
 
             {/* Direct email */}
-            <div
-              className="rounded-2xl border border-white/8 p-6 bg-(--color-bg-card-darker)"
-            >
+            <div className="rounded-2xl border border-white/8 p-6 bg-(--color-bg-card-darker)">
               <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3 text-(--color-accent-subtle)">
                 Prefer email?
               </p>
               <Link
-                href="mailto:joe@yahoo.com"
+                href="mailto:admin@lollykrown.xyz"
                 className="text-(--color-text-primary) font-semibold text-sm hover:underline block mb-1"
               >
-                hello@lollykrown.xyz
+                admin@lollykrown.xyz
               </Link>
               <p className="text-(--color-text-secondary) text-xs">
                 Response within 24 hours
@@ -447,8 +452,7 @@ export default function HomeContact() {
             </div>
 
             {/* Socials */}
-            <div
-              className="rounded-2xl border border-white/8 p-6 bg-(--color-bg-card-darker)" >
+            <div className="rounded-2xl border border-white/8 p-6 bg-(--color-bg-card-darker)">
               <p
                 className="text-xs font-semibold tracking-[0.18em] uppercase mb-4"
                 style={{ color: 'var(--color-accent-subtle)' }}
@@ -464,9 +468,7 @@ export default function HomeContact() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 text-(--color-text-secondary) hover:text-(--color-text-primary) group transition-colors duration-200"
                   >
-                    <span
-                      className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 group-hover:border-white/25 transition-colors bg-[color-mix(in_srgb,var(--color-accent)_5%,transparent)] group-hover:bg-[color-mix(in_srgb,var(--color-accent)_15%,transparent)]"
-                    >
+                    <span className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 group-hover:border-white/25 transition-colors bg-[color-mix(in_srgb,var(--color-accent)_5%,transparent)] group-hover:bg-[color-mix(in_srgb,var(--color-accent)_15%,transparent)]">
                       {s.icon}
                     </span>
                     <span className="text-sm font-medium">{s.label}</span>

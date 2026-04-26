@@ -152,7 +152,7 @@ export default function ProjectsPage() {
                 />
               </svg>
             </Link>
-            <Link href="/contact" className="btn-border" >
+            <Link href="/contact" className="btn-border">
               Start a project
             </Link>
           </motion.div>
@@ -202,10 +202,11 @@ export default function ProjectsPage() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: '-60px' }}
-        className="relative border-y overflow-hidden border-(--color-border)" >
+        className="relative border-y overflow-hidden border-(--color-border)"
+      >
         <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((s,i) => (
-           <CountStat key={s.label} stat={s} index={i} />
+          {stats.map((s, i) => (
+            <CountStat key={s.label} stat={s} index={i} />
           ))}
         </div>
       </motion.section>
@@ -231,8 +232,7 @@ export default function ProjectsPage() {
               className="flex items-end justify-between flex-wrap gap-4 mb-8"
             >
               <div>
-                <span
-                  className="text-xs font-semibold tracking-[0.2em] uppercase block mb-3 text-(--color-accent-subtle)">
+                <span className="text-xs font-semibold tracking-[0.2em] uppercase block mb-3 text-(--color-accent-subtle)">
                   Selected Work
                 </span>
                 <h2 className="text-3xl md:text-4xl font-black text-(--color-text-primary)">
@@ -277,8 +277,12 @@ export default function ProjectsPage() {
           </motion.div>
 
           {/* Grid */}
-          <Projects projects={filtered} stagger={stagger} cardVar={cardVar} activeTag={activeTag}/>
-
+          <Projects
+            projects={filtered}
+            stagger={stagger}
+            cardVar={cardVar}
+            activeTag={activeTag}
+          />
         </div>
       </section>
 
@@ -438,7 +442,7 @@ export default function ProjectsPage() {
               'OAuth',
               'JWT',
               'Accessibility best practices',
-              'Performance optimization techniques',  
+              'Performance optimization techniques',
               'Cross-browser compatibility strategies',
               'Progressive Web App (PWA) development',
               'Mobile-first design principles',
@@ -531,10 +535,10 @@ export default function ProjectsPage() {
                 </svg>
               </Link>
               {/* <Link
-                href="mailto:hello@yourdomain.com"
+                href="mailto:admin@yourdomain.com"
                 className="text-sm font-semibold text-(--color-text-secondary) hover:text-(--color-text-primary) transition-colors"
               >
-                hello@yourdomain.com →
+                admin@yourdomain.com →
               </Link> */}
             </motion.div>
           </motion.div>

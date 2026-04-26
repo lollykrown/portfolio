@@ -7,9 +7,9 @@ import { DotGrid, Glow } from "@/components/Cont"
 const testimonials = [
   {
     quote: "The photos from our wedding day are beyond anything we could have imagined. Every emotion, every detail captured perfectly.",
-    name: "Sophie & James",
+    name: "Patrick & Debbie",
     role: "Wedding clients",
-    initials: "SJ",
+    initials: "PD",
   },
   {
     quote: "The portraits from our event felt cinematic. Guests were speechless when they saw the gallery.",
