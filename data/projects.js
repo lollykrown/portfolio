@@ -1,34 +1,113 @@
 export const projects = [
   {
     title: "Union Care Consult",
-    description: `A sleek, single-page website built for a small business to establish a strong and modern online presence.
+    longDescription: `A sleek, single-page website built for a small business to establish a strong and modern online presence.
     I transformed a Figma design into clean, production-ready code—starting with a solid HTML, CSS, and Bootstrap, then progressively enhancing the project by migrating it into a React-based architecture for improved scalability and maintainability. To elevate the visual experience, I integrated illustrations from unDraw, adding a polished and engaging touch to the overall design.`,
-    tech: ["Next.js", 'Bootstrap','Responsive Design', 'Figma to Code', 'Illustration Integration',],
-    github: "https://github.com/lollykrown",
-    thumbnail: "/project1.png",
+    tech: [
+      "Next.js","Bootstrap",
+      'Figma to Code', 
+      "Illustration Integration (unDraw)",
+      "CSS / Tailwind or Bootstrap",
+      "Contact Form Integration",
+      "Basic SEO",
+      "Responsive Design",
+      "Google Maps Integration",
+      "Performance Optimization"
+    ],
+    thumbnail: "/projects/project1.png",
     live: "https://unioncareconsult.com",
+    github: "https://github.com/lollykrown",
+    year: "2022",
+    role: "Frontend Developer",
+    client: "Union Care Consult",
+    duration: "1 week",
+    features: ["Core Purpose (Simple but focused)", "Basic Responsive Design", "SEO Foundations"],
   },
   {
     title: "Tivitea Africa",
-    description: `The project focused on creating a dynamic, user-centric platform designed to 
+    longDescription: `The project focused on creating a dynamic, user-centric platform designed to 
       empower artisans—giving them seamless access to rentable workspaces and tools, while also 
       enabling them to showcase their skills and connect with potential clients.
       I was responsible for bringing the vision to life on the frontend—translating a comprehensive 
       Figma design system into a fully functional, responsive, and high-performance web experience. 
       This involved crafting reusable components, ensuring pixel-perfect implementation, 
       and delivering an intuitive interface that balances aesthetics with usability.`,
-    tech: ["Next.js", "Tailwind", 'API Integration', 'Figma to Code','Authentication', 'Payment Integration', 'REST API', 'Responsive Design', 'Performance Optimization','SEO'],
+    tech: [
+      "Next.js",
+      "Tailwind CSS",
+      "Authentication",'API Integration', 'Figma to Code',
+      "REST API",
+      "JWT Authentication",
+      "Role-Based Access Control",
+      "Dashboard UI (Charts & Tables)",
+      "Payment Integration",
+      "Booking System Logic",
+      "Cloud Storage (Images)",
+      "Server Actions / SSR",
+      "Cookie-Based Sessions",
+      "Responsive Design",
+      "Performance Optimization",
+      "SEO"
+    ],
     github: "https://github.com/lollykrown",
-    thumbnail: "/project2.png",
+    thumbnail: "/projects/project2.png",
     live: "https://tivitea.africa",
+    year: "2023",
+    role: "Full-stack Developer",
+    client: "Tivitea Africa",
+    duration: "6 weeks",
+    features: ["Multi-User Roles System","Role-Based Dashboards", "Booking System", "Listings / Marketplace","Payments Integration",
+      "Analytics & Charts", "User Reviews & Ratings","Authentication & Session System", "Comprehensive Admin Panel","Multi-Account Switching"],
+  },
+  {
+    title: "Care Network International",
+    longDescription: `The project was for a charity oganization, and the goal was to create a modern, user-friendly website that effectively communicates the organization’s mission, engages visitors, and encourages support and donations. 
+    I was responsible for translating a comprehensive Figma design system into a fully functional, responsive, and high-performance web experience. This involved crafting reusable components, ensuring pixel-perfect implementation, 
+    and delivering an intuitive interface that balances aesthetics with usability.`,
+    tech: [
+      "Next.js",
+      "Tailwind CSS",'API Integration', 'Figma to Code','Authentication',
+      "Donation Integration (gofundme)",
+      "Campaign Pages",
+      "Email Notifications",
+      "Basic CMS (for content updates)",
+      "Responsive Design",
+      "SEO",
+      "Analytics",
+      "Performance Optimization",
+    ],
+    github: "https://github.com/lollykrown/careNet",
+    thumbnail: "/projects/project3.png",
+    live: "https://carenetwork.ngo",
+    year: "2024",
+    role: "Full-stack Developer",
+    client: "Care Network NGO",
+    duration: "1 week",
+    features: ["Mission-Driven Homepage", "Causes / Campaign System", "Donation System (Key Feature)",
+      "Volunteer & Community Engagement","Awareness & Advocacy","News / Updates Section","Contact & Trust Signals" ],
   },
   {
     title: "Dashboard",
     description: "A powerful, highly customizable dashboard application built with Next.js and a modern ecosystem of supporting libraries, designed for scalability, performance, and a seamless user experience.",
-    tech: ["Next.js", "Tailwind","Chart Libraries",],
+    tech: [
+      "Next.js",
+      "Tailwind CSS",
+      "Chart Libraries",
+      "Responsive Design",
+      "Component-Based Architecture",
+      "Dark Mode Support",
+      "Reusable UI Components",
+      "State Management (React hooks)"
+    ],
     github: "https://github.com/lollykrown",
-    thumbnail: "/project3.png",
+    thumbnail: "/projects/project4.png",
     live: "https://robust-dashboard.netlify.app",
+    year: "2024",
+    role: "Full-stack Developer",
+    client: "Care Network NGO",
+    duration: "2 weeks",
+    features: ["Admin Dashboard Layout", "Analytics & Charts", "Data Tables with Sorting & Pagination", 
+      "User Management System", "Performance Optimization", "Responsive Design"],
   },
 ];
 

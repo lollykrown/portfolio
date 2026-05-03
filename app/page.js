@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/data/projects";
@@ -9,6 +9,8 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import { Projects } from "@/components/projects";
+import ProjectModal from "@/components/ProjectModal";
+import { useState } from "react";
 
 const stagger = {
   hidden: {},
@@ -25,6 +27,8 @@ const cardVariants = {
 
 
 export default function Home() {
+    const [selectedProject, setSelectedProject] = useState(null);
+  
   return (
     <main className="min-h-screen flex flex-col bg-(--color-bg-page) shadow-(--shad) pt-20" >
       <Hero />
@@ -97,13 +101,22 @@ export default function Home() {
         </motion.div>
 
         {/* Project grid */}
-        <Projects projects={projects.slice(0,3)} stagger={stagger} cardVar={cardVariants} />
+        <Projects projects={projects.slice(0,3)} stagger={stagger} cardVar={cardVariants} onClick={setSelectedProject}/>
 
       </div>
       </motion.section>
       <About />
       <Skills />
       <Contact />
+      {/* ── MODAL ─────────────────────────────────────────────────── */}
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
+      </AnimatePresence>
     </main>
   );
 }

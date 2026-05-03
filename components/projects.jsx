@@ -4,11 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 
-export const Projects = ({projects, stagger, cardVar,activeTag}) => {
+export const Projects = ({projects, stagger, cardVar,activeTag, onClick}) => {
 
   return (
     <motion.div
-            key={activeTag}
+            key={activeTag}      
             className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
             variants={stagger}
             initial="hidden"
@@ -18,6 +18,7 @@ export const Projects = ({projects, stagger, cardVar,activeTag}) => {
             {projects.map((project, i) => (
               <motion.div
                 key={i}
+                onClick={() => onClick(project)}
                 variants={cardVar}
                 whileHover={{
                   y: -5,

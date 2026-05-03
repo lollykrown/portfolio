@@ -136,7 +136,7 @@ export default function PrivacyPage() {
                 style={{ color: 'var(--color-accent-subtle)' }}
               >
                 admin@lollykrown.xyz
-              </a>
+              </Link>
               .
             </P>
           </Section>
@@ -194,7 +194,7 @@ export default function PrivacyPage() {
                 style={{ color: 'var(--color-accent-subtle)' }}
               >
                 Google's Privacy Policy
-              </a>
+              </Link>
               . You can opt out of Google Analytics tracking across all websites
               by installing the{' '}
               <a
@@ -205,7 +205,7 @@ export default function PrivacyPage() {
                 style={{ color: 'var(--color-accent-subtle)' }}
               >
                 Google Analytics Opt-out Browser Add-on
-              </a>
+              </Link>
               .
             </P>
             <P>
