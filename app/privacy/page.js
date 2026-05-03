@@ -130,7 +130,7 @@ export default function PrivacyPage() {
             <P>
               If you have any questions about this privacy policy or how we
               handle your data, please contact us at{' '}
-              <a
+              <Link
                 href="mailto:admin@lollykrown.xyz"
                 className="underline"
                 style={{ color: 'var(--color-accent-subtle)' }}
@@ -186,7 +186,7 @@ export default function PrivacyPage() {
             </P>
             <P>
               Google's data processing is governed by{' '}
-              <a
+              <Link
                 href="https://policies.google.com/privacy"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -197,7 +197,7 @@ export default function PrivacyPage() {
               </Link>
               . You can opt out of Google Analytics tracking across all websites
               by installing the{' '}
-              <a
+              <Link
                 href="https://tools.google.com/dlpage/gaoptout"
                 target="_blank"
                 rel="noopener noreferrer"
