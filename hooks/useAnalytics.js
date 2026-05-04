@@ -1,7 +1,12 @@
+import { track } from "@/lib/analytics";
+
 export function useAnalytics() {
   const safeTrack = (event, data) => {
     if (typeof window === "undefined" || !window.gtag) return;
     track(event, data);
+    // window.gtag("event", event, {
+    //   ...data,
+    // });
   };
 
   return {

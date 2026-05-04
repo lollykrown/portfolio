@@ -354,6 +354,7 @@ export default function HomeContact() {
                       className="cf-turnstile"
                       data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
                       data-callback="onTurnstileSuccess"
+                      data-size="flexible"
                     ></div>
                     <button
                       type="submit"
