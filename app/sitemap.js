@@ -1,10 +1,6 @@
-// app/sitemap.ts — served automatically at /sitemap.xml
-
-import type { MetadataRoute } from "next";
-
 const SITE_URL = "https://lollykrown.xyz";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default function sitemap(){
   const lastModified = new Date();
 
   return [
