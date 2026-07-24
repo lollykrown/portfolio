@@ -3,9 +3,10 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Footer from "@/components/Footer";
-import Script from "next/script";
 import AnalyticsManager from "@/components/AnalyticsManager";
 import { PageTracker } from "@/components/PageTracker";
+import StructuredData from "@/components/StructuredData";
+const SITE_URL = "https://lollykrown.xyz";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,45 +19,64 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://lollykrown.xyz'),
-
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Lollykrown | Creative Developer',
     template: '%s | Lollykrown',
   },
-
   description:
-    'LollyKrown is a creative developer crafting modern, high-performance web experiences with clean design and smooth interactions.',
-
+    "LollyKrown is a creative frontend developer crafting modern, high-performance web experiences with Next.js — clean design, smooth interactions, and scalable architecture.",
   keywords: [
     'Lollykrown',
     'Frontend Developer',
+    'Fullstack Developer',
+    'Mobile Developer',
     'Next.js Developer',
     'Web Developer Portfolio',
+    "TypeScript Developer",
+    "Freelance Web Developer",
     'UI Developer',
     'React.js Developer',
-    'Fullstack Developer',
     'Node.js Developer',
     'React Native Developer',
     'SEO',
     'HTML5', 'CSS3', 'JavaScript', 'websites', 'sites', 'portfolio', 'responsive',
   ],
-
+  applicationName: "LollyKrown",
+  authors: [{ name: "Kayode Agboola", url: SITE_URL }],
+  creator: "Kayode Agboola",
+  publisher: "LollyKrown",
+  category: "Technology",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "LollyKrown",
     title: 'LollyKrown | Creative Developer',
     description:
       'Modern web experiences built with performance, design, and scalability in mind.',
-    url: 'https://lollykrown.xyz',
-    siteName: 'Lollykrown',
+    locale: 'en_GB',
     images: [
       {
         url: '/og-image.jpg', // 👈 add this image
         width: 1200,
         height: 630,
+        alt: "LollyKrown — creative developer portfolio",
       },
     ],
-    locale: 'en_GB',
-    type: 'website',
   },
   author:'Kayode Agboola',
   twitter: {
@@ -66,28 +86,18 @@ export const metadata = {
       'Explore modern web projects and creative development work.',
     images: ['/og-image.jpg'],
   },
-  metadataBase: new URL('https://lollykrown.xyz'),
-  alternates: {
-    canonical: '/',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
   icons: {
-    icon: '/favicon.ico',
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 export const viewport = {
   width: "device-width",
   initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+  ],
 };
 
 export default function RootLayout({ children }) {
@@ -111,24 +121,11 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-
-        {/* Structured data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'ImageGallery',
-              name: 'LollyKrown Photography',
-              url: 'https://lollykrown.xyz/photography',
-            }),
-          }}
-        />
       </head>
       <body className="min-h-full flex flex-col">
+        <StructuredData/>
         <ThemeProvider attribute="class" defaultTheme="dark">
         <AnalyticsManager>
-
         <Navbar />
           {children}
 

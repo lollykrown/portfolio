@@ -23,7 +23,7 @@ export const metadata = {
     description:
       'A curated photography collection capturing people, moments, and atmosphere.',
     url: 'https://lollykrown.xyz/photography',
-    images: ['/og-photography.jpg'], // 👈 create this
+    images: ['/og-photography.jpg'], 
   },
 };
 
