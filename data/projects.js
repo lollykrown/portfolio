@@ -1,66 +1,5 @@
 export const projects = [
   {
-    title: "Union Care Consult",
-    longDescription: `A sleek, single-page website built for a small business to establish a strong and modern online presence.
-    I transformed a Figma design into clean, production-ready code—starting with a solid HTML, CSS, and Bootstrap, then progressively enhancing the project by migrating it into a React-based architecture for improved scalability and maintainability. To elevate the visual experience, I integrated illustrations from unDraw, adding a polished and engaging touch to the overall design.`,
-    tech: [
-      "Next.js",
-      "Bootstrap",
-      'Figma to Code',
-      "Illustration Integration (unDraw)",
-      "CSS",
-      "Contact Form Integration",
-      "Basic SEO",
-      "Responsive Design",
-      "Google Maps Integration",
-      "Performance Optimization"
-    ],
-    thumbnail: "/projects/project1.png",
-    live: "https://unioncareconsult.com",
-    github: "https://github.com/lollykrown",
-    year: "2022",
-    role: "Frontend Developer",
-    client: "Union Care Consult",
-    duration: "1 week",
-    features: ["Core Purpose (Simple but focused)", "Basic Responsive Design", "SEO Foundations"],
-  },
-  {
-    title: "Tivitea Africa",
-    longDescription: `The project focused on creating a dynamic, user-centric platform designed to 
-      empower artisans—giving them seamless access to rentable workspaces and tools, while also 
-      enabling them to showcase their skills and connect with potential clients.
-      I was responsible for bringing the vision to life on the frontend—translating a comprehensive 
-      Figma design system into a fully functional, responsive, and high-performance web experience. 
-      This involved crafting reusable components, ensuring pixel-perfect implementation, 
-      and delivering an intuitive interface that balances aesthetics with usability.`,
-    tech: [
-      "Next.js",
-      "Tailwind CSS",
-      "Authentication",'API Integration', 'Figma to Code',
-      "REST API",
-      "JWT Authentication",
-      "Role-Based Access Control",
-      "Dashboard UI (Charts & Tables)",
-      "Payment Integration",
-      "Booking System Logic",
-      "Cloud Storage (Images)",
-      "Server Actions / SSR",
-      "Cookie-Based Sessions",
-      "Responsive Design",
-      "Performance Optimization",
-      "SEO"
-    ],
-    github: "https://github.com/lollykrown",
-    thumbnail: "/projects/project2.png",
-    live: "https://tivitea.africa",
-    year: "2023",
-    role: "Full-stack Developer",
-    client: "Tivitea Africa",
-    duration: "6 weeks",
-    features: ["Multi-User Roles System","Role-Based Dashboards", "Booking System", "Listings / Marketplace","Payments Integration",
-      "Analytics & Charts", "User Reviews & Ratings","Authentication & Session System", "Comprehensive Admin Panel","Multi-Account Switching"],
-  },
-  {
     title: "Estandz Place Consulting",
     longDescription: `A full accounting and tax advisory website rebuilt from the ground up on Next.js, replacing a static site with a CMS-driven platform designed for real day-to-day content management by a non-technical client.
     I was responsible for the complete build — architecture, design system, and backend. This meant designing a distinctive "ledger" visual identity (perforated receipt-style cards, ruled lines, a warm ledger-green and mustard-gold palette) rather than a generic template look, then wiring it to a headless Sanity CMS so the client can publish blog posts, speaking engagements, downloadable resources, and client reviews without touching code. On the backend, I built transactional email infrastructure using Resend and React Email for the contact form, a full client-onboarding intake form, and gated resource downloads — each with server-side Zod validation, input sanitization, rate limiting, and bot-detection (honeypot fields plus submission-timing checks) to keep the forms genuinely spam-resistant in production.`,
@@ -99,6 +38,67 @@ export const projects = [
       "Blog with Categories, Pagination & Related Posts",
       "SEO Optimization & Structured Data",
     ],
+  },
+  {
+    title: "Tivitea Africa",
+    longDescription: `The project focused on creating a dynamic, user-centric platform designed to 
+      empower artisans—giving them seamless access to rentable workspaces and tools, while also 
+      enabling them to showcase their skills and connect with potential clients.
+      I was responsible for bringing the vision to life on the frontend—translating a comprehensive 
+      Figma design system into a fully functional, responsive, and high-performance web experience. 
+      This involved crafting reusable components, ensuring pixel-perfect implementation, 
+      and delivering an intuitive interface that balances aesthetics with usability.`,
+    tech: [
+      "Next.js",
+      "Tailwind CSS",
+      "Authentication",'API Integration', 'Figma to Code',
+      "REST API",
+      "JWT Authentication",
+      "Role-Based Access Control",
+      "Dashboard UI (Charts & Tables)",
+      "Payment Integration",
+      "Booking System Logic",
+      "Cloud Storage (Images)",
+      "Server Actions / SSR",
+      "Cookie-Based Sessions",
+      "Responsive Design",
+      "Performance Optimization",
+      "SEO"
+    ],
+    github: "https://github.com/lollykrown",
+    thumbnail: "/projects/project2.png",
+    live: "https://tivitea.africa",
+    year: "2023",
+    role: "Full-stack Developer",
+    client: "Tivitea Africa",
+    duration: "6 weeks",
+    features: ["Multi-User Roles System","Role-Based Dashboards", "Booking System", "Listings / Marketplace","Payments Integration",
+      "Analytics & Charts", "User Reviews & Ratings","Authentication & Session System", "Comprehensive Admin Panel","Multi-Account Switching"],
+  },
+  {
+    title: "Union Care Consult",
+    longDescription: `A sleek, single-page website built for a small business to establish a strong and modern online presence.
+    I transformed a Figma design into clean, production-ready code—starting with a solid HTML, CSS, and Bootstrap, then progressively enhancing the project by migrating it into a React-based architecture for improved scalability and maintainability. To elevate the visual experience, I integrated illustrations from unDraw, adding a polished and engaging touch to the overall design.`,
+    tech: [
+      "Next.js",
+      "Bootstrap",
+      'Figma to Code',
+      "Illustration Integration (unDraw)",
+      "CSS",
+      "Contact Form Integration",
+      "Basic SEO",
+      "Responsive Design",
+      "Google Maps Integration",
+      "Performance Optimization"
+    ],
+    thumbnail: "/projects/project1.png",
+    live: "https://unioncareconsult.com",
+    github: "https://github.com/lollykrown",
+    year: "2022",
+    role: "Frontend Developer",
+    client: "Union Care Consult",
+    duration: "1 week",
+    features: ["Core Purpose (Simple but focused)", "Basic Responsive Design", "SEO Foundations"],
   },
   {
     title: "Care Network International",
