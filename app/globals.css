@@ -34,6 +34,7 @@
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
+
 @tailwind utilities;
 /* shadow-[inset_0_0_1000px_1000px_rgba(0,0,0,0.747)] */
 @layer base {
@@ -45,32 +46,31 @@
     --color-accent-hover:   #d97706; /* amber-600  — hover / darker accent     */
     --color-accent-muted:   #92400e; /* amber-800  — dark glow / card bg tint  */
     --color-accent-subtle:  #fbbf24; /* amber-400  — gradient start / icon     */
- 
+
     /* ── Gradient stops (used in bg-gradient-to-r) ── */
     --color-grad-from:      #f59e0b; /* amber-500  */
     --color-grad-via:       #fbbf24; /* amber-400  */
     --color-grad-to:        #fcd34d; /* yellow-300 */
     --color-grad-alt-to:    #fb923c; /* orange-400 — second gradient variant   */
- 
+
     /* ── Page / surface backgrounds ── */
     --color-bg-page:        #0c0c14; /* hero section bg                        */
     --color-bg-mobile-menu: #111118; /* mobile nav dropdown                    */
     --color-bg-card-dark:   #111111; /* center card                            */
-    --color-bg-card-darker: #0e0e1a; /* right card  
-    
- 
+    --color-bg-card-darker: #0e0e1a; /* right card
+
     /* ── Text ── */
     --color-text-primary:   #ffffff;
     --color-text-secondary: #9ca3af; /* gray-400 */
     --color-text-muted:     #6b7280; /* gray-500 */
     --color-text-faint:     #374151; /* gray-700 — for ghost text */
-    --error-text:           #ffffff; 
+    --error-text:           #ffffff;
 
     /* ── Borders & dividers ── */
     --color-border:         rgba(255, 255, 255, 0.06);
     --color-border-card:    rgba(255, 255, 255, 0.08);
     --color-border-hover:   rgba(255, 255, 255, 0.20);
- 
+
     /* ── Dot grid ── */
     --color-dot-grid:       #ffffff;
     --color-dot-opacity:    0.035;
@@ -92,15 +92,13 @@
     --color-purple-muted: #6d28d9; /* violet-700  — purple glow / card bg tint */
     --color-purple-subtle: #a78bfa; /* violet-400  — purple gradient start / icon */
 
-   
-
     /* ── Page / surface backgrounds ── */
     --color-bg-page:        #0c0c14; /* hero section bg                        */
     --color-bg-mobile-menu: #111118; /* mobile nav dropdown                    */
     --color-bg-card-dark:   #111111; /* center card                            */
     --color-bg-card-darker: #0e0e1a; /* right card */
   }
- 
+
   [data-theme="light"] {
     /* ── Brand palette — LIGHT ── */
     --color-accent:         #d97706;
@@ -108,18 +106,18 @@
     --color-accent-hover:   #b45309;
     --color-accent-muted:   #fde68a;
     --color-accent-subtle:  #d97706;
- 
+
     --color-grad-from:      #d97706;
     --color-grad-via:       #f59e0b;
     --color-grad-to:        #fbbf24;
     --color-grad-alt-to:    #ea580c;
- 
+
     /* ── Surfaces ── */
     --color-bg-page:        #fafaf8;
     --color-bg-mobile-menu: #ffffff;
     --color-bg-card-dark:   #ffffff;
     --color-bg-card-darker: #f5f4f0;
- 
+
     /* ── Text ── */
     --color-text-primary:   #0c0c14;
     --color-text-secondary: #4b5563; /* gray-600 */
@@ -131,11 +129,11 @@
     --color-border:         rgba(0, 0, 0, 0.07);
     --color-border-card:    rgba(0, 0, 0, 0.08);
     --color-border-hover:   rgba(0, 0, 0, 0.20);
- 
+
     /* ── Dot grid ── */
     --color-dot-grid:       #000000;
     --color-dot-opacity:    0.04;
- 
+
     /* ── Arrow icon stroke (on accent bg) ── */
     --color-arrow-stroke:   #ffffff;
     --color-scroll-stroke:  #d97706;
@@ -143,7 +141,6 @@
     /* --color-bb: #000000; */
     --shad:'none'
   }
-  
 }
 
 @layer components {
@@ -164,10 +161,12 @@
 
   /* Accent button */
   .btn-accent {
-    @apply text-sm text-(--color-text-primary) font-semibold px-5 py-2 bg-linear-to-r from-orange-400 to-amber-300 hover:bg-orange-800  rounded-full transition-colors duration-200;
+    @apply text-sm font-semibold px-5 py-2 rounded-full transition-all duration-200;
+    background: linear-gradient(to right, var(--color-accent), var(--color-accent-light));
+    color: var(--color-arrow-stroke);
   }
   .btn-accent:hover {
-    background-color: var(--color-accent-hover);
+    background: linear-gradient(to right, var(--color-accent-hover), var(--color-accent));
   }
   .btn-border{
     @apply border border-(--color-border-hover) bg-(--color-border) hover:bg-(--color-border-hover) gap-3 inline-flex font-semibold items-center mr-4 hover:border-(--color-border-card) text-(--color-text-secondary) hover:text-(--color-text-primary) transition-colors px-7 py-3 rounded-full duration-200 backdrop-blur-sm ;

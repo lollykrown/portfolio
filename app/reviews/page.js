@@ -159,9 +159,18 @@ export default function ReviewsPage() {
               {paginated.map((r) => (
                 <motion.div key={r.id}
                   variants={{ hidden: { opacity: 0, y: 24, scale: 0.97 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
-                  className="relative rounded-2xl p-7 border overflow-hidden"
+                  whileHover={{ y: -5, transition: { duration: 0.2, ease: "easeOut" } }}
+                  className="relative rounded-2xl p-7 border overflow-hidden group cursor-default"
                   style={{ backgroundColor: "var(--color-bg-card-darker)", borderColor: "var(--color-border-card)" }}
                 >
+                  {/* Hover glow */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{ background: "radial-gradient(ellipse at top left, color-mix(in srgb, var(--color-accent) 8%, transparent), transparent 65%)" }}
+                  />
+                  {/* Hover top accent line */}
+                  <div className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ background: "linear-gradient(to right, var(--color-accent), transparent)" }}
+                  />
                   <span className="absolute top-4 right-5 text-7xl font-black leading-none select-none pointer-events-none"
                     style={{ color: "color-mix(in srgb, var(--color-accent) 10%, transparent)" }}
                   >&ldquo;</span>
@@ -244,8 +253,7 @@ export default function ReviewsPage() {
             </p>
           )}
 
-
-              {/* Leave a review button */}
+        {/* Leave a review button */}
         <motion.div
           initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }} viewport={{ once: true }}

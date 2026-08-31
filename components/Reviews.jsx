@@ -117,9 +117,18 @@ export default function ReviewsSection() {
         >
           {featured.map((r) => (
             <motion.div key={r.id} variants={fadeUp}
-              className="relative rounded-2xl p-7 border overflow-hidden"
+              whileHover={{ y: -5, transition: { duration: 0.2, ease: "easeOut" } }}
+              className="relative rounded-2xl p-7 border overflow-hidden group cursor-default"
               style={{ backgroundColor: "var(--color-bg-card-darker)", borderColor: "var(--color-border-card)" }}
             >
+              {/* Hover glow */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: "radial-gradient(ellipse at top left, color-mix(in srgb, var(--color-accent) 8%, transparent), transparent 65%)" }}
+              />
+              {/* Hover top accent line */}
+              <div className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: "linear-gradient(to right, var(--color-accent), transparent)" }}
+              />
               <span className="absolute top-4 right-5 text-7xl font-black leading-none select-none pointer-events-none"
                 style={{ color: "color-mix(in srgb, var(--color-accent) 10%, transparent)" }}
               >&ldquo;</span>

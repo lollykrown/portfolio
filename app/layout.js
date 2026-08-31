@@ -116,6 +116,18 @@ export default function RootLayout({ children }) {
                 try {
                   var t = localStorage.getItem('theme') || 'dark';
                   document.documentElement.setAttribute('data-theme', t);
+                  var themes = {
+                    amber:   { '--color-accent':'#f59e0b','--color-accent-light':'#fcd34d','--color-accent-hover':'#d97706','--color-accent-muted':'#92400e','--color-accent-subtle':'#fbbf24','--color-grad-from':'#f59e0b','--color-grad-via':'#fbbf24','--color-grad-to':'#fcd34d','--color-grad-alt-to':'#fb923c','--color-arrow-stroke':'#1c1917','--color-scroll-stroke':'#fbbf24' },
+                    emerald: { '--color-accent':'#10b981','--color-accent-light':'#6ee7b7','--color-accent-hover':'#059669','--color-accent-muted':'#064e3b','--color-accent-subtle':'#34d399','--color-grad-from':'#10b981','--color-grad-via':'#34d399','--color-grad-to':'#6ee7b7','--color-grad-alt-to':'#14b8a6','--color-arrow-stroke':'#022c22','--color-scroll-stroke':'#34d399' },
+                    rose:    { '--color-accent':'#f43f5e','--color-accent-light':'#fda4af','--color-accent-hover':'#e11d48','--color-accent-muted':'#881337','--color-accent-subtle':'#fb7185','--color-grad-from':'#f43f5e','--color-grad-via':'#fb7185','--color-grad-to':'#fda4af','--color-grad-alt-to':'#fb923c','--color-arrow-stroke':'#fff1f2','--color-scroll-stroke':'#fb7185' },
+                    blue:    { '--color-accent':'#3b82f6','--color-accent-light':'#93c5fd','--color-accent-hover':'#2563eb','--color-accent-muted':'#1e3a8a','--color-accent-subtle':'#60a5fa','--color-grad-from':'#3b82f6','--color-grad-via':'#60a5fa','--color-grad-to':'#93c5fd','--color-grad-alt-to':'#22d3ee','--color-arrow-stroke':'#eff6ff','--color-scroll-stroke':'#60a5fa' },
+                    violet:  { '--color-accent':'#8b5cf6','--color-accent-light':'#c4b5fd','--color-accent-hover':'#7c3aed','--color-accent-muted':'#4c1d95','--color-accent-subtle':'#a78bfa','--color-grad-from':'#8b5cf6','--color-grad-via':'#a78bfa','--color-grad-to':'#c4b5fd','--color-grad-alt-to':'#818cf8','--color-arrow-stroke':'#f5f3ff','--color-scroll-stroke':'#a78bfa' },
+                    lime:    { '--color-accent':'#84cc16','--color-accent-light':'#d9f99d','--color-accent-hover':'#65a30d','--color-accent-muted':'#1a2e05','--color-accent-subtle':'#a3e635','--color-grad-from':'#84cc16','--color-grad-via':'#a3e635','--color-grad-to':'#d9f99d','--color-grad-alt-to':'#4ade80','--color-arrow-stroke':'#1a2e05','--color-scroll-stroke':'#a3e635' },
+                    sky:     { '--color-accent':'#0ea5e9','--color-accent-light':'#bae6fd','--color-accent-hover':'#0284c7','--color-accent-muted':'#0c4a6e','--color-accent-subtle':'#38bdf8','--color-grad-from':'#0ea5e9','--color-grad-via':'#38bdf8','--color-grad-to':'#bae6fd','--color-grad-alt-to':'#a5f3fc','--color-arrow-stroke':'#f0f9ff','--color-scroll-stroke':'#38bdf8' },
+                  };
+                  var c = localStorage.getItem('color-theme') || 'amber';
+                  var vars = themes[c] || themes.amber;
+                  Object.keys(vars).forEach(function(k) { document.documentElement.style.setProperty(k, vars[k]); });
                 } catch(e) {}
               })();
             `,

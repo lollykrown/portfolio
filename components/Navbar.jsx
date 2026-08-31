@@ -5,6 +5,7 @@ import { HiMenuAlt3, HiX } from 'react-icons/hi';
 import ThemeToggle from './ThemeToggle';
 import { usePathname } from 'next/navigation';
 import Icon from './Icon';
+import ColorThemeSwitcher from './ColorThemeSwitcher';
 
 const navLinks = [
   { label: 'Home',         href: '/' },
@@ -104,6 +105,7 @@ export default function Navbar() {
           );
         })}
         <ThemeToggle />
+        <ColorThemeSwitcher />
         <Link href="/contact" className="btn-accent">Contact</Link>
       </div>
 
