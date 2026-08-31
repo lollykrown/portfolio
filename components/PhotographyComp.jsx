@@ -10,7 +10,7 @@ import kay from '@/public/photos/kay.jpg';
 import PhotoPlaceholder from '@/components/PhotoPlaceholder';
 import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 import { DotGrid, Glow, Lightbox } from '@/components/Cont';
-import { categories, photos } from '@/data/projects';
+import { categories, photos } from '@/lib/data';
 
 // ─── Shared helpers ───────────────────────────────────────────────
 const fadeUp = {
