@@ -4,13 +4,6 @@ import { FaCss3Alt } from 'react-icons/fa';
 import { DiReact } from 'react-icons/di';
 import { motion } from 'framer-motion';
 
-//purple and fuschia
-//emerald and teal
-//rose and coral or pink
-//amber and orange
-//cyan and sky
-//lime and green
-
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   show: {
@@ -35,15 +28,19 @@ export default function Hero() {
       {/* Ambient amber glow */}
       <div className="absolute inset-0 pointer-events-none ">
         <div
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-100 rounded-full bg-amber-700/40 blur-[120px]"
-          //         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-[120px]"
-          // style={{ backgroundColor: 'color-mix(in srgb, var(--color-accent-muted) 15%, transparent)' }}
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-100 rounded-full bg-(--color-accent-muted)/40 blur-[120px]"
         />
         <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-125h-50 bg-amber-900/30 blur-[80px]"
-          //         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[200px] blur-[80px]"
-          // style={{ backgroundColor: 'color-mix(in srgb, var(--color-accent-muted) 25%, transparent)' }}
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-125h-50 bg-(--color-accent-muted)/25 blur-[80px]"
         />
+        {/* <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `radial-gradient(circle, var(--color-dot-grid) 1px, transparent 1px)`,
+            backgroundSize: '28px 28px',
+            opacity: 'var(--color-dot-opacity)',
+          }}
+        /> */}
       </div>
 
       {/* Floating icons */}
