@@ -149,8 +149,8 @@ export default function ProjectsPage() {
                 </h2>
               </div>
               <p className="text-sm max-w-xs leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                {filtered.length} project{filtered.length !== 1 ? 's' : ''} — filtered by{' '}
-                <span className="font-semibold" style={{ color: 'var(--color-accent-subtle)' }}>{activeTag}</span>
+                {filtered.length} project{filtered.length !== 1 ? 's' : ''}<span className='hidden sm:inline'> — filtered by{' '}</span>
+                <span className="font-semibold hidden sm:inline" style={{ color: 'var(--color-accent-subtle)' }}>{activeTag}</span>
               </p>
             </motion.div>
 
@@ -158,7 +158,7 @@ export default function ProjectsPage() {
             <motion.div variants={fadeUp} className="flex flex-wrap gap-2">
               {allTags.map((tag) => (
                 <button key={tag} onClick={() => handleTag(tag)}
-                  className="text-xs font-semibold px-4 py-2 rounded-full border transition-all duration-200"
+                  className="text-xs hidden sm:block font-semibold px-4 py-2 rounded-full border transition-all duration-200"
                   style={activeTag === tag
                     ? { backgroundColor: 'var(--color-accent)', color: 'var(--color-arrow-stroke)', borderColor: 'var(--color-accent)' }
                     : { backgroundColor: 'transparent', color: 'var(--color-accent-subtle)', borderColor: 'color-mix(in srgb, var(--color-accent) 30%, transparent)' }
