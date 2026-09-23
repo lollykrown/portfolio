@@ -45,10 +45,10 @@ function DotGrid() {
 const allTags = ['All', ...Array.from(new Set(projects.flatMap((p) => p.tech ?? [])))];
 
 const stats = [
-  { value: '28+', label: 'Projects shipped' },
+  { value: '38+', label: 'Projects shipped' },
   { value: '100%', label: 'Client satisfaction' },
   { value: '11+', label: 'Years building' },
-  { value: '30+', label: 'Happy clients' },
+  { value: '32+', label: 'Happy clients' },
 ];
 
 const PER_PAGE = 6;

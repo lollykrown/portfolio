@@ -150,7 +150,7 @@ const timeline = [
   },
   {
     year: '2024',
-    title: '20+ projects shipped',
+    title: '38+ projects shipped',
     desc: 'Working with startups, agencies, and founders to turn ideas into production-ready products.',
   },
   {
