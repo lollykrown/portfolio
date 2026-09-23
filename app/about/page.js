@@ -305,14 +305,9 @@ export default function AboutPage() {
       className="object-cover"
     />
 
-    <div className="z-10 bg-blur rounded-xl px-4 py-3">
-      <p className="text-black font-black text-xl">Kay</p>
-      <p
-        className="text-xs tracking-widest uppercase mt-1"
-        style={{ color: 'var(--color-accent-subtle)' }}
-      >
-        Freelance Developer
-      </p>
+    <div className="z-10 bg-blur rounded-xl px-4 py-3 text-black">
+      <p className="font-black text-xl">Kay</p>
+      <p className="text-xs tracking-widest uppercase mt-1 font-semibold">Freelance Developer</p>
     </div>
   </div>
 </div>
