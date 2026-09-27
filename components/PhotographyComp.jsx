@@ -309,13 +309,13 @@ export default function PhotographyComp() {
                   Selected <span className="text-accent-gradient">work</span>
                 </h2>
                 <p
-                  className="text-sm max-w-xs leading-relaxed"
-                  style={{ color: 'var(--color-text-muted)' }}
+                  className="text-sm max-w-xs leading-relaxed text-(--color-text-muted)"
                 >
                   {filtered.length}{' '}
                   {activeCategory === 'all' ? 'photographs' : activeCategory} —
                   click any image to explore
                 </p>
+                <Link href="https://lollykrownphoto.pixieset.com" className='text-(--color-text-muted) text-sm hover:underline hover:text-white'>View all events Photos</Link>
               </div>
               <Link
                 href="https://lollykrown.pixieset.com"
