@@ -90,7 +90,7 @@ export default function Hero() {
           transition={{ delay: 0.6 }}
           className="text-(--color-text-secondary) text-xs md:text-base max-w-xl mx-auto leading-relaxed mb-10"
         >
-          Hi, I&apos;m Kay, a Frontend Developer building fast, scalable web
+          Hi, I&apos;m Kay, a Fullstack Developer building fast, scalable web
           apps with Next.js
           <br />
           I specialize in authentication systems, API integration, and clean and
