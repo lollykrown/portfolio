@@ -28,6 +28,7 @@ function DotGrid() {
 const skillGroups = [
   {
     category: "Frontend",
+    description: "Fast, accessible interfaces built with modern tooling.",
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5">
         <path d="M4 6l6-4 6 4v8l-6 4-6-4V6z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
@@ -35,15 +36,18 @@ const skillGroups = [
       </svg>
     ),
     skills: [
-      { name: "Next.js", level: 95 },
-      { name: "React", level: 95 },
-      { name: "TypeScript", level: 85 },
-      { name: "Tailwind CSS", level: 98 },
-      { name: "Framer Motion", level: 80 },
+      "Html/css & Javascript",
+      "React & Next.js",
+      "TypeScript",
+      "Responsive UI",
+      "State management",
+      "Animation & motion",
+      "Performance optimisation",
     ],
   },
   {
     category: "Backend",
+    description: "Reliable APIs and data layers that scale.",
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5">
         <rect x="2" y="3" width="16" height="5" rx="1.5" stroke="currentColor" strokeWidth="1.4"/>
@@ -53,15 +57,17 @@ const skillGroups = [
       </svg>
     ),
     skills: [
-      { name: "Node.js", level: 80 },
-      { name: "PostgreSQL", level: 75 },
-      { name: "Prisma", level: 82 },
-      { name: "Supabase", level: 85 },
-      { name: "REST APIs", level: 90 },
+      "REST API design",
+      "Authentication & authorisation",
+      "SQL & NoSQL databases",
+      "Cloud services",
+      "Serverless functions",
+      "Third-party integrations",
     ],
   },
   {
     category: "Design",
+    description: "Thoughtful, consistent experiences across devices.",
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5">
         <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1.4"/>
@@ -69,15 +75,18 @@ const skillGroups = [
       </svg>
     ),
     skills: [
-      { name: "Figma", level: 88 },
-      { name: "Responsive design", level: 96 },
-      { name: "Design systems", level: 80 },
-      { name: "Prototyping", level: 78 },
-      { name: "Accessibility", level: 82 },
+      "UI/UX design",
+      "Design systems",
+      "Prototyping",
+      "Wireframing",
+      "Accessibility (WCAG)",
+      "Responsive layouts",
+      "Typography & colour",
     ],
   },
   {
     category: "Tools",
+    description: "A workflow that ships quickly and stays maintainable.",
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5">
         <path d="M11.5 3.5L16.5 8.5L8 17L3 17L3 12L11.5 3.5Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
@@ -85,41 +94,31 @@ const skillGroups = [
       </svg>
     ),
     skills: [
-      { name: "Git / GitHub", level: 92 },
-      { name: "Vercel", level: 90 },
-      { name: "VS Code", level: 95 },
-      { name: "Docker basics", level: 65 },
-      { name: "Performance auditing", level: 80 },
+      "Version control",
+      "CI/CD & deployment",
+      "Containers",
+      "Testing & debugging",
+      "Performance auditing",
+      "Monitoring & analytics",
     ],
   },
 ];
 
-function SkillBar({ name, level, index }) {
+function SkillTag({ name, index }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -10 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+    <motion.li
+      initial={{ opacity: 0, y: 8 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: true }}
-      className="flex flex-col gap-1.5"
+      className="px-3 py-1.5 rounded-lg text-[13px] font-medium text-(--color-text-secondary) border transition-colors duration-200 hover:text-(--color-text-primary)"
+      style={{
+        backgroundColor: "rgba(255,255,255,0.03)",
+        borderColor: "rgba(255,255,255,0.08)",
+      }}
     >
-      <div className="flex justify-between items-center">
-        <span className="text-(--color-text-secondary) text-sm font-medium">{name}</span>
-        <span className="text-xs font-bold" style={{ color: "color-mix(in srgb, var(--color-accent-hover) 60%, transparent)" }}>
-          {level}%
-        </span>
-      </div>
-      <div className="h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: "rgba(255,255,255,0.06)" }}>
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${level}%` }}
-          transition={{ duration: 0.9, delay: index * 0.06 + 0.2, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
-          className="h-full rounded-full"
-          style={{ background: `linear-gradient(to right, var(--color-accent), var(--color-accent-light))` }}
-        />
-      </div>
-    </motion.div>
+      {name}
+    </motion.li>
   );
 }
 
@@ -180,7 +179,7 @@ export default function HomeSkills() {
           whileInView="show"
           viewport={{ once: true, margin: "-60px" }}
         >
-          {skillGroups.map((group) => (
+          {skillGroups.map((group, gi) => (
             <motion.div
               key={group.category}
               variants={cardVar}
@@ -201,24 +200,28 @@ export default function HomeSkills() {
 
               <div className="relative">
                 {/* Category header */}
-                <div className="flex items-center gap-3 mb-6 pb-4 border-b" style={{ borderColor: "color-mix(in srgb, var(--color-accent) 15%, transparent)" }}>
+                <div className="flex items-center justify-between mb-5">
                   <div
-                    className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+                    className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
                     style={{ backgroundColor: "color-mix(in srgb, var(--color-accent) 12%, transparent)", color: "var(--color-accent-subtle)" }}
                   >
                     {group.icon}
                   </div>
-                  <span className="text-xs font-black tracking-[0.18em] uppercase" style={{ color: "var(--color-accent-subtle)" }}>
-                    {group.category}
+                  <span className="text-xs font-semibold tabular-nums tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>
+                    {String(gi + 1).padStart(2, "0")}
                   </span>
                 </div>
+                <h3 className="text-lg font-bold text-(--color-text-primary) mb-1.5">{group.category}</h3>
+                <p className="text-(--color-text-secondary) text-sm leading-relaxed mb-5 pb-5 border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+                  {group.description}
+                </p>
 
-                {/* Skill bars */}
-                <div className="flex flex-col gap-4">
+                {/* Skill tags */}
+                <ul className="flex flex-wrap gap-2">
                   {group.skills.map((skill, i) => (
-                    <SkillBar key={skill.name} name={skill.name} level={skill.level} index={i} />
+                    <SkillTag key={skill} name={skill} index={i} />
                   ))}
-                </div>
+                </ul>
               </div>
             </motion.div>
           ))}
