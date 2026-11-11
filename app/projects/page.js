@@ -47,7 +47,7 @@ const allTags = ['All', ...Array.from(new Set(projects.flatMap((p) => p.tech ?? 
 const stats = [
   { value: '38+', label: 'Projects shipped' },
   { value: '100%', label: 'Client satisfaction' },
-  { value: '11+', label: 'Years building' },
+  { value: '8+', label: 'Years building' },
   { value: '32+', label: 'Happy clients' },
 ];
 
